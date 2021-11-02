@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
-import "masonry-layout";
 
-import Header from './Components/Utils/Header';
-import Footer from './Components/Utils/Footer';
 import Homepage from './Components/Homepage/index.js';
 import Products from './Components/Products/index.js';
 import ProductInfo from './Components/ProductInfo/index.js';
@@ -37,7 +34,6 @@ function DefaultRouter() {
 
 export default function App() {
   return (<>
-    <Header />
     <Router>
       <Switch>
         <Route exact path="/">
@@ -60,7 +56,5 @@ export default function App() {
         </Route>
       </Switch>
     </Router>
-    <Footer />
-    </>
-  );
+  </>);
 }
