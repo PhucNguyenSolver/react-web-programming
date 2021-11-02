@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
 import TestCard from './TestCard';
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import {items} from './data'
 
 /*
@@ -10,18 +11,22 @@ import {items} from './data'
 
 function Items({currentItems}) {
   // TODO: add wrapper container to limit view width 
+  
   return (
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3"> 
-        { currentItems.map((item) => (
-            <div class="col">
-              <TestCard item={item}/>
-            </div>
-            )
-          )
-        }
-      </div>
-    </div>
+      {/* <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3"> */}
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+          gutter="2rem"
+        >
+          <Masonry>
+            { currentItems.map((item) => (
+                  <TestCard item={item}/>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      {/* </div>  */}
+    </div> 
   );
 }
 

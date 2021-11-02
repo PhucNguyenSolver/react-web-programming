@@ -20,7 +20,7 @@ export default function TestCard(props) {
   const [active, setActive] = useState(false);
   const hightlight = active ? " opacity-50" : "";
   return (<>
-    <div class="card shadow-sm"
+    <div class="card shadow-sm m-2 m-md-2 m-lg-3 mx-xl-5"
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
       onClick={() => console.log("Go to " + item.source)}
