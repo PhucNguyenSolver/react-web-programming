@@ -1,11 +1,7 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+import "masonry-layout";
 
 import Header from './Components/Utils/Header';
 import Footer from './Components/Utils/Footer';
