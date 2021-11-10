@@ -23,7 +23,10 @@ export default function TestCard(props) {
     <div class="card shadow-sm m-2 m-md-2 m-lg-3 mx-xl-5"
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
-      onClick={() => console.log("Go to " + item.source)}
+      onClick={() => {
+        console.log("Go to " + item.source);
+        window.location.href='/article';
+      }}
     >
       <img class={"card-img-top" + hightlight} src={item.imgUrl} alt="" />
 

@@ -5,6 +5,7 @@ import Footer from '../Utils/Footer'
 
 export default function News () {  
   return (<>
+    <h1>This is a header</h1>
     <Header />
     <TestHeader />
     <TestPagination itemsPerPage={9}/> 

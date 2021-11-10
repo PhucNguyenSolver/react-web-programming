@@ -20,9 +20,9 @@ function Items({currentItems}) {
           gutter="2rem"
         >
           <Masonry>
-            { currentItems.map((item) => (
-                  <TestCard item={item}/>
-            ))}
+            {currentItems.map((item) => 
+              <TestCard key={item.title} item={item}/>
+            )}
           </Masonry>
         </ResponsiveMasonry>
       {/* </div>  */}
@@ -30,7 +30,7 @@ function Items({currentItems}) {
   );
 }
 
-function TestPagination({ itemsPerPage }) {
+export default function TestPagination({ itemsPerPage }) {
   // We start with an empty list of items.
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -83,5 +83,3 @@ function TestPagination({ itemsPerPage }) {
     </div>
   );
 }
-
-export default TestPagination;
