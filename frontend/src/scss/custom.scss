@@ -1,47 +1,14 @@
 
-  @import "../../node_modules/bootstrap/dist/css/bootstrap.css";
-// .boot {
-//   background-color: rgba(28, 28, 151, 0.829);
-// }
-
-// .antd {
-//   background-color: rgba(32, 14, 14, 0.733);
-//   @import "~antd/dist/antd.css";
-// }
-
 $theme-colors: (
-  "primary": #60c25c,
-  "secondary": #222831,
-  "light": #ffffff,
-  "dark": #f0f0f0,
-  "success": #4e9f3d,
-  "info": #c8e3d4,
-  "warning": #fda65d,
-  "danger": #f05454,
+  "primary": #E30220,
+  "secondary": #242024,
+  "light": #F3F4F5,
+  "dark": #DDDDDD,
+  
+  // "success": #4e9f3d,
+  // "info": #242024,
+  // "warning": #fda65d,
+  // "danger": #f05454,
 );
 
-// // Custom.scss
-// // Include parts of Bootstrap
-
-// // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-// @import "../../node_modules/bootstrap/scss/functions";
-
-// // 2. Include any default variable overrides here
-
-//   // // 3. Include remainder of required Bootstrap stylesheets
-//   @import "../../node_modules/bootstrap/scss/variables";
-//   @import "../../node_modules/bootstrap/scss/mixins";
-//   @import "../../node_modules/bootstrap/scss/utilities";
-
-//   // // 4. Include any optional Bootstrap components as you like
-//   @import "../../node_modules/bootstrap/scss/root";
-//   @import "../../node_modules/bootstrap/scss/containers";
-//   @import "../../node_modules/bootstrap/scss/grid";
-
-//   // // Helpers
-//   @import "../../node_modules/bootstrap/scss/helpers";
-
-//   // // Utilities
-//   @import "../../node_modules/bootstrap/scss/utilities/api";
-
-//   // // 5. Add additional custom code here
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
