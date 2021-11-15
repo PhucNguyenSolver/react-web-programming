@@ -8,10 +8,10 @@ import pic3 from './pic3.jpg'
 import pic4 from './pic4.jpg'
 
 export default function ProductInfo() {
+  document.title="Thông tin sản phẩm";
   return <>
     <Header></Header>
 
-    <title>Thông tin sản phẩm</title>
     <div className="content">
       <div className="container">
         <div className="row">
