@@ -1,7 +1,7 @@
 import './comment.scss';
 import { useState } from 'react';
 import { Col, Container, Row, Button, InputGroup, FormControl } from 'react-bootstrap';
-import { TrashFill, PencilSquare, Messenger } from 'react-bootstrap-icons';
+import { TrashFill, PencilSquare } from 'react-bootstrap-icons';
 import { timeSince } from './utils';
 
 const commentItems = [ // TODO: load data from API

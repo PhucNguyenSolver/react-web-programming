@@ -12,27 +12,20 @@ import Footer from "./Components/Utils/Footer.js";
 
 
 function DefaultRouter() {
-  // return <Comment />;
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="/homepage">Homepage</Link>
+        <li><Link to="/homepage">Homepage</Link>
         </li>
-        <li>
-          <Link to="/products">Products</Link>
+        <li><Link to="/products">Products</Link>
         </li>
-        <li>
-          <Link to="/product-info/">Product Info</Link>
+        <li><Link to="/product-info/">Product Info</Link>
         </li>
-        <li>
-          <Link to="/cart/">Cart</Link>
+        <li><Link to="/cart/">Cart</Link>
         </li>
-        <li>
-          <Link to="/news/">News</Link>
+        <li><Link to="/news/">News</Link>
         </li>
-        <li>
-          <Link to="/article/">Article</Link>
+        <li><Link to="/article/">Article</Link>
         </li>
       </ul>
     </nav>
@@ -41,32 +34,23 @@ function DefaultRouter() {
 
 export default function App() {
   return (<>
-    {/* <Header /> */}
+    <Header />
     <Router>
       <Switch>
-        <Route exact path="/">
-          <DefaultRouter />
+        <Route path="/products" component={Products}>
         </Route>
-        <Route path="/homepage">
-          <Homepage />
+        <Route path="/product-info" component={ProductInfo}>
         </Route>
-        <Route path="/products">
-          <Products />
+        <Route path="/cart" component={Cart}>
         </Route>
-        <Route path="/product-info">
-          <ProductInfo />
+        <Route path="/news" component={News}>
         </Route>
-        <Route path="/cart">
-          <Cart />
+        <Route path="/article" component={Article}>
         </Route>
-        <Route path="/news">
-          <News />
-        </Route>
-        <Route path="/article">
-          <Article />
+        <Route exact path="/" component={Homepage}>
         </Route>
       </Switch>
     </Router>
-    {/* <Footer/> */}
+    <Footer/>
   </>);
 }
