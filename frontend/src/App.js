@@ -9,7 +9,7 @@ import News from './Components/News/index.js';
 import Article from './Components/Article/index';
 import Header from "./Components/Utils/Header.js";
 import Footer from "./Components/Utils/Footer.js";
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 function DefaultRouter() {
   return (
