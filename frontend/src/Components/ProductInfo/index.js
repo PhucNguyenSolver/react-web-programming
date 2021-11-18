@@ -1,11 +1,13 @@
 import Header from "../Utils/Header";
 import Footer from "../Utils/Footer";
 import './styles.css';
-import * as Icon from 'react-bootstrap-icons';
+// import * as Icon from 'react-bootstrap-icons';
 import pic1 from './pic1.jpg'
 import pic2 from './pic2.jpg'
 import pic3 from './pic3.jpg'
 import pic4 from './pic4.jpg'
+import avatar from './avatar.png'
+import avatar2 from './avatar2.png'
 
 export default function ProductInfo() {
   document.title="Thông tin sản phẩm";
@@ -103,6 +105,10 @@ export default function ProductInfo() {
                         <td>Giá mới:</td>
                         <td><span className="newPrice">24,990,000đ</span></td>
                       </tr>
+                      <tr>
+                        <td>Đánh giá:</td>
+                        <td>9.5/10</td>
+                      </tr>
                     </tbody>
                   </table>
                   <div className="buttonOrder">
@@ -117,7 +123,7 @@ export default function ProductInfo() {
         </div>
       </div>
     </div>
-    <div className="comment">
+    <div className="commentPart">
       <div className="container">
         <div className="row">
           <div className="col-lg-8">
@@ -125,55 +131,39 @@ export default function ProductInfo() {
               <p>
                 Bình luận của khách hàng về laptop Asus TUF Gaming F15 FX506HCB HN139T
               </p>
-              <div className="picture">
-                <textarea name id cols="100%" rows={6} defaultValue={""} />
-                <div className="anh">
-                  <div style={{display: 'inline-flex', justifyContent: 'space-between', alignItems: 'center', width: '200px'}}>
-                    <label className="btn btn-default">
-                      <Icon.Camera className="camera" style={{width: '50px', height: '50px', fontSize: '40px', color: 'black'}} />
-                      <input type="file" accept="image/*" multiple hidden />
-                    </label>
-                    <p style={{margin: 'auto', flex: 1}}>Chọn ảnh</p>
-                  </div>
-                  <div><button>Gửi bình luận</button></div>
+              <div className="cmtBox">
+                <textarea cols="100%" rows={6} defaultValue={""} />
+                <div className="cmtBtn">
+                  <button>Gửi bình luận</button>
                 </div>
               </div>
             </div>
             <div className="commentList">
               <h4>159 bình luận</h4>
               <hr />
-              <div className="comment1">
-                <span />
-                <h6>An Lam</h6>
+              <div className="comment">
+                <div className="avatar" style={{backgroundImage: "url(" + avatar + ")"}} />
+                <h6 className="userName">An Lam</h6>   
+                <div className="role" style={{display:"none"}}></div>         
+                <div className="cmtTime">9 tiếng trước</div>
               </div>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet tincidunt et turpis habitasse ultrices condimentum velit. At nulla eu urna cras sed odio mauris vivamus erat. Elit mi massa nisl enim. Tristique massa sit est in senectus amet, ut nullam. Amet
                 consectetur netus duis diam.
               </p>
-              <div className="replyChoice">
-                <p className="reply">Trả lời</p>
-                <span>|</span>
-                <p className="replyTime">9 tiếng trước</p>
+
+              <div className="comment">
+                <div className="avatar" style={{backgroundImage: "url(" + avatar2 + ")"}} />
+                <h6 className="userName">An Lam</h6>
+                <div className="role">Quản trị viên</div>
+                <div className="cmtTime">9 tiếng trước</div>
               </div>
-              <div className="subreply">
-                <div className="subCmtUserName">
-                  <span />
-                  <h6>AdminName</h6>
-                </div>
-                <div className="square" />
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet tincidunt et turpis habitasse ultrices condimentum velit. At nulla eu urna cras sed odio mauris vivamus erat. Elit mi massa nisl enim. Tristique massa sit est in senectus amet, ut nullam. Amet
-                  consectetur netus duis diam.
-                </p>
-                <div className="replyChoice">
-                  <p className="reply">Trả lời</p>
-                  <span>|</span>
-                  <p className="replyTime">1 tiếng trước</p>
-                </div>
-                <div className="role">
-                  <p>Quản trị viên</p>
-                </div>
-              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet tincidunt et turpis habitasse ultrices condimentum velit. At nulla eu urna cras sed odio mauris vivamus erat. Elit mi massa nisl enim. Tristique massa sit est in senectus amet, ut nullam. Amet
+                consectetur netus duis diam.
+              </p>
+
+              
             </div>
           </div>
         </div>
