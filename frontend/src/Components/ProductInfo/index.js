@@ -12,7 +12,6 @@ import avatar2 from './avatar2.png'
 export default function ProductInfo() {
   document.title="Thông tin sản phẩm";
   return <>
-    <Header></Header>
 
     <div className="content">
       <div className="container">
@@ -169,8 +168,6 @@ export default function ProductInfo() {
         </div>
       </div>
     </div>
-
-    <Footer></Footer>
 
   </>
   
