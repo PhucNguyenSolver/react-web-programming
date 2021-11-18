@@ -30,19 +30,6 @@ th {
     height: 100%;
 }
 
-
-/* .center {
-    justify-content: center;
-    display: flex;
-} */
-
-
-/* .subDetails {
-    width: 100%;
-    transform: translateY(25%);
-    overflow: hidden;
-} */
-
 .image {
     display: flex;
     justify-content: space-between;
@@ -86,10 +73,10 @@ th {
     justify-content: space-between;
 }
 
-.anh {
+.cmtBtn {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: end;
+    /* align-items: flex-end; */
 }
 
 .buttonOrder button {
@@ -104,14 +91,14 @@ th {
 }
 
 .comment {
-    padding-top: 50px;
+    padding-top: 20px;
 }
 
 .userComment p {
     font-weight: bold;
 }
 
-.picture {
+.cmtBox {
     background-color: #e9e9e9;
 }
 
@@ -121,12 +108,12 @@ th {
     line-height: 100%;
 }
 
-.picture textarea {
+.cmtBox textarea {
     width: 100%;
     background-color: #e9e9e9;
 }
 
-.picture button {
+.cmtBox button {
     margin: 10px;
     border: none;
     width: 158px;
@@ -145,100 +132,47 @@ hr {
     opacity: 1;
 }
 
-.comment1 {
+.comment {
     display: flex;
 }
 
-.comment1 span {
-    display: inline-block;
+.avatar {
     width: 30px;
     height: 30px;
     background-color: gray;
     border: 0px black solid;
-    background-image: url(avatar.png);
     background-size: 100%;
 }
 
-.comment1 h6 {
+.userName {
     height: 30px;
     line-height: 30px;
     padding-left: 10px;
-}
-
-.subCmtUserName {
-    display: flex;
-}
-
-.subCmtUserName span {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    background-color: gray;
-    border: 0px black solid;
-    background-image: url(avatar2.png);
-    background-size: 100%;
-}
-
-.subCmtUserName h6 {
-    height: 30px;
-    line-height: 30px;
-    padding-left: 10px;
-}
-
-.reply,
-.replyTime {
-    padding-top: 5px;
-    color: #e30220;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.replyChoice {
-    display: flex;
-    justify-content: space-between;
-    width: 25%;
-}
-
-.replyChoice span {
-    padding-top: 4px;
-}
-
-.replyTime {
-    color: black;
-}
-
-.subreply {
-    background-color: #dddddd;
-    position: relative;
-    padding: 20px;
-}
-
-.square {
-    width: 20px;
-    height: 20px;
-    transform: rotate(45deg);
-    background-color: #dddddd;
-    position: absolute;
-    top: -10px;
-    left: 10px;
-}
-
-.pl-10 {
-    padding-left: 10px;
-}
-
-.pt-20 {
-    padding-top: 20px;
 }
 
 .role {
-    width: 142px;
+    width: 140px;
     height: 20px;
     background-color: #e30220;
     color: white;
     text-align: center;
     line-height: 20px;
-    position: absolute;
-    top: 25px;
-    left: 170px;
+    position: relative;
+    margin-left: 30px;
+    top: 3px;
 }
+
+.cmtTime {
+    padding-left: 30px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+/* .pl-10 {
+    padding-left: 10px;
+}
+
+.pt-20 {
+    padding-top: 20px;
+} */
+
