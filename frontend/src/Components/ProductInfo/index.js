@@ -1,5 +1,3 @@
-import Header from "../Utils/Header";
-import Footer from "../Utils/Footer";
 import './styles.css';
 // import * as Icon from 'react-bootstrap-icons';
 import pic1 from './pic1.jpg'
@@ -145,6 +143,7 @@ export default function ProductInfo() {
                 <h6 className="userName">An Lam</h6>   
                 <div className="role" style={{display:"none"}}></div>         
                 <div className="cmtTime">9 tiếng trước</div>
+                <div><button type="button" className="btn btn-danger delCmtBtn">Xoá</button></div>
               </div>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet tincidunt et turpis habitasse ultrices condimentum velit. At nulla eu urna cras sed odio mauris vivamus erat. Elit mi massa nisl enim. Tristique massa sit est in senectus amet, ut nullam. Amet
@@ -156,6 +155,7 @@ export default function ProductInfo() {
                 <h6 className="userName">An Lam</h6>
                 <div className="role">Quản trị viên</div>
                 <div className="cmtTime">9 tiếng trước</div>
+                <div><button type="button"  style={{display:"none"}} className="btn btn-danger delCmtBtn">Xoá</button></div>
               </div>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet tincidunt et turpis habitasse ultrices condimentum velit. At nulla eu urna cras sed odio mauris vivamus erat. Elit mi massa nisl enim. Tristique massa sit est in senectus amet, ut nullam. Amet
