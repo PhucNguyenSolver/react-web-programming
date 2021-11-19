@@ -102,12 +102,6 @@ th {
     background-color: #e9e9e9;
 }
 
-.uploadButton {
-    flex: 1;
-    text-align: center;
-    line-height: 100%;
-}
-
 .cmtBox textarea {
     width: 100%;
     background-color: #e9e9e9;
@@ -166,6 +160,12 @@ hr {
     padding-left: 30px;
     font-weight: bold;
     line-height: 30px;
+}
+
+.delCmtBtn{
+    margin-left: 30px;
+    line-height: 15px;
+    
 }
 
 /* .pl-10 {
