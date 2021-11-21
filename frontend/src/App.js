@@ -9,6 +9,8 @@ import News from './Components/News/index.js';
 import Article from './Components/Article/index';
 import Header from "./Components/Utils/Header.js";
 import Footer from "./Components/Utils/Footer.js";
+import ChangeInfoAccount from "./Components/ChangeInfoAccount";
+import ChangeInfoProduct from "./Components/ChangeInfoProduct";
 import 'bootstrap/dist/css/bootstrap.css';
 
 function DefaultRouter() {
@@ -46,6 +48,10 @@ export default function App() {
         <Route path="/news" component={News}>
         </Route>
         <Route path="/article" component={Article}>
+        </Route>
+        <Route path="/admin0" component={ChangeInfoAccount}>
+        </Route>
+        <Route path="/admin1" component={ChangeInfoProduct}>
         </Route>
         <Route exact path="/" component={Homepage}>
         </Route>
