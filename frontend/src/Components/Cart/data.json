@@ -1,0 +1,25 @@
+{
+    "products":[
+        {
+            "id": "1",
+            "name": "Laptop Gaming Asus ROG Strix G15 G513IH HN015T",
+            "price": 20000000,
+            "quantity": 1,
+            "image": "https://product.hstatic.net/1000026716/product/rog_strix_g15_g513ih_hn015t_9e61847a6b8245e9ab9fa32cc2ffb6ba.png"
+        },
+        {
+            "id": "2",
+            "name": "Laptop Gaming Acer Aspire 7 A715 42G R1SB",
+            "price": 20000000,
+            "quantity": 1,
+            "image": "https://product.hstatic.net/1000026716/product/laptop_gaming_acer_aspire_7_a715_42g_r1sb_9520016e22274791bb4e1697764c57c4.jpg"
+        },
+        {
+            "id": "3",
+            "name": "LAPTOP MSI Modern 14 B10MW 635VN",
+            "price": 20000000,
+            "quantity": 1,
+            "image": "https://product.hstatic.net/1000026716/product/laptop_msi_modern_14_b10mw_635vn_80d03a9b047c416b85fc033e0b8d0acf.jpg"
+        }
+    ]
+}
