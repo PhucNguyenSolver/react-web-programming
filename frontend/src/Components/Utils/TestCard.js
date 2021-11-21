@@ -16,11 +16,15 @@ const defaultItem = {
 
 export default function TestCard() {
   const item = defaultItem;
+  const handleClick = () => {
+    document.location.href = '/product-info';
+    // console.log("Go to /products/" + item.id);
+  }
   return (<>
     <div class="card shadow"
     // TODO: style margin
-    // <div class="card shadow m-2 m-md-2 m-lg-3 mx-xl-5"
-      onClick={() => console.log("Go to /products/" + item.id)}
+      onClick={handleClick}
+      hoverable
     >
       <img class={"card-img-top"} src={item.img} alt="" />
       <div class="card-body bg bg-light">

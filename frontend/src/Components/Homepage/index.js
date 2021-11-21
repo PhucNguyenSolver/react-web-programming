@@ -1,3 +1,4 @@
+import TestCard from '../Utils/TestCard';
 import pc1 from './pc1.png';
 import pc2 from './pc2.png';
 import slide1 from './slideshow1.png';
@@ -90,56 +91,11 @@ export default function Homepage(){
     </div>
   </nav>
   <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5" data-masonry="{&quot;percentPosition&quot;: true }" style={{marginBottom: '2%'}}>
-    <div className="col">
-      <div className="card shadow-sm">
-        <img className="card-img-top" src={pic} alt="" />
-        <div className="card-body">
-          <h5 className="card-title">Laptop Acer Aspire 3 A315 56 37DV</h5>
-          <del className="text-muted">11.990.000d</del>
-          <h5 className="d-flex justify-content-between align-items-center" style={{color: 'red', fontWeight: 'bold'}}>11,490,000d</h5>
-        </div>
+    {[1,2,3,4,5,1,1,1,1,1,1,1].map(() => (
+      <div className="col">
+        <TestCard/>
       </div>
-    </div>
-    <div className="col">
-      <div className="card shadow-sm">
-        <img className="card-img-top" src={pic} alt="" />
-        <div className="card-body">
-          <h5 className="card-title">Laptop Acer Aspire 3 A315 56 37DV</h5>
-          <del className="text-muted">11.990.000d</del>
-          <h5 className="d-flex justify-content-between align-items-center" style={{color: 'red', fontWeight: 'bold'}}>11,490,000d</h5>
-        </div>
-      </div>
-    </div>
-    <div className="col">
-      <div className="card shadow-sm">
-        <img className="card-img-top" src={pic} alt="" />
-        <div className="card-body">
-          <h5 className="card-title">Laptop Acer Aspire 3 A315 56 37DV</h5>
-          <del className="text-muted">11.990.000d</del>
-          <h5 className="d-flex justify-content-between align-items-center" style={{color: 'red', fontWeight: 'bold'}}>11,490,000d</h5>
-        </div>
-      </div>
-    </div>
-    <div className="col">
-      <div className="card shadow-sm">
-        <img className="card-img-top" src={pic} alt="" />
-        <div className="card-body">
-          <h5 className="card-title">Laptop Acer Aspire 3 A315 56 37DV</h5>
-          <del className="text-muted">11.990.000d</del>
-          <h5 className="d-flex justify-content-between align-items-center" style={{color: 'red', fontWeight: 'bold'}}>11,490,000d</h5>
-        </div>
-      </div>
-    </div>
-    <div className="col">
-      <div className="card shadow-sm">
-        <img className="card-img-top" src={pic} alt="" />
-        <div className="card-body">
-          <h5 className="card-title">Laptop Acer Aspire 3 A315 56 37DV</h5>
-          <del className="text-muted">11.990.000d</del>
-          <h5 className="d-flex justify-content-between align-items-center" style={{color: 'red', fontWeight: 'bold'}}>11,490,000d</h5>
-        </div>
-      </div>
-    </div>                   
+    ))}
   </div>
   <nav className="navbar navbar-expand navbar-dark" aria-label="Second navbar example" style={{backgroundColor: 'red', marginTop: '0.5%', width: '100%'}}>
     <div className="container-fluid">
