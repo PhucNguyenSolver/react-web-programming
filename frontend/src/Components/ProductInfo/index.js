@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles.scss';
 // import * as Icon from 'react-bootstrap-icons';
 import pic1 from './pic1.jpg'
 import pic2 from './pic2.jpg'
@@ -10,7 +10,6 @@ import avatar2 from './avatar2.png'
 export default function ProductInfo() {
   document.title="Thông tin sản phẩm";
   return <>
-
     <div className="content">
       <div className="container">
         <div className="row">
@@ -20,7 +19,7 @@ export default function ProductInfo() {
                 <img src={pic1} alt="" className="details"/>
               </div>
             </div>
-            <div className="row ">
+            <div className="row">
               <div className="col-lg-12 image ">
                 <div className="imageSub active ">
                   <img src={pic1} alt="" className="subDetails" />
@@ -46,7 +45,7 @@ export default function ProductInfo() {
                   <tbody>
                     <tr>
                       <th scope="row">CPU</th>
-                      <th>i5 11400H</th>
+                      <td>i5 11400H</td>
                     </tr>
                     <tr>
                       <th scope="row">RAM</th>
@@ -90,6 +89,7 @@ export default function ProductInfo() {
                     </tr>
                   </tbody>
                 </table>
+                
                 <div className="price">
 
                   <table className="table">
