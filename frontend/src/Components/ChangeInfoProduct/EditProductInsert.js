@@ -1,24 +1,24 @@
 import React from 'react';
 import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
-import ChangeForm from "./form.js";
+import ChangeFormInsert from "./formInsert.js";
 
-export default function EditAccount () {
+export default function EditProductInsert () {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="outline-primary" size="sm" onClick={handleShow} style={{float: 'right'}}>
-        Chỉnh sửa
+      <Button variant="outline-primary" size="sm" onClick={handleShow}>
+        Thêm sản phẩm mới
       </Button>
 
       <Modal size="lg" show={show} onHide={() => setShow(false)} aria-labelledby="example-modal-sizes-title-lg">
         <Modal.Header closeButton>
-          <Modal.Title>Thông tin người dùng</Modal.Title>
+          <Modal.Title>Thông tin sản phẩm</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ChangeForm/>
+          <ChangeFormInsert/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
