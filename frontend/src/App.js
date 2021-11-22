@@ -12,6 +12,7 @@ import Footer from "./Components/Utils/Footer.js";
 import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
 import SignUp from './Components/SignUp/index.js';
+import SignIn from './Components/SignIn/index.js';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function DefaultRouter() {
@@ -31,6 +32,8 @@ function DefaultRouter() {
         <li><Link to="/article/">Article</Link>
         </li>
         <li><Link to="/sign-up/">Sign Up</Link>
+        </li>
+        <li><Link to="/sign-in/">Sign In</Link>
         </li>
       </ul>
     </nav>
@@ -57,6 +60,8 @@ export default function App() {
         <Route path="/admin1" component={ChangeInfoProduct}>
         </Route>
         <Route path="/sign-up" component={SignUp}>
+        </Route>
+        <Route path="/sign-in" component={SignIn}>
         </Route>
         <Route exact path="/" component={Homepage}>
         </Route>

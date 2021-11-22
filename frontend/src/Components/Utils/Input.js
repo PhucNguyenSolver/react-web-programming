@@ -4,7 +4,7 @@ export function Input(props){
             <input type={props.type} className="form-control" id={props.fieldName} name={props.fieldName}
             placeholder={props.fieldName} pattern={props.pattern}
             minlength={props.minlength} maxlength={props.maxlength} title={props.title}
-            onChange={props.onChange}
+            style={props.style}
             required/>
             <label for={props.fieldName}>{props.vnFieldName}</label>
         </div>

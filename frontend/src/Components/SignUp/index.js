@@ -1,18 +1,18 @@
 import './styles.scss';
 import * as Icon from 'react-bootstrap-icons';
 import {Button} from 'react-bootstrap';
-import {Input} from './Input.js';
+import {Input} from '../Utils/Input.js';
 import $ from 'jquery'; 
 
 export default function SignUp(){
   document.title = "Đăng ký";
   return <>
-  <div className="sign-in">
+  <div className="sign-up">
     <body>
       <div className="container">
         <div className="row">
           <div className="col-lg-10 col-xl-9 mx-auto">
-            <div className="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+            <div className="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden inner">
               <div className="card-img-left d-none d-md-flex">
                 {/* {đặt ảnh nền bên trái} */}
               </div>
@@ -26,17 +26,19 @@ export default function SignUp(){
                   <Input type="email" fieldName='email' vnFieldName="Email" maxlength="320" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Hãy nhập đúng định dạng email"></Input>
                   <Input type="password" fieldName='password' vnFieldName="Mật khẩu" maxlength="32" pattern=".{6,32}" title="Mật khẩu chứa từ 6 đến 32 ký tự"></Input>
                   <Input type="password" fieldName='re-password' vnFieldName="Xác nhận mật khẩu" maxlength="30"></Input>
-                  <span id='message'></span>
+                  <span id='message' style={{'display':'inline-block'}}></span>
+                  {/* <Input type="text" fieldName='pin' vnFieldName="Mã xác thực" maxlength="6" pattern="[0-9]{6,6}" title="Mã xác thực gồm 6 chữ số"></Input> */}
+                  
 
                   <div className="d-grid mb-2">
                     <Button variant="primary" className="btn-sign-up" type="submit" id ="submit">Đăng ký</Button>
                   </div>
 
-                  <a className="d-block text-center mt-2 small" href="/sign-in">Đã có tài khoản? Đăng nhập</a>
+                  <a className="d-block text-center mt-2 small" href="/sign-in"d>Đã có tài khoản? Đăng nhập</a>
 
                   <hr className="my-4"/>
                   <div className="d-grid">
-                    <Button variant="danger" className="btn-sign-up" type="submit" id="gg-submit"><Icon.Google></Icon.Google> Đăng nhập bằng Google</Button>                
+                    <Button variant="danger" className="btn-sign-up" type="button" id="gg-submit"><Icon.Google></Icon.Google> Đăng nhập bằng Google</Button>                
                   </div>
 
                 </form>
@@ -61,9 +63,12 @@ $(window).on( "load", function() {
         $('#submit').attr("disabled", true);
     }
   });
+
 });
 
 $(function() {// ready
   
+
+
 });
 
