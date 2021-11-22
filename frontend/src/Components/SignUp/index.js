@@ -6,6 +6,22 @@ import $ from 'jquery';
 
 export default function SignUp(){
   document.title = "Đăng ký";
+  $(window).on( "load", function() {
+    $('#password, #re-password').on('keyup', function () {
+      if ($('#password').val() === $('#re-password').val()) {
+          $('#message').html('').css({'style':'display:none'});
+          $('#submit').removeAttr("disabled");
+      }
+      else {
+          $('#message').html('Mật khẩu không khớp').css({'color': 'red'});
+          $('#submit').attr("disabled", true);
+      }
+    });
+  });
+  
+  $(function() {// ready
+  
+  });
   return <>
   <div className="sign-up">
     <body>
@@ -52,23 +68,5 @@ export default function SignUp(){
   </>
 }
 
-$(window).on( "load", function() {
-  $('#password, #re-password').on('keyup', function () {
-    if ($('#password').val() === $('#re-password').val()) {
-        $('#message').html('').css({'style':'display:none'});
-        $('#submit').removeAttr("disabled");
-    }
-    else {
-        $('#message').html('Mật khẩu không khớp').css({'color': 'red'});
-        $('#submit').attr("disabled", true);
-    }
-  });
 
-});
-
-$(function() {// ready
-  
-
-
-});
 

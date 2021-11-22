@@ -5,6 +5,14 @@ import {Input} from '../Utils/Input.js';
 import $ from 'jquery'; 
 
 export default function SignIn(){
+  
+  $(window).on( "load", function() {
+
+  });
+
+  $(function() {// ready
+    
+  });
   document.title = "Đăng nhập";
   return <>
   <div className="sign-in">
@@ -47,11 +55,4 @@ export default function SignIn(){
   </>
 }
 
-$(window).on( "load", function() {
-
-});
-
-$(function() {// ready
-  
-});
 
