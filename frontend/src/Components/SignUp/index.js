@@ -4,17 +4,6 @@ import {Button} from 'react-bootstrap';
 import {Input} from './Input.js';
 import $ from 'jquery'; 
 
-$('#password, #re-password').on('keyup', function () {
-  if ($('#password').val() === $('#re-password').val()) {
-      $('#message').html('').css({'style':'display:none'});
-      $('#submit').removeAttr("disabled");
-  }
-  else {
-      $('#message').html('Mật khẩu không khớp').css({'color': 'red'});
-      $('#submit').attr("disabled", true);
-  }
-});
-
 export default function SignUp(){
   document.title = "Đăng ký";
   return <>
@@ -60,3 +49,21 @@ export default function SignUp(){
   </div>
   </>
 }
+
+$(window).on( "load", function() {
+  $('#password, #re-password').on('keyup', function () {
+    if ($('#password').val() === $('#re-password').val()) {
+        $('#message').html('').css({'style':'display:none'});
+        $('#submit').removeAttr("disabled");
+    }
+    else {
+        $('#message').html('Mật khẩu không khớp').css({'color': 'red'});
+        $('#submit').attr("disabled", true);
+    }
+  });
+});
+
+$(function() {// ready
+  
+});
+
