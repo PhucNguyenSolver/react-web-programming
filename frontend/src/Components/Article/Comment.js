@@ -1,4 +1,3 @@
-import './comment.scss';
 import { useState } from 'react';
 import { Col, Container, Row, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { TrashFill, PencilSquare } from 'react-bootstrap-icons';
