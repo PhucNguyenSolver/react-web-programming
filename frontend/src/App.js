@@ -13,32 +13,6 @@ import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
-import 'bootstrap/dist/css/bootstrap.css';
-
-function DefaultRouter() {
-  return (
-    <nav>
-      <ul>
-        <li><Link to="/homepage">Homepage</Link>
-        </li>
-        <li><Link to="/products">Products</Link>
-        </li>
-        <li><Link to="/product-info/">Product Info</Link>
-        </li>
-        <li><Link to="/cart/">Cart</Link>
-        </li>
-        <li><Link to="/news/">News</Link>
-        </li>
-        <li><Link to="/article/">Article</Link>
-        </li>
-        <li><Link to="/sign-up/">Sign Up</Link>
-        </li>
-        <li><Link to="/sign-in/">Sign In</Link>
-        </li>
-      </ul>
-    </nav>
-  );
-}
 
 export default function App() {
   return (<>

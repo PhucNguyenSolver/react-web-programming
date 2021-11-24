@@ -14,13 +14,14 @@ $theme-colors: (
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 .post-content {
+  // @extend .bg-light;
+  @extend .fs-5;
   position: relative;
-  // max-width: 100%;
-  img {
+  text-align: justify;
+  text-justify: inter-word;
+  img { 
     max-width: 100%;
   }
-  @extend .bg-light;
-  @extend .fs-5;
   p {
     @extend .mb-4;
   }
