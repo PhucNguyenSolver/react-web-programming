@@ -15,22 +15,19 @@ const defaultItem = {
 };
 
 export default function TestCard() {
-  const item = defaultItem;
+  const {id, img, name, price, sale, discount} = defaultItem;
   const handleClick = () => {
-    document.location.href = '/product-info';
-    // console.log("Go to /products/" + item.id);
+    document.location.href = '/product-info/' + id;
   }
+
   return (<>
-    <div class="card shadow"
-    // TODO: style margin
-      onClick={handleClick}
-      hoverable
-    >
-      <img class={"card-img-top"} src={item.img} alt="" />
+    <div class="card shadow border-0" style={{cursor: 'pointer'}} onClick={handleClick}>
+      <img class="card-img-top" src={img} alt="" />
       <div class="card-body bg bg-light">
-        <h5 class="card-name">{item.name}</h5>
-        <del class="card-text">{numberWithCommas(item.price) + 'đ'}</del>
-        <h4 class="card-text text-primary text-lg">{numberWithCommas(item.sale) + 'đ'}</h4>
+        <h5 class="card-name">{name}</h5>
+        {discount && 
+        <del class="card-text">{numberWithCommas(price) + 'đ'}</del>}
+        <h4 class="card-text text-primary text-lg">{numberWithCommas(sale) + 'đ'}</h4>
       </div>
     </div>
   </>);

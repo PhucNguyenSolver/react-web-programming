@@ -37,7 +37,7 @@ export default function App() {
         </Route>
         <Route path="/sign-in" component={SignIn}>
         </Route>
-        <Route exact path="/" component={Homepage}>
+        <Route path="/" component={Homepage}>
         </Route>
       </Switch>
     </Router>
