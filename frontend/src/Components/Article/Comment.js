@@ -1,4 +1,3 @@
-import './comment.scss';
 import { useState } from 'react';
 import { Col, Container, Row, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { TrashFill, PencilSquare } from 'react-bootstrap-icons';
@@ -30,12 +29,12 @@ const handleDeleteComment = (victimId) => {
 
 
 export default function Comment() {
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState(true);
   const editable = (acomment) => (currentUser.id === acomment.userId);
   return (<>
-    <Container className="comment">
+    <div className="comment mb-4">
       <Button className={(commentItems.length == 0) ? 'd-none' : null}
-        variant={collapse ? 'light' : 'dark'}
+        variant={collapse ? 'primary' : 'secondary'}
         onClick={() => setCollapse(!collapse)}>
         Bình luận ({commentItems.length})
       </Button>
@@ -45,7 +44,7 @@ export default function Comment() {
         )}
       </div>
       <Editor onSubmit={handleInsertComment} />
-    </Container>
+    </div>
   </>);
 }
 
@@ -113,7 +112,7 @@ function CommentItem({ index, item, editable }) {
   }
 
   const [hover, setHover] = useState(false);
-  const _bg = hover ? 'bg-dark' : (index % 2 ? 'bg-white' : 'bg-light');
+  const _bg = hover ? 'bg-secondary' : (index % 2 ? 'bg-white' : 'bg-light');
   return (<>
     <Container fluid className={'comment-item ' + _bg}
       onMouseEnter={() => setHover(true)}
