@@ -1,6 +1,6 @@
 export default function Header() { // TODO: custom lại phần header này
   return (<>
-    <header className="p-1 bg-primary text-black">
+    <header className="p-1 bg-primary text-black sticky-md-top">
       <div className="container">
         <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">

@@ -1,4 +1,24 @@
 import React from 'react';
+import { CustomTag } from '../Utils/Input';
+
+/**
+ * Mock data for Article & Other articles
+ */
+const article = {
+  title: 'Another article title example etc',
+  tags: [
+    { value: 'World', url: '#!'},
+    { value: 'VR', url: '#!'},
+    { value: 'Meta', url: '#!'},
+  ],
+  author: 'Alen',
+  timestamp: '20 Nov 2021',
+  imgUrl: 'https://picsum.photos/150',
+}
+
+const otherArticles = [1, 2, 3, 4].map((id) => (
+  { ...article, id: id }
+))
 
 export default function Aside() {
   return (<>
@@ -35,11 +55,31 @@ export default function Aside() {
         </div>
       </div>
     </div>
-    {/* Side widget */}
-    <div class="card mb-4">
-      <div class="card-header">Side Widget</div>
-      <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and
-        feature the Bootstrap 5 card component!</div>
-    </div>
+    {/* Related Articles */}
+    {otherArticles.map(({id, title, author, tags, timestamp, imgUrl}) => (
+      <div class="card flex-md-row my-1 box-shadow h-md-250 mb-3">
+        <MoreArticle key={id} 
+          title={title} author={author} tags={tags} timestamp={timestamp} imgUrl={imgUrl}
+        />
+      </div>
+    ))}
   </>);
 }
+
+const MoreArticle = ({title, tags, timestamp, imgUrl}) => {
+  return (<>
+    <div class="card-body d-flex flex-column align-items-start">
+      <h4>
+        <a class="text-dark" href="#">{title}</a>
+      </h4>
+      <div class="mb-1 text-muted">{timestamp}</div>
+      <div>
+        {tags.map(({value, url}) => (
+          <CustomTag key={value} url={url} value={value}/>
+        ))}
+      </div>
+    </div>
+    <img src={imgUrl} alt="Thumbnail" className="card-img-left flex-auto d-none d-md-block"/>
+    {/* TODO: what if we pass in larger image */}
+  </>);
+};

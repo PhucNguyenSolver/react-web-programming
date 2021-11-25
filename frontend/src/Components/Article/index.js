@@ -1,22 +1,23 @@
-import Comment from './Comment';
 import './article.scss';
 import { post1, post2 } from './posts';
+import { CustomTag } from '../Utils/Input';
+import Comment from './Comment';
 import Aside from './Aside';
 
 export default function Article() {
   return (<>
     <div className="container-fluid container-md article">
     <div class="container mt-5">
-    <div class="row d-flex justify-content-evenly">
-      <div class="col-lg-7">
+    <div class="row d-flex justify-content-evenly flex-nowrap">
+      <div class="col-lg-8">
         {/* Primary column */}
         <article>
           {/* Post header */}
           <header class="mb-4">
             <h1 class="fw-bolder mb-1">How Crypto Is Shaping The Digital Revolution</h1>
             <div class="text-muted fst-italic mb-2">October 20, 2021 / Mario Laul</div>
-            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Crypto</a>{' '}
-            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Revolution</a>
+            <CustomTag value='Crypto' url='#!'/>{' '}
+            <CustomTag value='Revolution' url='#!'/>
           </header>
           {/* Preview image */}
           <figure class="mb-4">
@@ -31,7 +32,7 @@ export default function Article() {
         <Comment/>
       </div>
       {/* Side widgets */}
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <Aside/>
       </div>
     </div>
