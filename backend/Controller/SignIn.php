@@ -20,12 +20,17 @@
     }
     if(!$err){
         if(isset($_SESSION['email'])){
-            echo "-1";         
+            echo "dadangnhap";         
         }
         else{
             $password = hash('sha256', $password);
             $account = $log->checkLogin($email, $password);
             if($account != null){
+                if($account->isAdmin != '1' && $account->isAdmin != '0'){//chua activate
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    echo "Tài khoản chưa được kích hoạt";
+                    return;
+                }
                 $_SESSION['email'] = $account->email;
                 setcookie('email', session_id(), time() + (86400 * 30), "/");
                 $_SESSION['isAdmin'] = $account->isAdmin;

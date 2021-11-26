@@ -64,7 +64,7 @@ export default function SignIn(){
         data: $("#sign-in").serialize(),
         success: function(data) {
             
-            if(data==="-1"){
+            if(data==="dadangnhap"){
               alert('Bạn đã đăng nhập rồi');
               window.location.href = "/";
             }

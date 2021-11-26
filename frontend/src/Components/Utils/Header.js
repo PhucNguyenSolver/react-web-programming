@@ -31,9 +31,7 @@ export default function Header() {
         url: "/Controller/SignOut.php",
         type: "POST",
         success: function(data) {   
-          // Cookies.remove('email');
-          // Cookies.remove('PHPSESSID');
-          alert(data);
+          alert(data);//alert ra dòng tên email đã đăng xuất
           window.location.href = "/sign-in";    
         }
     })

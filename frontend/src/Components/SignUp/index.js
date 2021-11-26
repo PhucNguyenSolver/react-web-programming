@@ -92,12 +92,13 @@ export default function SignUp(){
         data: $("#dangky").serialize(),
         success: function(data) {
             
-            if(data==="-1"){
+            if(data==="chuadangxuat"){
               alert('Bạn chưa đăng xuất');
               window.location.href = "/";
             }
-            else if(data==="-2"){
-              alert('chua dang nhap');
+            else if(data==="OK"){
+              alert('Hãy bấm vào đường link được gửi đến email ' + $("#email").val() + " để kích hoạt tài khoản");
+              window.location.href = "/sign-in";
             }
             else {
               $("#messenge").html(data);
@@ -110,7 +111,7 @@ export default function SignUp(){
   });
 
   document.title = "Đăng ký";
-  var isLogin = Cookies.get('PHPSESSID');
+  var isLogin = Cookies.get('email');
   if (isLogin){
     alert('Bạn chưa đăng xuất');
     return <Redirect to="/"></Redirect>
@@ -136,7 +137,6 @@ export default function SignUp(){
                     <Input type="password" fieldName='password' vnFieldName="Mật khẩu" title="Mật khẩu chứa từ 6 đến 32 ký tự"></Input>
                     <Input type="password" fieldName='re-password' vnFieldName="Xác nhận mật khẩu" maxlength="30"></Input>
                     <span id='messenge' style={{'display':'inline-block'}}></span>
-                    {/* <Input type="text" fieldName='pin' vnFieldName="Mã xác thực" maxlength="6" pattern="[0-9]{6,6}" title="Mã xác thực gồm 6 chữ số"></Input> */}
                     
 
                     <div className="d-grid mb-2">
