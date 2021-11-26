@@ -23,6 +23,7 @@
             echo "-1";         
         }
         else{
+            $password = hash('sha256', $password);
             $account = $log->checkLogin($email, $password);
             if($account != null){
                 $_SESSION['email'] = $account->email;
