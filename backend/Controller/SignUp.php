@@ -3,9 +3,12 @@
     session_start();
 
     $log = new Log();
-
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+
+    //check valid username
+    //todo
 
     //check valid email
     $err = false;
@@ -23,25 +26,11 @@
             echo "-1";         
         }
         else{
-            $account = $log->checkLogin($email, $password);
-            if($account != null){
-                $_SESSION['email'] = $account->email;
-                setcookie('email', session_id(), time() + (86400 * 30), "/");
-                $_SESSION['isAdmin'] = $account->isAdmin;
-                // setcookie('isAdmin', session_id(), time() + (86400 * 30), "/");
-                echo 'OK';
-            }
-            else{     
-                setcookie('PHPSESSID', '', time() - 3600, '/');
-                echo '
-                <p style="color:red">Sai email hoặc mật khẩu</p>
-                ';
-            }
+            echo "-2";
         }
         
     }
-    else{
-        setcookie('PHPSESSID', '', time() - 3600, '/');
+    else{//thong tin nhap bi sai
         echo '
         <p style="color:red">Thông tin không hợp lệ</p>
         ';

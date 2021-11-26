@@ -2,7 +2,7 @@ import $ from 'jquery';
 import * as Cookies from 'js-cookie';
 
 function LogBtn(){
-  var isLogin=Cookies.get('PHPSESSID');
+  var isLogin=Cookies.get('email');
   
   if(isLogin){
     return <>
@@ -31,7 +31,9 @@ export default function Header() {
         url: "/Controller/SignOut.php",
         type: "POST",
         success: function(data) {   
-          Cookies.remove('PHPSESSID');
+          // Cookies.remove('email');
+          // Cookies.remove('PHPSESSID');
+          alert(data);
           window.location.href = "/sign-in";    
         }
     })
