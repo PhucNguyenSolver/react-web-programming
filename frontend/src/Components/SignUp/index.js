@@ -22,6 +22,7 @@ export default function SignUp(){
   $(function() {// ready
   
   });
+
   return <>
   <div className="sign-up">
     <body>

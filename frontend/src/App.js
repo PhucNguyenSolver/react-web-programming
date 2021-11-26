@@ -15,6 +15,8 @@ import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
 import 'bootstrap/dist/css/bootstrap.css';
 
+
+
 function DefaultRouter() {
   return (
     <nav>
@@ -41,6 +43,7 @@ function DefaultRouter() {
 }
 
 export default function App() {
+  
   return (<>
     <Header />
     <Router>
