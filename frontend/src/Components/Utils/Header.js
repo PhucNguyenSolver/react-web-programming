@@ -1,6 +1,48 @@
-export default function Header() { // TODO: custom lại phần header này
+import $ from 'jquery';
+import * as Cookies from 'js-cookie';
+
+function LogBtn(){
+  var isLogin=Cookies.get('PHPSESSID');
+  
+  if(isLogin){
+    return <>
+      <button type="button" className="btn btn-danger" id="logout">Đăng xuất</button>
+    </>
+  }
+  return <>
+      <button type="button" className="btn btn-primary me-2" id="login">Đăng nhập</button>
+      <button type="button" className="btn btn-warning me-2" id="sign-up">Đăng ký</button>
+  </>
+}
+
+export default function Header() {
+
+  $(function(){
+    $('#login').on('click', function(){
+      window.location.href = "/sign-in";
+    });
+
+    $('#sign-up').on('click', function(){
+      window.location.href = "/sign-up";
+    });
+
+    $('#logout').on('click', function(){
+      $.ajax({
+        url: "/Controller/SignOut.php",
+        type: "POST",
+        success: function(data) {   
+          Cookies.remove('PHPSESSID');
+          window.location.href = "/sign-in";    
+        }
+    })
+    });
+
+  })
+
   return (<>
-    <header className="p-1 bg-primary text-black">
+
+
+    <header className="p-1 bg-primary text-black" style={{'background': 'linear-gradient(to right, #8f8f8f, #4f3232'}}>
       <div className="container">
         <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -10,7 +52,7 @@ export default function Header() { // TODO: custom lại phần header này
           </a>
 
           <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/" className="nav-link px-2 text-secondary">Trang chủ</a></li>
+            <li><a href="/" className="nav-link px-2 text-white">Trang chủ</a></li>
             <li><a href="/products" className="nav-link px-2 text-white">Sản phẩm</a></li>
             <li><a href="/product-info" className="nav-link px-2 text-white">Chi tiết</a></li>
             <li><a href="/news" className="nav-link px-2 text-white">Tin tức</a></li>
@@ -21,8 +63,7 @@ export default function Header() { // TODO: custom lại phần header này
           </form>
 
           <div className="text-end">
-            <button type="button" className="btn btn-outline-light me-2">Login</button>
-            <button type="button" className="btn btn-warning">Sign-up</button>
+            <LogBtn></LogBtn>
           </div>
         </div>
       </div>
