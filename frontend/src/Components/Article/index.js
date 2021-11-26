@@ -12,11 +12,27 @@ import Aside from './Aside';
  *  See: https://getbootstrap.com/docs/5.0/examples/blog/
  */
 
+  {/* <div className="row">
+    <div className="col-auto">
+      <button className="btn btn-primary" onClick={handleSaveClick}>
+        Save Draft
+      </button>
+      <button className="btn btn-secondary" onClick={handleRetrieveDraft}>
+        Retrieve Draft
+      </button>
+    </div>
+  </div> */}
+
 export default function Article() {
   const { isAdmin } = useContext(AppContext);
   const [inEditorMode, setInEditorMode] = useState(false);
   const handleToggleMode = () => {
     setInEditorMode(!inEditorMode);
+  }
+  const [draft, setDraft] = useState(null);
+
+  const handleSaveDraft = () => {
+    console.log('TODO: save draft to database');
   }
 
   return <>
@@ -25,34 +41,30 @@ export default function Article() {
       <button className="btn btn-primary my-2" onClick={handleToggleMode}>
         View/Edit
       </button>
+      <button className="btn btn-primary my-2" onClick={handleSaveDraft}>
+        Save
+      </button>
     </div>}
-    { inEditorMode ? <Editor/> : <Viewer/> }
+    <Editor draft={draft} setDraft={setDraft} isVisible={inEditorMode}/>
+    <Viewer draft={draft} setDraft={setDraft} isVisible={!inEditorMode}/>
   </>;
 }
 
 
-const Editor = ({handleSaveDraft, handleRetrieveDraft}) => {
+const Editor = ({isVisible, draft, setDraft}) => {
+  const onStateChange = setDraft;
+
+  if (!isVisible) return null;
   return (<>
     <div className="container-fluid container-md p-5 my-5">
     <div class="container mt-5">
     <div class="row d-flex justify-content-evenly flex-nowrap">
       <div class="col-lg-8 overflow-hidden">
         {/* Primary column */}
-        <article>
-          {/* Post header */}
-          <header class="mb-4">
-            <h1 class="fw-bolder mb-1">How Crypto Is Shaping The Digital Revolution</h1>
-            <div class="text-muted fst-italic mb-2">October 20, 2021 / Mario Laul</div>
-            <CustomTag value='Crypto' url='#!'/>{' '}
-            <CustomTag value='Revolution' url='#!'/>
-          </header>
-        </article>
-        <section class="mb-5 post-content bg-light h-100">
-          <ControlledEditor/>
+        {/* <Article/> */}
+        <section class="mb-5">
+          <ControlledEditor draft={draft} onStateChange={onStateChange}/>
         </section>
-        {/* <div className="container">
-          <ControlledEditor/>
-        </div> */}
       </div>
       <div class="col-lg-4">Put something in here, Maybe</div>
     </div>
@@ -61,7 +73,8 @@ const Editor = ({handleSaveDraft, handleRetrieveDraft}) => {
   </>);
 }
 
-const Viewer = () => {
+const Viewer = ({isVisible, draft}) => {
+  if (!isVisible) return null;
   return (<>
     <div className="container-fluid container-md article">
     <div class="container mt-5">
@@ -70,12 +83,7 @@ const Viewer = () => {
         {/* Primary column */}
         <article>
           {/* Post header */}
-          <header class="mb-4">
-            <h1 class="fw-bolder mb-1">How Crypto Is Shaping The Digital Revolution</h1>
-            <div class="text-muted fst-italic mb-2">October 20, 2021 / Mario Laul</div>
-            <CustomTag value='Crypto' url='#!'/>{' '}
-            <CustomTag value='Revolution' url='#!'/>
-          </header>
+          {/* <Article/> */}
           {/* Preview image */}
           <figure class="mb-4">
             <img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..."/>
@@ -96,4 +104,17 @@ const Viewer = () => {
   </div>
   </div>
   </>);
+}
+
+const PostHeader = () => { // Post header
+  return <>
+    <article>
+      <header class="mb-4">
+        <h1 class="fw-bolder mb-1">How Crypto Is Shaping The Digital Revolution</h1>
+        <div class="text-muted fst-italic mb-2">October 20, 2021 / Mario Laul</div>
+        <CustomTag value='Crypto' url='#!'/>{' '}
+        <CustomTag value='Revolution' url='#!'/>
+      </header>
+    </article>
+  </>;
 }

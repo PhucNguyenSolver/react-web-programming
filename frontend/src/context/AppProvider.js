@@ -9,9 +9,9 @@ const defaultUser = {
 }
 
 export default function AppProvider({ children }) {
-  const [isAdmin, setIsAdmin] = useState('false');
+  const [isAdmin, setIsAdmin] = useState(true);
   const [user, setUser] = useState(defaultUser);
-  const [draft, setDraft] = useState();
+  const [savedDraft, setSavedDraft] = useState({});
   return (
     <AppContext.Provider
       value={{
@@ -19,8 +19,8 @@ export default function AppProvider({ children }) {
         setUser,
         isAdmin,
         setIsAdmin,
-        draft,
-        setDraft,
+        savedDraft,
+        setSavedDraft,
       }}>
       {children}
     </AppContext.Provider>

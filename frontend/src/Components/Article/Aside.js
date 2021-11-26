@@ -57,8 +57,8 @@ export default function Aside() {
     </div>
     {/* Related Articles */}
     {otherArticles.map(({id, title, author, tags, timestamp, imgUrl}) => (
-      <div class="card flex-md-row my-1 box-shadow h-md-250 mb-3">
-        <MoreArticle key={id} 
+      <div key={id} class="card flex-md-row my-1 box-shadow h-md-250 mb-3">
+        <MoreArticle 
           title={title} author={author} tags={tags} timestamp={timestamp} imgUrl={imgUrl}
         />
       </div>
