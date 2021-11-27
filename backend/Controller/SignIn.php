@@ -19,6 +19,7 @@
         $err = true;
     }
     if(!$err){
+
         if(isset($_SESSION['email'])){
             echo "dadangnhap";         
         }
@@ -27,18 +28,16 @@
             $account = $log->checkLogin($email, $password);
             if($account != null){
                 if($account->isAdmin != '1' && $account->isAdmin != '0'){//chua activate
-                    setcookie('PHPSESSID', '', time() - 3600, '/');
                     echo "Tài khoản chưa được kích hoạt";
                     return;
                 }
                 $_SESSION['email'] = $account->email;
-                setcookie('email', session_id(), time() + (86400 * 30), "/");
+                setcookie('email', $account->email, time() + (86400 * 30), "/");
                 $_SESSION['isAdmin'] = $account->isAdmin;
-                // setcookie('isAdmin', session_id(), time() + (86400 * 30), "/");
+                setcookie('isAdmin', $account->isAdmin, time() + (86400 * 30), "/");
                 echo 'OK';
             }
             else{     
-                setcookie('PHPSESSID', '', time() - 3600, '/');
                 echo '
                 <p style="color:red">Sai email hoặc mật khẩu</p>
                 ';
@@ -47,7 +46,6 @@
         
     }
     else{
-        setcookie('PHPSESSID', '', time() - 3600, '/');
         echo '
         <p style="color:red">Thông tin không hợp lệ</p>
         ';

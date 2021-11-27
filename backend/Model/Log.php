@@ -38,7 +38,7 @@
             }
 
 
-            //insert to database anti sql injection
+            //insert to database
             //chuỗi số là chưa kích hoạt tài khoản
             //generate a random string with length = 20
             $code = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 20); 
@@ -46,6 +46,34 @@
             $result = $conn->query($sql);
             if($result){         
                 if(sendMail($email, $ori_password, $code))
+                    return 'OK';
+            }
+            return 'fail';
+
+        }
+
+        function forgot($email){
+            $conn = connect();
+            //anti sql injection
+            $email = strip_tags(addslashes(trim($email)));
+
+            //check email in database
+            $sql =  "SELECT * FROM account WHERE email='".$email."'";
+            $result = $conn->query($sql);
+            if($result->num_rows <= 0){
+                return 'email'; //email is not exist
+            }
+
+            //update in database
+            //chuỗi số là mã khôi phục mk tài khoản
+            //generate a random string with length = 20
+            $code = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 20); 
+            //update column code in account table where email = $email
+            $sql = "UPDATE account SET code='".$code."' WHERE email='".$email."'";
+            
+            $result = $conn->query($sql);
+            if($result){         
+                if(recoverMail($email, $code))
                     return 'OK';
             }
             return 'fail';

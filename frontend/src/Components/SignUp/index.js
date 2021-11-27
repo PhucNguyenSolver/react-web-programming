@@ -3,8 +3,6 @@ import * as Icon from 'react-bootstrap-icons';
 import {Button} from 'react-bootstrap';
 import {Input} from '../Utils/Input.js';
 import $ from 'jquery';
-import { Redirect } from 'react-router'
-import * as Cookies from 'js-cookie';
 
 export default function SignUp(){
   
@@ -111,55 +109,49 @@ export default function SignUp(){
   });
 
   document.title = "Đăng ký";
-  var isLogin = Cookies.get('email');
-  if (isLogin){
-    alert('Bạn chưa đăng xuất');
-    return <Redirect to="/"></Redirect>
-  }
-  else{
-    return <>
-    <div className="sign-up">
-      <body>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-10 col-xl-9 mx-auto">
-              <div className="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden inner">
-                <div className="card-img-left d-none d-md-flex">
-                  {/* {đặt ảnh nền bên trái} */}
-                </div>
-                <div className="card-body p-4 p-sm-5">
 
-                  <h1 className="card-title text-center mb-5">Đăng ký tài khoản</h1>
+  return <>
+  <div className="sign-up">
+    <body>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-10 col-xl-9 mx-auto">
+            <div className="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden inner">
+              <div className="card-img-left d-none d-md-flex">
+                {/* {đặt ảnh nền bên trái} */}
+              </div>
+              <div className="card-body p-4 p-sm-5">
 
-                  <form id="dangky">
-                    <Input type="text" fieldName='username' vnFieldName="Tên người dùng" title="Tên người dùng chỉ chứa các ký tự chữ, số, _ , . và dài từ 5 đến 20 ký tự"></Input>
-                    <Input type="email" fieldName='email' vnFieldName="Email" title="Hãy nhập đúng định dạng email"></Input>
-                    <Input type="password" fieldName='password' vnFieldName="Mật khẩu" title="Mật khẩu chứa từ 6 đến 32 ký tự"></Input>
-                    <Input type="password" fieldName='re-password' vnFieldName="Xác nhận mật khẩu" maxlength="30"></Input>
-                    <span id='messenge' style={{'display':'inline-block'}}></span>
-                    
+                <h1 className="card-title text-center mb-5">Đăng ký tài khoản</h1>
 
-                    <div className="d-grid mb-2">
-                      <Button variant="primary" className="btn-sign-up" type="submit" id ="submit" disabled>Đăng ký</Button>
-                    </div>
+                <form id="dangky">
+                  <Input type="text" fieldName='username' vnFieldName="Tên người dùng" title="Tên người dùng chỉ chứa các ký tự chữ, số, _ , . và dài từ 5 đến 20 ký tự"></Input>
+                  <Input type="email" fieldName='email' vnFieldName="Email" title="Hãy nhập đúng định dạng email"></Input>
+                  <Input type="password" fieldName='password' vnFieldName="Mật khẩu" title="Mật khẩu chứa từ 6 đến 32 ký tự"></Input>
+                  <Input type="password" fieldName='re-password' vnFieldName="Xác nhận mật khẩu" maxlength="30"></Input>
+                  <span id='messenge' style={{'display':'inline-block'}}></span>
+                  
 
-                    <a className="d-block text-center mt-2 small" href="/sign-in"d>Đã có tài khoản? Đăng nhập</a>
+                  <div className="d-grid mb-2">
+                    <Button variant="primary" className="btn-sign-up" type="submit" id ="submit" disabled>Đăng ký</Button>
+                  </div>
 
-                    <hr className="my-4"/>
-                    <div className="d-grid">
-                      <Button variant="danger" className="btn-sign-up" type="button" id="gg-submit"><Icon.Google></Icon.Google> Đăng nhập bằng Google</Button>                
-                    </div>
+                  <a className="d-block text-center mt-2 small" href="/sign-in"d>Đã có tài khoản? Đăng nhập</a>
 
-                  </form>
-                </div>
+                  {/* <hr className="my-4"/>
+                  <div className="d-grid">
+                    <Button variant="danger" className="btn-sign-up" type="button" id="gg-submit"><Icon.Google></Icon.Google> Đăng nhập bằng Google</Button>                
+                  </div> */}
+
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </body>
-    </div>
-    </>
-  }
+      </div>
+    </body>
+  </div>
+  </>
 }
 
 

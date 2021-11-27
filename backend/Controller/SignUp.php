@@ -37,23 +37,19 @@
         else{
             $res = $log->signUp($username, $email, $password);
             if ($res == 'username') {
-                setcookie('PHPSESSID', '', time() - 3600, '/');
                 echo '
                 <p style="color:red">Username đã tồn tại</p>
                 ';
             }
             elseif ($res == 'email') {
-                setcookie('PHPSESSID', '', time() - 3600, '/');
                 echo '
                 <p style="color:red">Email đã tồn tại</p>
                 ';
             }
             elseif ($res == 'OK') {
-                setcookie('PHPSESSID', '', time() - 3600, '/');
                 echo 'OK';
             }
             else{
-                setcookie('PHPSESSID', '', time() - 3600, '/');
                 echo '
                 <p style="color:red">Đăng ký thất bại</p>
                 ';
