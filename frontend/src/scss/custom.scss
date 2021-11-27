@@ -13,6 +13,12 @@ $theme-colors: (
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+.container {
+  .justify-content-md-center {
+    min-height: 700px;
+  }
+}
+
 .post-content {
   // @extend .bg-light;
   @extend .fs-5;
