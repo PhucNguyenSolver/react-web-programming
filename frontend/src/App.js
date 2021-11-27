@@ -11,46 +11,97 @@ import Header from "./Components/Utils/Header.js";
 import Footer from "./Components/Utils/Footer.js";
 import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
+import Order from "./Components/Order";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
-import Order from "./Components/Order";
-import AppProvider from "./context/AppProvider.js";
+import Forgot from './Components/Forgot/index.js';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Redirect } from 'react-router'
+import $ from 'jquery';
+import Cookies from 'js-cookie';
 
-export default function App() {
-  return (<>
-    <AppProvider>
-      <Header/>
-        <MyRouter/>
-      <Footer/>
-    </AppProvider>
-  </>);
+
+
+var emailCk = Cookies.get('email');
+var isAdminCk = Cookies.get('isAdmin');
+
+$(function(){
+  emailCk = Cookies.get('email');
+  isAdminCk = Cookies.get('isAdmin');
+})
+
+
+
+function DefaultRouter() {
+  return (
+    <nav>
+      <ul>
+        <li><Link to="/homepage">Homepage</Link>
+        </li>
+        <li><Link to="/products">Products</Link>
+        </li>
+        <li><Link to="/product-info/">Product Info</Link>
+        </li>
+        <li><Link to="/cart/">Cart</Link>
+        </li>
+        <li><Link to="/news/">News</Link>
+        </li>
+        <li><Link to="/article/">Article</Link>
+        </li>
+        <li><Link to="/sign-up/">Sign Up</Link>
+        </li>
+        <li><Link to="/sign-in/">Sign In</Link>
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
-const MyRouter = () => {
-  return <Router>
-    <Switch>
-      <Route path="/products" component={Products}>
-      </Route>
-      <Route path="/product-info" component={ProductInfo}>
-      </Route>
-      <Route path="/cart" component={Cart}>
-      </Route>
-      <Route path="/news" component={News}>
-      </Route>
-      <Route path="/article" component={Article}>
-      </Route>
-      <Route path="/admin0" component={ChangeInfoAccount}>
-      </Route>
-      <Route path="/admin1" component={ChangeInfoProduct}>
-      </Route>
-      <Route path="/admin2" component={Order}>
-      </Route>
-      <Route path="/sign-up" component={SignUp}>
-      </Route>
-      <Route path="/sign-in" component={SignIn}>
-      </Route>
-      <Route exact path="/" component={Homepage}>
-      </Route>
-    </Switch>
-  </Router>;
+
+
+function RenderRoute(props){
+  if(emailCk){
+    if (props.path==="/sign-in"){
+      return <Redirect path="/"/>//đưa về home hết nếu đã login
+    }
+    if (props.path==="/sign-up"){
+      return <Redirect path="/"/>
+    }
+    if (props.path==="/forgot"){
+      return <Redirect path="/"/>
+    }
+    //
+    else{
+      return <Route path={props.path} component={props.component}></Route>
+    }
+  }
+
+  else{
+    return <Route path={props.path} component={props.component}></Route>
+  }
+}
+
+export default function App() {
+  
+  return (<>
+    <Header />
+    <Router>
+      <Switch>
+        <RenderRoute path="/products" component={Products}/>
+        <RenderRoute path="/product-info" component={ProductInfo}/>
+        <RenderRoute path="/cart" component={Cart}/>
+        <RenderRoute path="/news" component={News}/>
+        <RenderRoute path="/article" component={Article}/>
+        <RenderRoute path="/admin0" component={ChangeInfoAccount}/>
+        <RenderRoute path="/admin1" component={ChangeInfoProduct}/>
+        <RenderRoute path="/admin2" component={Order}/>
+        <RenderRoute path="/sign-in" component={SignIn}/>
+        <RenderRoute path="/sign-up" component={SignUp}/>
+        <RenderRoute path="/forgot" component={Forgot}/>
+
+        <RenderRoute path="/" component={Homepage}/>
+      </Switch>
+    </Router>
+    <Footer/>
+  </>);
 }
