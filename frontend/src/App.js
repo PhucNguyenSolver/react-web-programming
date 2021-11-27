@@ -15,10 +15,10 @@ import Order from "./Components/Order";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
 import Forgot from './Components/Forgot/index.js';
-import 'bootstrap/dist/css/bootstrap.css';
 import { Redirect } from 'react-router'
 import $ from 'jquery';
 import Cookies from 'js-cookie';
+import AppProvider from "./context/AppProvider.js";
 
 
 
@@ -84,6 +84,7 @@ function RenderRoute(props){
 export default function App() {
   
   return (<>
+  <AppProvider>
     <Header />
     <Router>
       <Switch>
@@ -103,5 +104,6 @@ export default function App() {
       </Switch>
     </Router>
     <Footer/>
+  </AppProvider>
   </>);
 }
