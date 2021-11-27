@@ -1,0 +1,35 @@
+.forgot{
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    // background: linear-gradient(to right, black, #33AEFF);
+    min-height: 650px;
+    background: url(bg.jpg);
+    background-size: cover;
+    .inner{
+      .card-img-left {
+        width: 40%;
+        background: scroll center url('lbg.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+    
+      .card-body{
+        background: linear-gradient(to right, #dbefb3, #b5a2a2);
+
+        .btn-sign-in {
+          font-size: 0.9rem;
+          letter-spacing: 0.05rem;
+          padding: 0.75rem 1rem;
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
