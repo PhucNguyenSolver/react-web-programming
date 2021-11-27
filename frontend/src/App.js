@@ -11,6 +11,7 @@ import Header from "./Components/Utils/Header.js";
 import Footer from "./Components/Utils/Footer.js";
 import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
+import Order from "./Components/Order";
 import 'bootstrap/dist/css/bootstrap.css';
 
 function DefaultRouter() {
@@ -52,6 +53,8 @@ export default function App() {
         <Route path="/admin0" component={ChangeInfoAccount}>
         </Route>
         <Route path="/admin1" component={ChangeInfoProduct}>
+        </Route>
+        <Route path="/admin2" component={Order}>
         </Route>
         <Route exact path="/" component={Homepage}>
         </Route>
