@@ -6,7 +6,7 @@ import Products from './Components/Products/index.js';
 import ProductInfo from './Components/ProductInfo/index.js';
 import Cart from './Components/Cart/index.js';
 import News from './Components/News/index.js';
-import Article from './Components/Article/index';
+import Article from './Components/Article/index.js';
 import Header from "./Components/Utils/Header.js";
 import Footer from "./Components/Utils/Footer.js";
 import ChangeInfoAccount from "./Components/ChangeInfoAccount";
