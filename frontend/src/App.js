@@ -11,7 +11,10 @@ import Header from "./Components/Utils/Header.js";
 import Footer from "./Components/Utils/Footer.js";
 import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
+<<<<<<< HEAD
 import Order from "./Components/Order";
+=======
+>>>>>>> bảo
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
 import Forgot from './Components/Forgot/index.js';
@@ -94,7 +97,10 @@ export default function App() {
         <RenderRoute path="/article" component={Article}/>
         <RenderRoute path="/admin0" component={ChangeInfoAccount}/>
         <RenderRoute path="/admin1" component={ChangeInfoProduct}/>
+<<<<<<< HEAD
         <RenderRoute path="/admin2" component={Order}/>
+=======
+>>>>>>> bảo
         <RenderRoute path="/sign-in" component={SignIn}/>
         <RenderRoute path="/sign-up" component={SignUp}/>
         <RenderRoute path="/forgot" component={Forgot}/>
