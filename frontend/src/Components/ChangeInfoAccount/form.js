@@ -59,7 +59,7 @@ export default function ChangeForm () {
                 <h6>Mật khẩu</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="password" defaultValue={item.phone}/>
+              <Form.Control type="password" defaultValue={item.phone} readOnly style={{backgroundColor: 'white'}}/>
               </Col>
             </Row>
 
@@ -68,7 +68,7 @@ export default function ChangeForm () {
                 <h6>Email</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.email}/>
+              <Form.Control type="text" defaultValue={item.email} readOnly style={{backgroundColor: 'white'}}/>
               </Col>
             </Row>
 
@@ -77,7 +77,7 @@ export default function ChangeForm () {
                 <h6>Số điện thoại</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.phone}/>
+              <Form.Control type="text" defaultValue={item.phone} readOnly style={{backgroundColor: 'white'}}/>
               </Col>
             </Row>
 
@@ -86,7 +86,7 @@ export default function ChangeForm () {
                 <h6>Địa chỉ</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.address}/>
+              <Form.Control type="text" defaultValue={item.address} readOnly style={{backgroundColor: 'white'}}/>
               </Col>
             </Row>
 

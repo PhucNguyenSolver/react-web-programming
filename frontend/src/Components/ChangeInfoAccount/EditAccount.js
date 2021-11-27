@@ -10,7 +10,7 @@ export default function EditAccount () {
   return (
     <>
       <Button variant="outline-primary" size="sm" onClick={handleShow} style={{float: 'right'}}>
-        Chỉnh sửa
+        Xem
       </Button>
 
       <Modal size="lg" show={show} onHide={() => setShow(false)} aria-labelledby="example-modal-sizes-title-lg">
@@ -21,8 +21,8 @@ export default function EditAccount () {
           <ChangeForm/>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Lưu thay đổi
+          <Button variant="danger" onClick={handleClose}>
+            Xóa khách hàng
           </Button>
         </Modal.Footer>
       </Modal>
