@@ -14,11 +14,7 @@ import ChangeInfoProduct from "./Components/ChangeInfoProduct";
 import Order from "./Components/Order";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import Forgot from './Components/Forgot/index.js';
->>>>>>> bảo
 import 'bootstrap/dist/css/bootstrap.css';
 import { Redirect } from 'react-router'
 import $ from 'jquery';
@@ -60,10 +56,6 @@ function DefaultRouter() {
     </nav>
   );
 }
-<<<<<<< HEAD
-=======
->>>>>>> 559a8dc1fabcd088ff2a4ef3cf1e1dc646efb3ca
-=======
 
 
 
@@ -88,7 +80,6 @@ function RenderRoute(props){
     return <Route path={props.path} component={props.component}></Route>
   }
 }
->>>>>>> bảo
 
 export default function App() {
   
