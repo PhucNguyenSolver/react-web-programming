@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Col, Container, Row, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { TrashFill, PencilSquare } from 'react-bootstrap-icons';
-import { timeSince } from './utils';
+import { timeSince } from '../Utils/utils';
 
 const commentItems = [ // TODO: load data from API
   { id: 1, userId: 113, content: 'hello', timestamp: "Fri Nov 05 2021 15:00:33 GMT+0700 (Indochina Time)", 

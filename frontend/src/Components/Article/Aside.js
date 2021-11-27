@@ -4,23 +4,24 @@ import { CustomTag } from '../Utils/Input';
 /**
  * Mock data for Article & Other articles
  */
-const article = {
-  title: 'Another article title example etc',
-  tags: [
-    { value: 'World', url: '#!'},
-    { value: 'VR', url: '#!'},
-    { value: 'Meta', url: '#!'},
-  ],
-  author: 'Alen',
-  timestamp: '20 Nov 2021',
-  imgUrl: 'https://picsum.photos/150',
-}
+// const article = {
+//   title: 'Another article title example etc',
+//   tags: [
+//     { value: 'World', url: '#!'},
+//     { value: 'VR', url: '#!'},
+//     { value: 'Meta', url: '#!'},
+//   ],
+//   author: 'Alen',
+//   timestamp: '20 Nov 2021',
+//   imgUrl: 'https://picsum.photos/150',
+// }
 
-const otherArticles = [1, 2, 3, 4].map((id) => (
-  { ...article, id: id }
-))
+// const otherArticles = [1, 2, 3, 4].map((id) => (
+//   { ...article, id: id }
+// ))
 
-export default function Aside() {
+export default function Aside({relatedArticles}) {
+  const otherArticles = relatedArticles;
   return (<>
     {/* Search widget */}
     <div class="card mb-4">
@@ -79,7 +80,7 @@ const MoreArticle = ({title, tags, timestamp, imgUrl}) => {
         ))}
       </div>
     </div>
-    <img src={imgUrl} alt="Thumbnail" className="card-img-left flex-auto d-none d-md-block"/>
+    <img src={imgUrl} alt="Thumbnail" className="card-img-left flex-auto d-none d-md-block mw-100"/>
     {/* TODO: what if we pass in larger image */}
   </>);
 };

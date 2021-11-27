@@ -1,38 +1,69 @@
 import './article.scss';
 import { useState, useContext } from 'react';
 import {AppContext} from '../../context/AppProvider';
-import { post1, post2 } from './posts';
 import { CustomTag } from '../Utils/Input';
 import ControlledEditor from './ControlledEditor';
 import Comment from './Comment';
 import Aside from './Aside';
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+
+
+import rawJSON from './html3.json';
+const defaultArticle = {
+  title: 'How Crypto Is Shaping The Digital Revolution',
+  imgUrl: "https://dummyimage.com/900x400/ced4da/6c757d.jpg",
+  timestamp: '20 Nov 2021',
+  author: 'Mario Laul',
+  tags: [
+    { value: 'World', url: '#!'},
+    { value: 'VR', url: '#!'},
+    { value: 'Meta', url: '#!'},
+  ],
+  content: rawJSON, // TODO: get `html` from database instead;
+}
+const otherArticles = [1, 2, 3, 4].map((id) => (
+  { ...defaultArticle, id: id, imgUrl: 'https://picsum.photos/150' }
+))
 
 /**
  * Mock data:
  *  See: https://getbootstrap.com/docs/5.0/examples/blog/
  */
 
-  {/* <div className="row">
-    <div className="col-auto">
-      <button className="btn btn-primary" onClick={handleSaveClick}>
-        Save Draft
-      </button>
-      <button className="btn btn-secondary" onClick={handleRetrieveDraft}>
-        Retrieve Draft
-      </button>
-    </div>
-  </div> */}
-
 export default function Article() {
   const { isAdmin } = useContext(AppContext);
+  // TODO: Load article from DB
+  const [article, setArticle] = useState(defaultArticle);
+  const [relatedArticles, setRelatedArticles] = useState(otherArticles);
+  // Done load article from DB
+  
   const [inEditorMode, setInEditorMode] = useState(false);
   const handleToggleMode = () => {
     setInEditorMode(!inEditorMode);
   }
-  const [draft, setDraft] = useState(null);
+  const getInitState = () =>{
+    const contentBlock = htmlToDraft(JSON.parse(article.content));
+    if (contentBlock) {
+      const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+      const editorState = EditorState.createWithContent(contentState);
+      return editorState;
+    }
+    else {
+      return EditorState.createEmpty();
+    }
+  } 
+  const [draft, setDraft] = useState(getInitState());
 
   const handleSaveDraft = () => {
+    if (draft === null) {
+      alert('This should never happen. Draft is null');
+      return;
+    }
     console.log('TODO: save draft to database');
+    const newHtml = JSON.stringify(stateToHtml(draft));
+    console.log({newHtml});
   }
 
   return <>
@@ -46,10 +77,14 @@ export default function Article() {
       </button>
     </div>}
     <Editor draft={draft} setDraft={setDraft} isVisible={inEditorMode}/>
-    <Viewer draft={draft} setDraft={setDraft} isVisible={!inEditorMode}/>
+    <Viewer draft={draft} isVisible={!inEditorMode}
+      article={article} relatedArticles={relatedArticles}/>
   </>;
 }
 
+const stateToHtml = (_editorState) => {
+  return draftToHtml(convertToRaw(_editorState.getCurrentContent()));
+}
 
 const Editor = ({isVisible, draft, setDraft}) => {
   const onStateChange = setDraft;
@@ -73,32 +108,33 @@ const Editor = ({isVisible, draft, setDraft}) => {
   </>);
 }
 
-const Viewer = ({isVisible, draft}) => {
+const Viewer = ({isVisible, draft, article, relatedArticles}) => {
   if (!isVisible) return null;
+
+  const html = stateToHtml(draft);
   return (<>
-    <div className="container-fluid container-md article">
+    <div className="container-fluid container-md">
     <div class="container mt-5">
     <div class="row d-flex justify-content-evenly flex-nowrap">
       <div class="col-lg-8">
         {/* Primary column */}
         <article>
-          {/* Post header */}
-          {/* <Article/> */}
+          <PostHeader {...article}/>
           {/* Preview image */}
           <figure class="mb-4">
             <img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..."/>
           </figure>
           {/* Post content */}
-          <section class="mb-5 post-content">
-            {post1}
-          </section>
+          {/* <section class="mb-5 post-content">
+            <div dangerouslySetInnerHTML={{__html: html}} />
+          </section> */}
         </article>
         {/* Comments section */}
         <Comment/>
       </div>
       {/* Side widgets */}
       <div class="col-lg-4">
-        <Aside/>
+        <Aside relatedArticles={relatedArticles}/>
       </div>
     </div>
   </div>
@@ -106,14 +142,15 @@ const Viewer = ({isVisible, draft}) => {
   </>);
 }
 
-const PostHeader = () => { // Post header
+const PostHeader = ({title, timestamp, author, tags}) => {
   return <>
     <article>
       <header class="mb-4">
-        <h1 class="fw-bolder mb-1">How Crypto Is Shaping The Digital Revolution</h1>
-        <div class="text-muted fst-italic mb-2">October 20, 2021 / Mario Laul</div>
-        <CustomTag value='Crypto' url='#!'/>{' '}
-        <CustomTag value='Revolution' url='#!'/>
+        <h1 class="fw-bolder mb-1">{title}</h1>
+        <div class="text-muted fst-italic mb-2">{timestamp + " / " + author }</div>
+        {tags.map(({value, url}) => (
+          <CustomTag key={value} value={value} url={url}/>
+        ))}
       </header>
     </article>
   </>;

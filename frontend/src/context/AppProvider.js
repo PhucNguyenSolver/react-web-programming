@@ -11,7 +11,6 @@ const defaultUser = {
 export default function AppProvider({ children }) {
   const [isAdmin, setIsAdmin] = useState(true);
   const [user, setUser] = useState(defaultUser);
-  const [savedDraft, setSavedDraft] = useState({});
   return (
     <AppContext.Provider
       value={{
@@ -19,8 +18,6 @@ export default function AppProvider({ children }) {
         setUser,
         isAdmin,
         setIsAdmin,
-        savedDraft,
-        setSavedDraft,
       }}>
       {children}
     </AppContext.Provider>
