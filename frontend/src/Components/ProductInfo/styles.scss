@@ -1,0 +1,153 @@
+.product-info{
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .content {
+        margin-top: 50px;
+        .details {
+            width: 100%;
+            height: 100%;
+        }
+        .image {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .imageSub {
+                padding: 10px;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                img {
+                    width: 100%;
+                    display: block;
+                }
+    
+            }
+            .active {
+                border: 2px red solid;
+            }
+        }
+        .info {
+            h3 {
+                font-weight: bold;
+                font-size: 25px;
+            }
+            .specs {
+                margin-top: 30px;
+                .table-bordered {
+                    background-color: #ebebeb;
+                    border-color: #c4c4c4;
+                }
+                .price{
+                    display: flex;
+                    justify-content: space-between;
+                    table {
+                        border: hidden;
+                        .priceDetail{
+                            tr,td {
+                                border: hidden;
+                            }
+                            span {
+                                color: #e30220;
+                                font-weight: bold;
+                            }
+                            .newPrice {
+                                font-size: large;
+                            }
+                        }
+                    }
+                    .buttonOrder{
+                        button {
+                            width: 200px;
+                            height: 50px;
+                            border-radius: 20px;
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+    
+        }
+    }   
+    .commentPart{
+        .userComment{
+            p {
+            font-weight: bold;
+            }
+            .cmtBox {
+                background-color: #e9e9e9;
+                textarea {
+                    width: 100%;
+                    background-color: #e9e9e9;
+                }
+                .cmtBtn {
+                    display: flex;
+                    justify-content: flex-end;
+                    button {
+                        margin: 10px;
+                        border: none;
+                        width: 158px;
+                        height: 32px;
+                        border-radius: 5px;
+                        background-color: #c4c4c4;
+                    }
+                }
+            }
+        }
+        .commentList {
+            padding-top: 50px;      
+            hr {
+                margin-top: 20px;
+                height: 2px;
+                color: black;
+                opacity: 1;
+            }
+            .comment {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                display: flex;
+                .avatar {
+                    width: 30px;
+                    height: 30px;
+                    background-color: gray;
+                    border: 0px black solid;
+                    background-size: 100%;
+                }
+                
+                .userName {
+                    height: 30px;
+                    line-height: 30px;
+                    padding-left: 10px;
+                }
+                
+                .role {
+                    width: 140px;
+                    height: 20px;
+                    background-color: #e30220;
+                    color: white;
+                    text-align: center;
+                    line-height: 20px;
+                    position: relative;
+                    margin-left: 30px;
+                    top: 3px;
+                }
+                
+                .cmtTime {
+                    padding-left: 30px;
+                    font-weight: bold;
+                    line-height: 30px;
+                }
+    
+                .delCmtBtn{
+                    margin-left: 30px;
+                    line-height: 15px;
+                    
+                }
+            }
+        }
+    }   
+}
