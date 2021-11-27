@@ -13,6 +13,7 @@ import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -42,6 +43,8 @@ function DefaultRouter() {
     </nav>
   );
 }
+=======
+>>>>>>> 559a8dc1fabcd088ff2a4ef3cf1e1dc646efb3ca
 
 export default function App() {
   
@@ -67,7 +70,7 @@ export default function App() {
         </Route>
         <Route path="/sign-in" component={SignIn}>
         </Route>
-        <Route exact path="/" component={Homepage}>
+        <Route path="/" component={Homepage}>
         </Route>
       </Switch>
     </Router>
