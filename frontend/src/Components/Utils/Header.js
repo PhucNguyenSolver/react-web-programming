@@ -2,11 +2,11 @@ import $ from 'jquery';
 import * as Cookies from 'js-cookie';
 
 function LogBtn(){
-  var isLogin=Cookies.get('PHPSESSID');
+  var emailCk=Cookies.get('email');
   
-  if(isLogin){
+  if(emailCk){
     return <>
-      <button type="button" className="btn btn-danger" id="logout">Đăng xuất</button>
+      <button type="button" className="btn btn-danger me-2" id="logout">Đăng xuất</button>
     </>
   }
   return <>
@@ -31,11 +31,19 @@ export default function Header() {
         url: "/Controller/SignOut.php",
         type: "POST",
         success: function(data) {   
-          Cookies.remove('PHPSESSID');
+          alert(data);
           window.location.href = "/sign-in";    
         }
-    })
+      })
     });
+
+    var emailCk=Cookies.get('email');
+    if (emailCk){
+      $('#user').text("Xin chào " + emailCk);
+    }
+    else{
+      $('#user').text("Xin chào Khách");
+  }
 
   })
 
@@ -59,11 +67,12 @@ export default function Header() {
           </ul>
 
           <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-            <input type="search" className="form-control form-control-dark" placeholder="Search..." aria-label="Search" />
+            <input type="search" className="form-control form-control-dark" placeholder="Tìm kiếm..." aria-label="Search" />
           </form>
 
           <div className="text-end">
             <LogBtn></LogBtn>
+            <button type="button" className="btn btn-info" id="user"></button>
           </div>
         </div>
       </div>

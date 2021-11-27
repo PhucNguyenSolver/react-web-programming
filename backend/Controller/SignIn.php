@@ -19,17 +19,25 @@
         $err = true;
     }
     if(!$err){
+
         if(isset($_SESSION['email'])){
-            echo "-1";         
+            echo "dadangnhap";         
         }
         else{
+            $password = hash('sha256', $password);
             $account = $log->checkLogin($email, $password);
             if($account != null){
+                if($account->isAdmin != '1' && $account->isAdmin != '0'){//chua activate
+                    echo "Tài khoản chưa được kích hoạt";
+                    return;
+                }
                 $_SESSION['email'] = $account->email;
-                $_SESSION['isAdmin'] = $account->isAdmin; 
+                setcookie('email', $account->email, time() + (86400 * 30), "/");
+                $_SESSION['isAdmin'] = $account->isAdmin;
+                setcookie('isAdmin', $account->isAdmin, time() + (86400 * 30), "/");
                 echo 'OK';
             }
-            else{          
+            else{     
                 echo '
                 <p style="color:red">Sai email hoặc mật khẩu</p>
                 ';
