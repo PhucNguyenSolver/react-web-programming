@@ -13,34 +13,44 @@ import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
+import Order from "./Components/Order";
+import AppProvider from "./context/AppProvider.js";
 
 export default function App() {
   return (<>
-    <Header />
-    <Router>
-      <Switch>
-        <Route path="/products" component={Products}>
-        </Route>
-        <Route path="/product-info" component={ProductInfo}>
-        </Route>
-        <Route path="/cart" component={Cart}>
-        </Route>
-        <Route path="/news" component={News}>
-        </Route>
-        <Route path="/article" component={Article}>
-        </Route>
-        <Route path="/admin0" component={ChangeInfoAccount}>
-        </Route>
-        <Route path="/admin1" component={ChangeInfoProduct}>
-        </Route>
-        <Route path="/sign-up" component={SignUp}>
-        </Route>
-        <Route path="/sign-in" component={SignIn}>
-        </Route>
-        <Route exact path="/" component={Homepage}>
-        </Route>
-      </Switch>
-    </Router>
-    <Footer/>
+    <AppProvider>
+      <Header/>
+        <MyRouter/>
+      <Footer/>
+    </AppProvider>
   </>);
+}
+
+const MyRouter = () => {
+  return <Router>
+    <Switch>
+      <Route path="/products" component={Products}>
+      </Route>
+      <Route path="/product-info" component={ProductInfo}>
+      </Route>
+      <Route path="/cart" component={Cart}>
+      </Route>
+      <Route path="/news" component={News}>
+      </Route>
+      <Route path="/article" component={Article}>
+      </Route>
+      <Route path="/admin0" component={ChangeInfoAccount}>
+      </Route>
+      <Route path="/admin1" component={ChangeInfoProduct}>
+      </Route>
+      <Route path="/admin2" component={Order}>
+      </Route>
+      <Route path="/sign-up" component={SignUp}>
+      </Route>
+      <Route path="/sign-in" component={SignIn}>
+      </Route>
+      <Route exact path="/" component={Homepage}>
+      </Route>
+    </Switch>
+  </Router>;
 }
