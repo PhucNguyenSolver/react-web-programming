@@ -1,4 +1,4 @@
-import './article.scss';
+import './Article.scss';
 import { useState, useContext } from 'react';
 import {AppContext} from '../../context/AppProvider';
 import { CustomTag } from '../Utils/Input';

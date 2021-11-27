@@ -1,4 +1,4 @@
-import "./article.scss";
+import "./Article.scss";
 import React, { useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from 'draft-js';
