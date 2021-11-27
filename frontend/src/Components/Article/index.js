@@ -1,10 +1,11 @@
-import './article.scss';
+import './Article.scss';
 import { useState, useContext } from 'react';
 import {AppContext} from '../../context/AppProvider';
 import { CustomTag } from '../Utils/Input';
 import ControlledEditor from './ControlledEditor';
 import Comment from './Comment';
 import Aside from './Aside';
+import React from 'react';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
