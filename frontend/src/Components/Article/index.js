@@ -10,7 +10,6 @@ import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 
-
 import rawJSON from './html3.json';
 const defaultArticle = {
   title: 'How Crypto Is Shaping The Digital Revolution',
