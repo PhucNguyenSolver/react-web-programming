@@ -13,6 +13,7 @@ import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
+import Order from "./Components/Order";
 import AppProvider from "./context/AppProvider.js";
 
 export default function App() {
@@ -41,6 +42,8 @@ const MyRouter = () => {
       <Route path="/admin0" component={ChangeInfoAccount}>
       </Route>
       <Route path="/admin1" component={ChangeInfoProduct}>
+      </Route>
+      <Route path="/admin2" component={Order}>
       </Route>
       <Route path="/sign-up" component={SignUp}>
       </Route>

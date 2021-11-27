@@ -125,9 +125,9 @@ const Viewer = ({isVisible, draft, article, relatedArticles}) => {
             <img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..."/>
           </figure>
           {/* Post content */}
-          {/* <section class="mb-5 post-content">
+          <section class="mb-5 post-content">
             <div dangerouslySetInnerHTML={{__html: html}} />
-          </section> */}
+          </section>
         </article>
         {/* Comments section */}
         <Comment/>
