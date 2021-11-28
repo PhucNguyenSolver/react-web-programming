@@ -41,7 +41,17 @@
     }
 
 
-    //request = post:
+    //request = delete:
+    else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
+        if(isset($_GET['id'])){
+            echo $productModel->deleteProduct($_GET['id']);
+        }
+        else{
+            http_response_code(404);
+            echo '404 not found';
+        }
+    }
+
 
     
 
