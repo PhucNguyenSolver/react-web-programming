@@ -99,7 +99,7 @@
       $this->admId = htmlspecialchars(strip_tags($this->admId));
       $this->title = htmlspecialchars(strip_tags($this->title));
       $this->timeStamp = htmlspecialchars(strip_tags($this->timeStamp));
-      $this->content = htmlspecialchars(strip_tags($this->content)); // TODO: can html passed this way
+      // $this->content = htmlspecialchars(strip_tags($this->content)); // TODO: can html passed this way
       $this->imgUrl = htmlspecialchars(strip_tags($this->imgUrl));
 
       // Bind data // TODO
@@ -135,7 +135,7 @@
       $stmt = $this->conn->prepare($query);
 
       // Clean data
-      $this->content = htmlspecialchars(strip_tags($this->content)); // TODO:
+      // $this->content = htmlspecialchars(strip  _tags($this->content)); // TODO:
 
       // Bind data
       $stmt->bind_param('si', $this->content, $this->newsId);
