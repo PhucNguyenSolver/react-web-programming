@@ -1,6 +1,11 @@
 <?php
     include_once '../Lib/Connection.php';
     class ProductModel{
+        
+        //constructor
+        public function __construct(){
+            session_start();
+        }
 
         //trang chủ
         //deal hot trong tháng, lấy tên, giá cũ, giá mới, ảnh đầu tiên của 5 sản phẩm có discount nhiều nhất
