@@ -12,6 +12,8 @@
     public $timeStamp;
     public $content;
     public $imgUrl;
+    // Joined Properties
+    public $author;
 
     // Constructor with DB
     public function __construct($db)
@@ -49,8 +51,10 @@
     // Get Single News
     public function read_single()
     {
-      $query = 'SELECT newsId, admId, title, `timeStamp`, content, imgUrl
+      $query = 'SELECT newsId, admId, title, `timeStamp`, content, imgUrl, userName
         FROM ' . $this->table . '
+        LEFT JOIN `account`
+        ON ' . $this->table . '.admId = account.accId
         WHERE
           newsId = ?
         ORDER BY
@@ -75,7 +79,8 @@
         $this->title,
         $this->timeStamp,
         $this->content,
-        $this->imgUrl
+        $this->imgUrl,
+        $this->author,
       );
       $stmt->fetch();
     }

@@ -31,34 +31,6 @@ $(function(){
 })
 
 
-
-function DefaultRouter() {
-  return (
-    <nav>
-      <ul>
-        <li><Link to="/homepage">Homepage</Link>
-        </li>
-        <li><Link to="/products">Products</Link>
-        </li>
-        <li><Link to="/product-info/">Product Info</Link>
-        </li>
-        <li><Link to="/cart/">Cart</Link>
-        </li>
-        <li><Link to="/news/">News</Link>
-        </li>
-        <li><Link to="/article/">Article</Link>
-        </li>
-        <li><Link to="/sign-up/">Sign Up</Link>
-        </li>
-        <li><Link to="/sign-in/">Sign In</Link>
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
-
-
 function RenderRoute(props){
   if(emailCk){
     if (props.path==="/sign-in"){
@@ -92,7 +64,7 @@ export default function App() {
         <RenderRoute path="/product-info" component={ProductInfo}/>
         <RenderRoute path="/cart" component={Cart}/>
         <RenderRoute path="/news" component={News}/>
-        <RenderRoute path="/article" component={Article}/>
+        <RenderRoute path="/article/:id" exact component={Article}/>
         <RenderRoute path="/admin0" component={ChangeInfoAccount}/>
         <RenderRoute path="/admin1" component={ChangeInfoProduct}/>
         <RenderRoute path="/admin2" component={Order}/>

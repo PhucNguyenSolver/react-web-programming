@@ -4,6 +4,7 @@ export default function TestCard(props) {
   // TODO: fix bug overflow (useEffect)
   const defaultItem = {
     // imgUrl: "https://mona.media/wp-content/uploads/2021/10/guest-post-377x247.png",
+    id: 0,
     imgUrl: `https://picsum.photos/seed/pho${props.item.id}ne/300/200`,
     title: "Article title example. This should be a bit longer...",
     author: "Some one on earth",
@@ -26,7 +27,7 @@ export default function TestCard(props) {
       onMouseLeave={() => setActive(false)}
       onClick={() => {
         console.log("Go to " + item.source);
-        window.location.href='/article';
+        window.location.href=`/article/${item.id}`;
       }}
     >
       <img class={"card-img-top" + hightlight} src={item.imgUrl} alt="" />

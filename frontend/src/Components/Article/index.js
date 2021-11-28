@@ -1,5 +1,6 @@
 import './article.scss';
-import { useState, useContext } from 'react';
+import {useParams} from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
 import {AppContext} from '../../context/AppProvider';
 import { CustomTag } from '../Utils/Input';
 import ControlledEditor from './ControlledEditor';
@@ -12,15 +13,23 @@ import htmlToDraft from 'html-to-draftjs';
 
 import rawJSON from './html3.json';
 const defaultArticle = {
-  title: 'How Crypto Is Shaping The Digital Revolution',
+  // title: 'How Crypto Is Shaping The Digital Revolution',
+  // title: 'Loading...',
+  // imgUrl: "https://dummyimage.com/900x400/ced4da/6c757d.jpg",
+  // timestamp: '20 Nov 2021',
+//   author: 'Mario Laul',
+//   tags: [
+//     { value: 'World', url: '#!'},
+//     { value: 'VR', url: '#!'},
+//     { value: 'Meta', url: '#!'},
+//   ],
+//   content: rawJSON, // TODO: get `html` from database instead;
+// }
+  title: 'Loading...',
   imgUrl: "https://dummyimage.com/900x400/ced4da/6c757d.jpg",
-  timestamp: '20 Nov 2021',
-  author: 'Mario Laul',
-  tags: [
-    { value: 'World', url: '#!'},
-    { value: 'VR', url: '#!'},
-    { value: 'Meta', url: '#!'},
-  ],
+  timestamp: '...',
+  author: '...',
+  tags: [],
   content: rawJSON, // TODO: get `html` from database instead;
 }
 const otherArticles = [1, 2, 3, 4].map((id) => (
@@ -34,8 +43,35 @@ const otherArticles = [1, 2, 3, 4].map((id) => (
 
 export default function Article() {
   const { isAdmin } = useContext(AppContext);
-  // TODO: Load article from DB
   const [article, setArticle] = useState(defaultArticle);
+
+  // TODO: Load article from DB
+  const {id} = useParams();
+
+  useEffect(() => {
+    try {
+      fetch(`http://localhost/api/news/read_single.php/?id=${id}`)
+        .then(res => res.json())
+        // .then(data => console.log(data))
+        .then(({newsId, author, title, timeStamp: timestamp, imgUrl, content}) => {
+          console.log({newsId, admId: author, title, timeStamp: timestamp, imgUrl, content});
+          setArticle({
+            id: newsId,
+            title: title,
+            imgUrl: imgUrl,
+            timestamp: timestamp?.slice(0, 10),
+            author: author,
+            tags: [],
+            content: JSON.stringify(content),
+          });
+          setDraft(getInitState());
+        })
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   const [relatedArticles, setRelatedArticles] = useState(otherArticles);
   // Done load article from DB
   
@@ -55,7 +91,9 @@ export default function Article() {
     }
   } 
   const [draft, setDraft] = useState(getInitState());
-
+  useEffect(() => {
+    setDraft(getInitState);
+  }, [article.content]);  
   const handleSaveDraft = () => {
     if (draft === null) {
       alert('This should never happen. Draft is null');

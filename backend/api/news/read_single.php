@@ -26,9 +26,10 @@
     'title' => $news->title,
     'timeStamp' => $news->timeStamp,
     'content' => $news->content,
-    'imgUrl' => $news->imgUrl
+    'imgUrl' => $news->imgUrl,
+    'author' => $news->author,
   );
 
   // Make JSON
-  print_r(json_encode($news_arr));
+  echo json_encode($news_arr);
 ?>
