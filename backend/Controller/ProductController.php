@@ -31,9 +31,10 @@
                 echo '404 not found';
             }
         }
-        else if(isset($_GET['id'])){//?id=1
-            echo $productModel->getProductByID($_GET['id']);
+        else if(isset($_GET['find'])){//?find=dell //đây là thanh tìm kiếm
+            echo $productModel->searchByName($_GET['find']);
         }
+
         else{//404 not found
             http_response_code(404);
             echo '404 not found';   

@@ -58,6 +58,18 @@
             }
             return json_encode($data);
         }
+
+        //search product by name
+        public function searchByName($name){
+            $sql = "SELECT * FROM product WHERE name LIKE '%$name%'";
+            $result = connect()->query($sql);
+            $data = array();
+            while($row = $result->fetch_assoc()){
+                $data[] = $row;
+            }
+            return json_encode($data);
+        }
+
         //insert product to database
         public function addProduct($arr){
             $sql = "INSERT INTO product(productId,name,manu,CPU,RAM,drive,GPU,screen,battery,weight,color,size,port,OS,oldCost,discount,image1,image2,image3,image4)
