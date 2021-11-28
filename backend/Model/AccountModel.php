@@ -9,42 +9,23 @@
 
         //get account by id
         public function getInfoById($id){
-            $isAdmin = $_SESSION['isAdmin'];
-            if($isAdmin=='0'){//is user
-                $sql = "SELECT * FROM account,user WHERE accId = '$id' AND userId=accId";
-                $result = connect()->query($sql);
-                $data = $result->fetch_assoc();
-                return json_encode($data);
-            }
-            else{//is admin
-                $sql = "SELECT * FROM account,admin WHERE accId = '$id' AND admId=accId";
-                $result = connect()->query($sql);
-                $data = $result->fetch_assoc();
-                return json_encode($data);
-            }   
+            $sql = "SELECT * FROM acc WHERE accId = '$id'";
+            $result = connect()->query($sql);
+            $data = $result->fetch_assoc();
+            return json_encode($data);
         }
 
         //get all account
         public function getAllInfo(){
-            $isAdmin = $_SESSION['isAdmin'];
-            if($isAdmin=='0'){//is user
-                $sql = "SELECT * FROM account,user WHERE userId=accId";
-                $result = connect()->query($sql);
-                $data = [];
-                while($row = $result->fetch_assoc()){
-                    $data[] = $row;
-                }
-                return json_encode($data);
+
+            $sql = "SELECT * FROM acc";
+            $result = connect()->query($sql);
+            $data = [];
+            while($row = $result->fetch_assoc()){
+                $data[] = $row;
             }
-            else{//is admin
-                $sql = "SELECT * FROM account,admin WHERE admId=accId";
-                $result = connect()->query($sql);
-                $data = [];
-                while($row = $result->fetch_assoc()){
-                    $data[] = $row;
-                }
-                return json_encode($data);
-            } 
+            return json_encode($data);
+
         }
 
         //update account
@@ -54,6 +35,8 @@
             $result = connect()->query($sql);
             if($result){
                 $sql = "UPDATE user SET name = '$arr[name]', phoneNumber = '$arr[phone]', address = '$arr[address]' WHERE userId = '$id'";
+                $result = connect()->query($sql);
+                $sql = "UPDATE admin SET name = '$arr[name]', phoneNumber = '$arr[phone]', address = '$arr[address]' WHERE admId = '$id'";
                 $result = connect()->query($sql);
             }     
         }

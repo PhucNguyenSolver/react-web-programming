@@ -107,12 +107,24 @@ function RenderRoute(props){
     if(props.path==="/manager-account"){
       return <Redirect to="/"/>
     }
+    if(props.path==="/manager-product"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-order"){
+      return <Redirect to="/"/>
+    }
     else{
       return <Route path={props.path} component={props.component}></Route>
     }
   }
   else{//chưa đăng nhập thì vào được mọi trang trừ trang manager-account
     if(props.path==="/manager-account"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-product"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-order"){
       return <Redirect to="/"/>
     }
     else{
@@ -133,8 +145,8 @@ export default function App() {
         <RenderRoute path="/news" component={News}/>
         <RenderRoute path="/article" component={Article}/>
         <RenderRoute path="/manager-account" component={ChangeInfoAccount}/>
-        <RenderRoute path="/admin1" component={ChangeInfoProduct}/>
-        <RenderRoute path="/admin2" component={Order}/>
+        <RenderRoute path="/manager-product" component={ChangeInfoProduct}/>
+        <RenderRoute path="/manager-order" component={Order}/>
         <RenderRoute path="/sign-in" component={SignIn}/>
         <RenderRoute path="/sign-up" component={SignUp}/>
         <RenderRoute path="/forgot" component={Forgot}/>

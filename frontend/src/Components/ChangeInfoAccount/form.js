@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Col, Row } from "react-bootstrap";
 
-const infoForm = {
+const item = {
   img: "https://product.hstatic.net/1000026716/product/028vn_710aac8009614321ba3103b049a0a3c4_large.png",
   id: 1,
   fullname: "Vo Thanh Hieu",
@@ -15,9 +15,8 @@ const infoForm = {
 };
 
 export default function ChangeForm () {
-  const item = infoForm;
+  
   return <>
-     
     <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
       <div className="col-sm-6">
         <img className="img-fluid" style={{width: '100%'}} src={item.img} alt=""/>
