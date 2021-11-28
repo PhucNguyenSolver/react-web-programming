@@ -9,7 +9,7 @@ export default function EditAccount () {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button id="user" onClick={handleShow}></Button>
+      <Button variant="info" id="user" onClick={handleShow}></Button>
 
       <Modal size="lg" show={show} onHide={() => setShow(false)} aria-labelledby="example-modal-sizes-title-lg">
         <Modal.Header closeButton>
