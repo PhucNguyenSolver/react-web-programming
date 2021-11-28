@@ -17,7 +17,12 @@ const infoForm = {
 export default function ChangeForm () {
   const item = infoForm;
   return <>
-       
+      
+    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
+      <div className="col-sm-6">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img} alt=""/>
+      </div>
+    </div>
     <div className="row justify-content-md-center">
       <div  className="col-sm-10">
         <Form>
@@ -55,15 +60,6 @@ export default function ChangeForm () {
               </Form.Label>
               <Col sm="8">
               <Form.Control type="password" defaultValue={item.phone}/>
-              </Col>
-            </Row>
-
-            <Row>
-              <Form.Label column sm="4">
-                <h6>Ảnh</h6>
-              </Form.Label>
-              <Col sm="8">
-              <Form.Control type="text" defaultValue={item.img}/>
               </Col>
             </Row>
 

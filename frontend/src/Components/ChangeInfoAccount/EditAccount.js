@@ -22,7 +22,7 @@ export default function EditAccount () {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
-            Xóa khách hàng
+            Xóa tài khoản
           </Button>
         </Modal.Footer>
       </Modal>
