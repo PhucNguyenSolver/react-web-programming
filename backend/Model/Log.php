@@ -11,7 +11,7 @@
 
             if($result->num_rows > 0){
                 $row = $result->fetch_assoc();
-                $account = new Account($row['accId'],$row['userName'],$row['email'],$row['password'],$row['isAdmin']);
+                $account = new Account($row['accId'],$row['userName'],$row['email'],$row['password'],$row['isAdmin'],"0");
                 return $account;
             }
             return null;

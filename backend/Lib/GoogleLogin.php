@@ -43,10 +43,12 @@
         if($result->num_rows>0) // Nếu user tồn tại thì show thông tin hiện có
         {          
             $row = $result->fetch_assoc();
-            $_SESSION['email'] = $user->email;
-            setcookie('email', $_SESSION['email'], time() + (86400 * 30), "/");
+            $_SESSION['id'] = $row['accId'];
+            setcookie('id', $row['accId'], time() + (86400 * 30), "/");
+            $_SESSION['email'] = $row['email'];
+            setcookie('email', $row['email'], time() + (86400 * 30), "/");
             $_SESSION['isAdmin'] = $row['isAdmin'];
-            setcookie('isAdmin', $_SESSION['isAdmin'], time() + (86400 * 30), "/");
+            setcookie('isAdmin', $row['isAdmin'], time() + (86400 * 30), "/");
      
             echo $user->email . ' đã đăng nhập thành công!';
             sleep(1);
@@ -64,10 +66,15 @@
             sendMail2($user->email, $password);//gửi email với mật khẩu mặc định
             echo 'Chào '.$user->name.', một email chứa thông tin đăng nhập đã được gửi đến mail của bạn.';
 
-            $_SESSION['email'] = $user->email;
-            setcookie('email', $_SESSION['email'], time() + (86400 * 30), "/");
+            $result = $conn->query("SELECT * FROM account WHERE email='$user->email'");
+            $row = $result->fetch_assoc();
+
+            $_SESSION['id'] = $row['accId'];
+            setcookie('id', $row['accId'], time() + (86400 * 30), "/");
+            $_SESSION['email'] = $row['email'];
+            setcookie('email', $row['email'], time() + (86400 * 30), "/");
             $_SESSION['isAdmin'] = '0';//dang nhap kiểu này auto là khách
-            setcookie('isAdmin', $_SESSION['isAdmin'], time() + (86400 * 30), "/");
+            setcookie('isAdmin', '0', time() + (86400 * 30), "/");
             
             echo '<script>window.location.href="http://localhost:3000"</script>';
       
