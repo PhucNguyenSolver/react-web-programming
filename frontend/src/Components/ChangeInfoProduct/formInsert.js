@@ -2,10 +2,10 @@ import React from 'react';
 import { Form, Col, Row } from "react-bootstrap";
 
 const infoForm = {
-  img: "https://product.hstatic.net/1000026716/product/028vn_710aac8009614321ba3103b049a0a3c4_large.png",
-  img1: "https://product.hstatic.net/1000026716/product/028vn_710aac8009614321ba3103b049a0a3c4_large.png",
-  img2: "https://product.hstatic.net/1000026716/product/028vn_710aac8009614321ba3103b049a0a3c4_large.png",
-  img3: "https://product.hstatic.net/1000026716/product/028vn_710aac8009614321ba3103b049a0a3c4_large.png",
+  img: "",
+  img1: "",
+  img2: "",
+  img3: "",
   id: "",
   name: "",
   company: "",
@@ -20,8 +20,8 @@ const infoForm = {
   size: "",
   gate: "",
   system: "",
-  old: "",
-  new: "",
+  price: "",
+  disc: "",
   discount: true
 };
 
@@ -29,22 +29,6 @@ export default function ChangeFormInsert () {
   const item = infoForm;
   return <>
 
-  <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
-    <div className="col-sm-6">
-      <img className="img-fluid" style={{width: '100%'}} src={item.img} alt=""/>
-    </div>
-  </div>
-  <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
-    <div className="col-sm">
-      <img className="img-fluid" style={{width: '100%'}} src={item.img1} alt=""/>
-    </div>
-    <div className="col-sm">
-      <img className="img-fluid" style={{width: '100%'}} src={item.img2} alt=""/>
-    </div>
-    <div className="col-sm">
-      <img className="img-fluid" style={{width: '100%'}} src={item.img3} alt=""/>
-    </div>
-  </div>      
     <div className="row justify-content-md-center">
       <div  className="col-sm-10">
         <Form>
@@ -64,6 +48,42 @@ export default function ChangeFormInsert () {
               </Form.Label>
               <Col sm="8">
               <Form.Control type="text" defaultValue={item.name}/>
+              </Col>
+            </Row>
+
+            <Row>
+              <Form.Label column sm="4">
+                <h6>Ảnh 1</h6>
+              </Form.Label>
+              <Col sm="8">
+              <Form.Control type="text" defaultValue={item.img}/>
+              </Col>
+            </Row>
+
+            <Row>
+              <Form.Label column sm="4">
+                <h6>Ảnh 2</h6>
+              </Form.Label>
+              <Col sm="8">
+              <Form.Control type="text" defaultValue={item.img1}/>
+              </Col>
+            </Row>
+
+            <Row>
+              <Form.Label column sm="4">
+                <h6>Ảnh 3</h6>
+              </Form.Label>
+              <Col sm="8">
+              <Form.Control type="text" defaultValue={item.img2}/>
+              </Col>
+            </Row>
+
+            <Row>
+              <Form.Label column sm="4">
+                <h6>Ảnh 4</h6>
+              </Form.Label>
+              <Col sm="8">
+              <Form.Control type="text" defaultValue={item.img3}/>
               </Col>
             </Row>
 
@@ -177,19 +197,19 @@ export default function ChangeFormInsert () {
 
             <Row>
               <Form.Label column sm="4">
-                <h6>Giá cũ</h6>
+                <h6>Giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.old}/>
+              <Form.Control type="text" defaultValue={item.price}/>
               </Col>
             </Row>
 
             <Row>
               <Form.Label column sm="4">
-                <h6>Giá mới</h6>
+                <h6>Giảm giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.new}/>
+              <Form.Control type="text" defaultValue={item.disc}/>
               </Col>
             </Row>
           </Form.Group>
