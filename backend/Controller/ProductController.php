@@ -43,12 +43,18 @@
 
     //request = delete:
     else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
-        if(isset($_GET['id'])){
-            echo $productModel->deleteProduct($_GET['id']);
+        if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == '1'){
+            if(isset($_GET['id'])){
+                echo $productModel->deleteProduct($_GET['id']);
+            }
+            else{
+                http_response_code(404);
+                echo '404 not found';
+            }
         }
         else{
-            http_response_code(404);
-            echo '404 not found';
+            http_response_code(401);
+            echo '401 Unauthorized';
         }
     }
 
