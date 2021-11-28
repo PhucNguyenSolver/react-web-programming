@@ -9,6 +9,23 @@
 
         }
 
+        public function getTopRating(){
+            return $this->getTopBy('aveRating',0,5, 'DESC');
+        }
+
+        //get all product where manu and $manu not sensitive and order by name
+        public function getAllByManu($manu){
+
+            $conn = connect();
+            $sql = "SELECT * FROM product WHERE manu = '$manu' ORDER BY name";
+            $result = $conn->query($sql);
+            $products = array();
+            while($row = $result->fetch_assoc()){
+                $products[] = $row;
+            }
+            return json_encode($products);
+        }
+
         //laptop gaming đổi thành top rating
         //này dành cho trang chủ và trang sản phẩm
         //select top a to b product sort by a string value and asc or desc
@@ -16,7 +33,7 @@
             //ascOrDesc = ASC or DESC
             //orderBy điền tên theo cột muốn sắp xếp
             $sql = 
-            "SELECT productId,name,oldCost,ROUND((100-discount)*oldCost/100) AS newCost,image1 
+            "SELECT * 
             FROM product
             ORDER BY $orderBy $ascOrDesc LIMIT $a,$b";
             //return json
@@ -28,7 +45,6 @@
             return json_encode($data);
 
         }
-
 
         //trang thông tin sản phẩm
         //dành cho trang product-info
@@ -43,7 +59,7 @@
             return json_encode($data);
         }
         //insert product to database
-        public function insertProduct($arr){
+        public function addProduct($arr){
             $sql = "INSERT INTO product(productId,name,manu,CPU,RAM,drive,GPU,screen,battery,weight,color,size,port,OS,oldCost,discount,image1,image2,image3,image4)
             VALUES('$arr[productId]','$arr[name]','$arr[manu]','$arr[CPU]','$arr[RAM]','$arr[drive]','$arr[GPU]','$arr[screen]','$arr[battery]','$arr[weight]','$arr[color]','$arr[size]','$arr[port]','$arr[OS]','$arr[oldCost]','$arr[discount]','$arr[image1]','$arr[image2]','$arr[image3]','$arr[image4]')";
             connect()->query($sql);
@@ -55,6 +71,12 @@
             SET name='$arr[name]',manu='$arr[manu]',CPU='$arr[CPU]',RAM='$arr[RAM]',drive='$arr[drive]',GPU='$arr[GPU]',screen='$arr[screen]',battery='$arr[battery]',weight='$arr[weight]',color='$arr[color]',size='$arr[size]',port='$arr[port]',OS='$arr[OS]',oldCost='$arr[oldCost]',discount='$arr[discount]',image1='$arr[image1]',image2='$arr[image2]',image3='$arr[image3]',image4='$arr[image4]'
             WHERE productId='$arr[productId]'";
             connect()->query($sql);      
+        }
+
+
+        public function deleteProduct($productId){
+            $sql = "DELETE FROM product WHERE productId='$productId'";
+            connect()->query($sql);
         }
 
 
