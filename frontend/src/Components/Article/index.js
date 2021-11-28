@@ -100,8 +100,23 @@ export default function Article() {
       return;
     }
     console.log('TODO: save draft to database');
-    const newHtml = JSON.stringify(stateToHtml(draft));
+    const newHtml = stateToHtml(draft);
     console.log({newHtml});
+    
+    // Make post request
+    // const url = `http://localhost/api/news/update.php/?id=${id}`;
+    const url = `http://localhost/api/news/update.php`;
+    const formData = new FormData();
+    formData.append('content', newHtml);
+    formData.append('id', id);
+
+    fetch(url, { method: 'POST', body: formData })
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (body) {
+      console.log(body);
+    });
   }
 
   return <>
