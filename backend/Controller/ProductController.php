@@ -44,7 +44,7 @@
 
     //request = delete:
     else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
-        if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == '1'){
+        if (isAdmin()){
             if(isset($_GET['id'])){
                 echo $productModel->deleteProduct($_GET['id']);
             }
@@ -54,8 +54,8 @@
             }
         }
         else{
-            http_response_code(401);
-            echo '401 Unauthorized';
+            http_response_code(403);
+            echo '403 Forbidden';
         }
     }
 
