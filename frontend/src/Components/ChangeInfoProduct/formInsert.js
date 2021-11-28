@@ -20,8 +20,8 @@ const infoForm = {
   size: "",
   gate: "",
   system: "",
-  old: "",
-  new: "",
+  price: "",
+  disc: "",
   discount: true
 };
 
@@ -177,19 +177,19 @@ export default function ChangeFormInsert () {
 
             <Row>
               <Form.Label column sm="4">
-                <h6>Giá cũ</h6>
+                <h6>Giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.old}/>
+              <Form.Control type="text" defaultValue={item.price}/>
               </Col>
             </Row>
 
             <Row>
               <Form.Label column sm="4">
-                <h6>Giá mới</h6>
+                <h6>Giảm giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.new}/>
+              <Form.Control type="text" defaultValue={item.disc}/>
               </Col>
             </Row>
           </Form.Group>

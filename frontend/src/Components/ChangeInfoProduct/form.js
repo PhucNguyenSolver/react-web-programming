@@ -20,8 +20,8 @@ const infoForm = {
   size: "Dài: 30cm; Rộng: 20cm; Dày: 2cm",
   gate: "1x USB 2.0; 2x HDMI",
   system: "Microsoft Windows 10 Home",
-  old: "25,990,000đ",
-  new: "24,990,000đ",
+  price: "25,990,000đ",
+  disc: "24,990,000đ",
   discount: true
 };
 
@@ -197,19 +197,19 @@ export default function ChangeForm () {
 
             <Row>
               <Form.Label column sm="4">
-                <h6>Giá cũ</h6>
+                <h6>Giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.old}/>
+              <Form.Control type="text" defaultValue={item.price}/>
               </Col>
             </Row>
 
             <Row>
               <Form.Label column sm="4">
-                <h6>Giá mới</h6>
+                <h6>Giảm giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.new}/>
+              <Form.Control type="text" defaultValue={item.disc}/>
               </Col>
             </Row>
           </Form.Group>
