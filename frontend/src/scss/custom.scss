@@ -1,10 +1,10 @@
 
 $theme-colors: (
   "primary": #E30220,
-  "secondary": #242024,
+  "secondary": #AF0404,
   "light": #F3F4F5,
-  "dark": #DDDDDD,
-  
+  "dark": #414141,
+  // 252525
   // "success": #4e9f3d,
   // "info": #242024,
   // "warning": #fda65d,
@@ -12,3 +12,31 @@ $theme-colors: (
 );
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.container {
+  .justify-content-md-center {
+    min-height: 700px;
+  }
+}
+
+.post-content {
+  // @extend .bg-light;
+  @extend .fs-5;
+  position: relative;
+  text-align: justify;
+  text-justify: inter-word;
+  img { 
+    max-width: 100%;
+  }
+  p {
+    @extend .mb-4;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @extend .fw-bolder;
+    @extend .mt-5;
+    @extend .mb-4;
+  }
+  li {
+    @extend .mb-2;
+  }
+}

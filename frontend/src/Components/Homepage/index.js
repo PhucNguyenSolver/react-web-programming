@@ -3,8 +3,14 @@ import pc1 from './pc1.png';
 import pc2 from './pc2.png';
 import EditSlide from './EditSlide'
 
-let pic = "https://mona.media/wp-content/uploads/2021/10/guest-post-377x247.png";
-
+const brands = [
+  { name: 'Laptop Acer', url: '#'},
+  { name: 'Laptop Asus', url: '#'},
+  { name: 'Laptop MSI', url: '#'},
+  { name: 'Laptop Lenovo', url: '#'},
+  { name: 'Laptop Dell', url: '#'},
+  { name: 'Laptop HP', url: '#'},
+];
 export default function Homepage(){
   document.title = "Trang chủ";
   return <>
@@ -12,14 +18,13 @@ export default function Homepage(){
   <div className="container" style={{marginTop: '0.5%'}}>
     <div className="row">
       <div className="col-sm-3">
-        <table className="table table-bordered">
+        <table className="table table-bordered table-hover">
           <tbody>
-            <tr><th><a href="#" style={{color: 'black', textDecoration: 'none'}}>Laptop Acer</a></th></tr>
-            <tr><th><a href="#" style={{color: 'black', textDecoration: 'none'}}>Laptop Asus</a></th></tr>
-            <tr><th><a href="#" style={{color: 'black', textDecoration: 'none'}}>Laptop MSI</a></th></tr>
-            <tr><th><a href="#" style={{color: 'black', textDecoration: 'none'}}>Laptop Lenovo</a></th></tr>
-            <tr><th><a href="#" style={{color: 'black', textDecoration: 'none'}}>Laptop Dell</a></th></tr>
-            <tr><th><a href="#" style={{color: 'black', textDecoration: 'none'}}>Laptop HP</a></th></tr>
+            {brands.map(({name, url}) => (
+              <tr key={name}>
+                <th><a href={url} style={{color: 'black', textDecoration: 'none'}}>{name}</a></th>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -35,25 +40,25 @@ export default function Homepage(){
         </div>
       </div>      
     </div>
-  <nav className="navbar navbar-expand navbar-dark" aria-label="Second navbar example" style={{backgroundColor: 'red', marginTop: '0.5%', width: '100%'}}>
+  <nav className="bg-primary rounded mb-3 navbar navbar-expand navbar-dark" aria-label="Second navbar example" style={{marginTop: '0.5%', width: '100%'}}>
     <div className="container-fluid">
-      <a className="navbar-brand" style={{fontWeight: 'bold'}}>DEAL HOT TRONG THÁNG</a>
+      <a className="navbar-brand fw-bold">DEAL HOT TRONG THÁNG</a>
     </div>
   </nav>
-  <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5" data-masonry="{&quot;percentPosition&quot;: true }" style={{marginBottom: '2%'}}>
+  <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5" data-masonry="{&quot;percentPosition&quot;: true }" style={{marginBottom: '2%'}}>
     {[1,2,3,4,5].map(() => (
       <div className="col">
         <TestCard/>
       </div>
     ))}
   </div>
-  <nav className="navbar navbar-expand navbar-dark" aria-label="Second navbar example" style={{backgroundColor: 'red', marginTop: '0.5%', width: '100%'}}>
+  <nav className="bg-primary rounded mb-3 navbar navbar-expand navbar-dark" aria-label="Second navbar example" style={{marginTop: '0.5%', width: '100%'}}>
     <div className="container-fluid">
-      <a className="navbar-brand" style={{fontWeight: 'bold'}}>LAPTOP GAMING</a>
-      <a className="navbar-brand" style={{fontWeight: 'bold', fontSize: 'medium', float: 'right'}} href="#">Xem tất cả</a>
+      <a className="navbar-brand fw-bold">LAPTOP GAMING</a>
+      <a className="navbar-brand" style={{ fontSize: 'medium', float: 'right'}} href="#">Xem tất cả &gt;&gt;</a>
     </div>
   </nav>
-  <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5" data-masonry="{&quot;percentPosition&quot;: true }" style={{marginBottom: '2%'}}>
+  <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5" data-masonry="{&quot;percentPosition&quot;: true }" style={{marginBottom: '2%'}}>
     {[1,2,3,4,5].map(() => (
       <div className="col">
         <TestCard/>

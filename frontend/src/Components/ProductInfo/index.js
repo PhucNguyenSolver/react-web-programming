@@ -1,5 +1,4 @@
 import './styles.scss';
-// import * as Icon from 'react-bootstrap-icons';
 import pic1 from './pic1.jpg'
 import pic2 from './pic2.jpg'
 import pic3 from './pic3.jpg'
@@ -10,6 +9,7 @@ import avatar2 from './avatar2.png'
 export default function ProductInfo() {
   document.title="Thông tin sản phẩm";
   return <>
+    <div className="container">
     <div className="product-info">
       <div className="content">
         <div className="container">
@@ -169,6 +169,7 @@ export default function ProductInfo() {
           </div>
         </div>
       </div>
+    </div>
     </div>
 
   </>

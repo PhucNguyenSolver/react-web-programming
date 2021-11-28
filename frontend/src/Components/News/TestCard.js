@@ -21,6 +21,7 @@ export default function TestCard(props) {
   const hightlight = active ? " opacity-50" : "";
   return (<>
     <div class="card shadow-sm m-2 m-md-2 m-lg-3 mx-xl-5"
+      style={{cursor: 'pointer'}}
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
       onClick={() => {
