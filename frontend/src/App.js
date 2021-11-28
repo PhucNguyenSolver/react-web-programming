@@ -92,7 +92,7 @@ export default function App() {
         <RenderRoute path="/cart" component={Cart}/>
         <RenderRoute path="/news" component={News}/>
         <RenderRoute path="/article" component={Article}/>
-        <RenderRoute path="/admin0" component={ChangeInfoAccount}/>
+        <RenderRoute path="/manager-account" component={ChangeInfoAccount}/>
         <RenderRoute path="/admin1" component={ChangeInfoProduct}/>
         <RenderRoute path="/admin2" component={Order}/>
         <RenderRoute path="/sign-in" component={SignIn}/>
