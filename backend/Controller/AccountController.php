@@ -13,7 +13,7 @@
                 $rq = $_GET['rq'];
                 if($rq == 'info'){//?rq=info
                     if(isLogin()){
-                        echo $model->getInfo();
+                        echo $model->getInfoById($_SESSION['id']);
                     }
                     else{
                         echo "{error: 'Chưa đăng nhập'}";
@@ -58,12 +58,12 @@
             }
             else{
                 http_response_code(404);
-                echo '404 not found';
+                echo "{error: '404 not found'}";
             }
         }
         else{
             http_response_code(403);
-            echo '403 Forbidden';
+            echo "{error: '403 forbidden'}";
         }
     }
 ?>
