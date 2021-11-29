@@ -23,6 +23,9 @@
             else if($_GET['rq'] == 'manu' && isset($_GET['name'])){//?rq=manu&name=dell
                 echo $productModel->getAllByManu($_GET['name']);
             }
+            else if($_GET['rq'] == 'all') {
+                echo $productModel->getAll();
+            }
             //else echo 404 not found
             else{
                 http_response_code(404);
@@ -55,7 +58,6 @@
                 if($_POST['rq'] == 'add' && isset($_POST['data'])){
                     
                     $arr=json_decode($_POST['data'],true);
-                    
                     echo $productModel->addProduct($arr);
                 }
                 else if($_POST['rq'] == 'update' && isset($_POST['data'])){

@@ -18,6 +18,18 @@
             return $this->getTopBy('aveRating',0,5, 'DESC');
         }
 
+        //get all products for admin
+        public function getAll() {
+            $conn = connect();
+            $sql = "SELECT * FROM product ORDER BY productId";
+            $result = $conn->query($sql);
+            $products = array();
+            while($row = $result->fetch_assoc()){
+                $products[] = $row;
+            }
+            return json_encode($products);
+        }
+
         //get all product where manu and $manu not sensitive and order by name
         public function getAllByManu($manu){
 

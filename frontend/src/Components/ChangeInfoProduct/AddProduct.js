@@ -54,35 +54,10 @@ export default function EditProductInsert () {
     image3: '',
     image4: ''
   });
-
-  var newProduct2 = {
-    "name": 'ABC',
-    "manu": 'Abcd',
-    "numInStock": 20,
-    "oldCost": 20000,
-    "discount": 20,
-    "RAM": 'ABCDE',
-    "CPU": 'ABCDE',
-    "screen": '1920',
-    "battery": 'ABC',
-    "weight": 2,
-    "size": 'ABCD',
-    "OS": 'ABCD',
-    "port": 'Aaaa',
-    "drive": 'aaaa',
-    "GPU": 'aaaa',
-    'color': 'aaaaa',
-    "image1": 'aaaa',
-    "image2": 'aaa',
-    "image3": 'a',
-    "image4": 'a',
-  };
-
   const item = infoForm;
-
-  console.log(newProduct2);
+  console.log(newProduct);
   const HandleAddProduct = () => {
-      var jsonProduct = JSON.stringify(newProduct2);
+      var jsonProduct = JSON.stringify(newProduct);
       // axios.post('http://localhost/Controller/ProductController.php', {rq: "add", data: jsonProduct})
       // .then(res => {
       //   console.log('Add completed!');
@@ -91,14 +66,14 @@ export default function EditProductInsert () {
       //   alert('Cannot add new product');
       // });
       $.ajax({
-        url: "/Controller/ProductController.php",
+        url: "/Controller/ProductController.php/",
         type: "POST",
         data: {rq: "add", data: jsonProduct},
         success: function (data) {
-          alert("Đã lưu thay đổi");
+          alert("Đã thêm sản phẩm thành công");
         }
       }).fail(function (data) {
-        alert("Cập nhật thất bại!");
+        alert("Thêm sản phẩm thất bại");
       });
   }
   return (
@@ -284,7 +259,7 @@ export default function EditProductInsert () {
                 <h6>Giảm giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.disc+'%'} onChange={e => setNewProduct({...newProduct, discount: e.target.value})}/>
+              <Form.Control type="text" defaultValue={item.disc} onChange={e => setNewProduct({...newProduct, discount: e.target.value})}/>
               </Col>
             </Row>
           </Form.Group>
@@ -296,6 +271,7 @@ export default function EditProductInsert () {
           <Button variant="primary" onClick={() => {
             handleClose();
             HandleAddProduct();
+            window.location.href = "/manager-product";
           }}>
             Lưu thay đổi
           </Button>
