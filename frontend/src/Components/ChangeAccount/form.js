@@ -6,7 +6,7 @@ import { useState } from "react";
 
 
 export default function ChangeForm () {
-  const [acc, setAcc] = useState(false);
+  const [acc, setAcc] = useState(true);
 
   $(function(){
     fetch('/Controller/AccountController.php?rq=info').then(res => 
@@ -22,8 +22,10 @@ export default function ChangeForm () {
     })
   })
 
+  
+
   return <>
-    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
+    <div className="row justify-content-md-center" style={{marginBottom: '2%', marginTop: "2%"}}>
       <div className="col-sm-6">
         <img className="img-fluid" style={{width: '100%'}} src={acc.avatar} alt=""/>
       </div>
@@ -37,7 +39,7 @@ export default function ChangeForm () {
                 <h6>Id</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.accId} readOnly/>
+              <Form.Control type="text" value={acc.accId} readOnly/>
               </Col>
             </Row>
 
@@ -46,7 +48,7 @@ export default function ChangeForm () {
                 <h6>Tên người dùng</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.name}/>
+              <Form.Control type="text" value={acc.name}/>
               </Col>
             </Row>
 
@@ -55,7 +57,7 @@ export default function ChangeForm () {
                 <h6>Tên tài khoản</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.userName} readOnly/>
+              <Form.Control type="text" value={acc.userName} readOnly/>
               </Col>
             </Row>
 
@@ -64,7 +66,7 @@ export default function ChangeForm () {
                 <h6>Mật khẩu</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="password" defaultValue="password"/>
+              <Form.Control type="password" value="password"/>
               </Col>
             </Row>
 
@@ -73,7 +75,7 @@ export default function ChangeForm () {
                 <h6>Email</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.email}/>
+              <Form.Control type="text" value={acc.email}/>
               </Col>
             </Row>
 
@@ -82,7 +84,7 @@ export default function ChangeForm () {
                 <h6>Số điện thoại</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.phoneNumber}/>
+              <Form.Control type="text" value={acc.phoneNumber}/>
               </Col>
             </Row>
 
@@ -91,7 +93,7 @@ export default function ChangeForm () {
                 <h6>Địa chỉ</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.address}/>
+              <Form.Control type="text" value={acc.address}/>
               </Col>
             </Row>
 
@@ -100,7 +102,7 @@ export default function ChangeForm () {
                 <h6>Vai trò</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.isAdmin} readOnly/>
+              <Form.Control type="text" value={acc.isAdmin} readOnly/>
               </Col>
             </Row>
 
@@ -109,7 +111,7 @@ export default function ChangeForm () {
                 <h6>Ảnh</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.avatar}/>
+              <Form.Control type="text" value={acc.avatar}/>
               </Col>
             </Row>
           </Form.Group>

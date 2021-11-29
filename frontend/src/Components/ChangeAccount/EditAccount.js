@@ -5,12 +5,19 @@ import ChangeForm from "./form.js";
 import $ from 'jquery';
 import Cookies from 'js-cookie';
 
-function AdminBtn(){
+function GreenBtn(){
   var isAdmin=Cookies.get('isAdmin');
+  var isLogin;
   if(isAdmin==='1'){
     isAdmin = true;
   }
-  else isAdmin = false;
+  else if(isAdmin==='0'){
+    isAdmin = false;
+    isLogin = true;
+  }
+  else
+    isLogin = false;
+  
   
   if(isAdmin){
     return <>
@@ -19,8 +26,16 @@ function AdminBtn(){
       <button type="button" className="btn btn-success me-2" id="ord">Quản lý đơn hàng</button>
     </>
   }
-  return <>
-      </>
+  else if(isLogin){
+    return <>
+      <button type="button" className="btn btn-success me-2" id="track">Theo dõi đơn hàng</button>
+    </>
+  }
+  else{
+    return <>
+    </>
+  }
+  
 }
 
 export default function EditAccount () {
@@ -59,8 +74,9 @@ export default function EditAccount () {
           <Modal.Title>Thông tin cá nhân</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <AdminBtn></AdminBtn>
-          <ChangeForm/>
+          <GreenBtn/>
+          
+          <ChangeForm/>  
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
