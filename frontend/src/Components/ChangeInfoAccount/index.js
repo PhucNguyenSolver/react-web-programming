@@ -1,29 +1,29 @@
 import AdminEditAccount from "./AdminEditAccount";
 import $ from 'jquery';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
-const item = {  
-  id: 1,
-  name: "Vo Thanh Hieu",
-  role: "Khách hàng"
-};
-
-function InfoRow(props){
+function InfoRow(props) {
+  const [info, setInfo] = useState(false);
+  
+  useEffect(() => {
+    setInfo(props);
+  },[]);
   return <>
       <tr>
-      <th scope="row" style={{textAlign: 'center'}}>{props.id}</th>
-      <td>{props.name}</td>
-      <td style={{textAlign: 'center'}}>{props.role}</td>
-      <td><AdminEditAccount/></td>
+      <th scope="row" style={{textAlign: 'center'}}>{info.id}</th>
+      <td>{info.name}</td>
+      <td style={{textAlign: 'center'}}>{info.role}</td>
+      <td><AdminEditAccount id = {info.id}/></td>
     </tr>
   </>
 }
 
 export default function ChangeInfoAccount(){
 
-  const [info, setInfo] = useState(false);
 
-  $(function(){
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
     $.ajax({
       url: 'Controller/AccountController.php',
       type: 'GET',
@@ -32,14 +32,16 @@ export default function ChangeInfoAccount(){
       success: function(data){
         data = JSON.parse(data);     
         let list = data.map((item, index) => {
-          setInfo(item);
-          return <InfoRow id={info.accId} name={info.name} role={info.role}/>
+          if (item.isAdmin==="1")
+            item.isAdmin = "Quản lý";
+          else if (item.isAdmin==="0")
+            item.isAdmin = "Khách hàng";
+          return <InfoRow id={item.accId} name={item.name} role={item.isAdmin}/>
         })
-        $('#list-info').html(list);
+        setList(list);
       }
     })
-  })
-    
+  } , [list.length]);    
 
   return (
     <>
@@ -56,8 +58,7 @@ export default function ChangeInfoAccount(){
               </tr>
             </thead>
             <tbody id = "list-info">
-            <InfoRow id={item.id} name={item.name} role = {item.role}/>
-                
+            {list}            
             </tbody>
           </table>
         </div>

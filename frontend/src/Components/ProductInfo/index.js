@@ -1,8 +1,4 @@
 import './styles.scss';
-import pic1 from './pic1.jpg'
-import pic2 from './pic2.jpg'
-import pic3 from './pic3.jpg'
-import pic4 from './pic4.jpg'
 import avatar from './avatar.png'
 import avatar2 from './avatar2.png'
 import axios  from 'axios';

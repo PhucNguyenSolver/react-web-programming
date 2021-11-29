@@ -18,7 +18,7 @@
         //get all account
         public function getAllInfo(){
 
-            $sql = "SELECT * FROM acc";
+            $sql = "SELECT * FROM acc ORDER BY isAdmin";
             $result = connect()->query($sql);
             $data = [];
             while($row = $result->fetch_assoc()){

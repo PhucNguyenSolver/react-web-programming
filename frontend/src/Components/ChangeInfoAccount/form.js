@@ -1,37 +1,45 @@
-import React from 'react';
+import {React,useState,useEffect} from 'react';
 import { Form, Col, Row } from "react-bootstrap";
+import $ from 'jquery';
 
-const item = {
-  img: "https://product.hstatic.net/1000026716/product/028vn_710aac8009614321ba3103b049a0a3c4_large.png",
-  id: 1,
-  fullname: "Vo Thanh Hieu",
-  name: "HieuVo",
-  pass: "123456789",
-  email: "hiev.vo@gmail.com",
-  phone: "0123452341",
-  address: "Tien Giang",
-  rule: "Khach hang",
-  discount: true
-};
-
-export default function ChangeForm () {
+export default function ChangeForm (props) {
   
+  const [acc, setAcc] = useState({});
+
+  useEffect(() => {  
+    $.ajax({
+      url: "/Controller/AccountController.php?rq=info&id="+props.id,
+      type: "GET",
+      dataType: "text",
+      success: function (data) {
+        data= JSON.parse(data);
+        if(data.isAdmin==="1")
+            data.isAdmin = "Quản lý";
+        else if(data.isAdmin==="0")
+          data.isAdmin = "Khách hàng";
+        setAcc(data);
+      }
+    })
+  }, []);
+
   return <>
-    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
+
+    <div className="row justify-content-md-center" style={{marginBottom: '2%', marginTop: "2%"}}>
       <div className="col-sm-6">
-        <img className="img-fluid" style={{width: '100%'}} src={item.img} alt=""/>
+        <img className="img-fluid" style={{width: '100%'}} src={acc.avatar} alt=""/>
       </div>
     </div>
+
     <div className="row justify-content-md-center">
       <div  className="col-sm-10">
-        <Form>
+        <Form id={props.id}>
           <Form.Group className="mb-3" controlId="formId">
             <Row>
               <Form.Label column sm="4">
                 <h6>Id</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.id} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.accId} readOnly/>
               </Col>
             </Row>
 
@@ -40,7 +48,7 @@ export default function ChangeForm () {
                 <h6>Tên người dùng</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.fullname} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.name} readOnly/>
               </Col>
             </Row>
 
@@ -49,7 +57,7 @@ export default function ChangeForm () {
                 <h6>Tên tài khoản</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.name} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.userName} readOnly/>
               </Col>
             </Row>
 
@@ -58,7 +66,7 @@ export default function ChangeForm () {
                 <h6>Mật khẩu</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="password" defaultValue={item.phone} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="password" defaultValue="password" readOnly/>
               </Col>
             </Row>
 
@@ -67,7 +75,7 @@ export default function ChangeForm () {
                 <h6>Email</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.email} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.email} readOnly/>
               </Col>
             </Row>
 
@@ -76,7 +84,7 @@ export default function ChangeForm () {
                 <h6>Số điện thoại</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.phone} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.phoneNumber} readOnly/>
               </Col>
             </Row>
 
@@ -85,7 +93,7 @@ export default function ChangeForm () {
                 <h6>Địa chỉ</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.address} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.address} readOnly/>
               </Col>
             </Row>
 
@@ -94,7 +102,7 @@ export default function ChangeForm () {
                 <h6>Vai trò</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.rule} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.isAdmin} readOnly/>
               </Col>
             </Row>
           </Form.Group>
