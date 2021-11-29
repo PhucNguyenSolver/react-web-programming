@@ -59,7 +59,7 @@ export default function EditAccount () {
           <Modal.Title>Thông tin cá nhân</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <AdminBtn></AdminBtn>
+          <AdminBtn></AdminBtn>
           <ChangeForm/>
         </Modal.Body>
         <Modal.Footer>
