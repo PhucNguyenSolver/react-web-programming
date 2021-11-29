@@ -87,8 +87,8 @@ export default function App() {
     <Header />
     <Router>
       <Switch>
-        <RenderRoute path="/products" component={Products}/>
-        <RenderRoute path="/product-info" component={ProductInfo}/>
+        <RenderRoute path="/products/:manu" component={Products}/>
+        <RenderRoute path="/product-info/:productId" component={ProductInfo}/>
         <RenderRoute path="/cart" component={Cart}/>
         <RenderRoute path="/news" component={News}/>
         <RenderRoute path="/article" component={Article}/>
