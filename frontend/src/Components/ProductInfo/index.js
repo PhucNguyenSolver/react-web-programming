@@ -4,6 +4,7 @@ import avatar2 from './avatar2.png'
 import axios  from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { Cart } from 'react-bootstrap-icons';
 
 function numberWithCommas(x) {
   if(x) return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -11,17 +12,28 @@ function numberWithCommas(x) {
 }
 
 function newCost(oldCost, discount) {
-  return oldCost*(1-discount/100);
+  return Math.round(oldCost*(1-discount/100));
 }
 
 export default function ProductInfo() {
   document.title="Thông tin sản phẩm";
   const {productId} = useParams();
   const [productInfo, setProductInfo] = useState('');
+  const [images, setImages] = useState([]);
+  const [curImgId, setCurImgId] = useState();
+
   useEffect(() => {
     axios.get("/Controller/ProductController.php/?id=" + productId)
     .then(res => {
       setProductInfo(res.data);
+      console.log(res.data);
+      setImages([
+        res.data.image1,
+        res.data.image2,
+        res.data.image3,
+        res.data.image4,
+      ]);
+      setCurImgId(0);
     })
     .catch(err => {
       alert("occur when loading products");
@@ -55,28 +67,24 @@ export default function ProductInfo() {
     <div className="container">
     <div className="product-info">
       <div className="content">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-lg-6">
-              <div className="row">
-                <div className="img">
-                  <img src={productInfo.image1} alt="" className="details"/>
-                </div>
+              <div className="row m-4">
+                {isNaN(curImgId) ? null :
+                <div className="img mw-100" style={{}}>
+                  <img src={images[curImgId]} alt="" className="details"/>
+                </div>}
               </div>
-              <div className="row">
-                <div className="col-lg-12 image">
-                  <div className="imageSub active">
-                    <img src={productInfo.image1} alt="" className="subDetails" />
-                  </div>
-                  <div className="imageSub ">
-                    <img src={productInfo.image2} alt="" className="subDetails" />
-                  </div>
-                  <div className="imageSub">
-                    <img src={productInfo.image3} alt="" className="subDetails" />
-                  </div>
-                  <div className="imageSub">
-                    <img src={productInfo.image4} alt="" className="subDetails" />
-                  </div>
+              <div className="row p-3">
+                <div className="col-lg-12 image p-3">
+                  {images.map((url, index) => (
+                    <div className={(index === curImgId) ? 'imageSub active' : 'imageSub'}
+                      onClick={() => {setCurImgId(index)}}
+                    >
+                      <img src={url} alt="" className="subDetails" />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -84,8 +92,8 @@ export default function ProductInfo() {
               <div className="info">
                 <h3>{productInfo.name}</h3>
                 <div className="specs">
-                  <p>Thông số kỹ thuật</p>
-                  <table className="table table-bordered">
+                  <h4 className="text-primary mb-1">Thông số kỹ thuật</h4>
+                  <table className="table table-bordered mb-3">
                     <tbody>
                       <tr>
                         <th scope="row">CPU</th>
@@ -137,7 +145,7 @@ export default function ProductInfo() {
                   <div className="price">
 
                     <table className="table">
-                      <tbody className="priceDetail">
+                      <tbody className="priceDetail fs-lg fw-bold">
                         <tr>
                           <td>Giá cũ:</td>
                           <td><strike>{numberWithCommas(productInfo.oldCost) + 'đ'}</strike></td>
@@ -153,8 +161,11 @@ export default function ProductInfo() {
                       </tbody>
                     </table>
                     <div className="buttonOrder">
-                      <button className="btn btn-danger" onClick={addToCart}>
-                        ĐẶT HÀNG
+                      <button className="btn btn-primary rounded-3" onClick={addToCart}>
+                        <span className="d-flex flex-col align-items-center justify-content-evenly">
+                          ĐẶT HÀNG
+                          <Cart/>
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -187,7 +198,7 @@ export default function ProductInfo() {
                   <h6 className="userName">An Lam</h6>   
                   <div className="role" style={{display:"none"}}></div>         
                   <div className="cmtTime">9 tiếng trước</div>
-                  <div><button type="button" className="btn btn-danger delCmtBtn">Xoá</button></div>
+                  <div><button type="button" className="btn btn-primary delCmtBtn">Xoá</button></div>
                 </div>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet tincidunt et turpis habitasse ultrices condimentum velit. At nulla eu urna cras sed odio mauris vivamus erat. Elit mi massa nisl enim. Tristique massa sit est in senectus amet, ut nullam. Amet

@@ -25,7 +25,7 @@ function GreenBtn(){
       <button type="button" className="btn btn-primary me-2" id="acc">Quản lý tài khoản</button>
       <button type="button" className="btn btn-primary me-2" id="pro">Quản lý sản phẩm</button>
       <button type="button" className="btn btn-primary me-2" id="ord">Quản lý đơn hàng</button>
-      <button type="button" className="btn btn-primary me-2" id="ord">Quản lý tin tức</button>
+      <button type="button" className="btn btn-primary me-2" id="news">Quản lý tin tức</button>
     </div>
     </>
   }
@@ -64,7 +64,7 @@ export default function EditAccount () {
     $('#ord').on('click', function(){
       window.location.href = "/manager-order";
     });
-    $('#ord').on('click', function(){
+    $('#news').on('click', function(){
       window.location.href = "/manager-news";
     });
     $('#track').on('click', function(){
