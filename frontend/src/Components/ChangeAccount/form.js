@@ -44,7 +44,7 @@ export default function ChangeForm () {
     //send data to server to update
     $.ajax({
       url: "/Controller/AccountController.php",
-      type: "PUT",
+      type: "POST",
       data: {rq: "update", data: json},
       success: function (data) {
         alert("Đã lưu thay đổi");

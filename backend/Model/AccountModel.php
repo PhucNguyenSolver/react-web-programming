@@ -33,7 +33,8 @@
 
             $id = $_SESSION['id'];
             if($arr['changePass']){
-                $sql = "UPDATE account SET password = '$arr[password]', avatar = '$arr[avatar]', email = '$arr[email]' WHERE accId = '$id'"; 
+                $hash_pass = hash('sha256',$arr['password']);
+                $sql = "UPDATE account SET password = '$hash_pass', avatar = '$arr[avatar]', email = '$arr[email]' WHERE accId = '$id'"; 
                 $result = connect()->query($sql);
             }
             else{

@@ -50,50 +50,38 @@
     }
 
     //rq = PUT
-    else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
-        echo $_PUT['data'];
-        if(isset($_PUT['rq'])){
-            
-            if(count($_PUT) == 2){
-                $rq = $_PUT['rq'];
-                if($rq == 'update'){//rq=update
-                    if(isLogin()){
-                        
-                        $arr = json_decode($_PUT['data']);
-                        $result = $model->updateInfo($arr);
-                        if($result){
-                            echo "{success: 'Cập nhật thành công'}";
-                        }
-                        else{
-                            echo "{error: 'Cập nhật thất bại'}";
-                        }
+    else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isset($_POST['rq'])){
+
+            if($_POST['rq']=="update" && isset(($_POST['data']))){
+                if(isLogin()){
+                    $data = $_POST['data'];
+                    $data = json_decode($data, true);
+                    $result = $model->updateInfo($data);
+                    if($result){
+                        echo "{success: 'Cập nhật thành công'}";
                     }
                     else{
-                        echo "{error: 'Chưa đăng nhập'}";
+                        echo "{error: 'Cập nhật thất bại'}";
                     }
                 }
                 else{
-                    echo "{error: '404 not found'}";
+                    echo "{error: 'Chưa đăng nhập'}";
                 }
             }
+            
+            else if($_POST['rq']=="delete" && isset($_DELETE['id'])){
+                if(isAdmin()){
+                    $id = $_DELETE['id'];
+                    $model->deleteAccount($id);
+                }
+                else{
+                    echo "{error: '403 forbidden'}";
+                }          
+            }
+            
 
         }
     }
 
-    else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
-        if (isAdmin()){
-            if(isset($_DELETE['id'])){
-                $id = $_DELETE['id'];
-                $model->deleteAccount($id);
-            }
-            else{
-                http_response_code(404);
-                echo "{error: '404 not found'}";
-            }
-        }
-        else{
-            http_response_code(403);
-            echo "{error: '403 forbidden'}";
-        }
-    }
 ?>
