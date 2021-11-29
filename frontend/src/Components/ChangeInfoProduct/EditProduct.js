@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
-import ChangeForm from "./form";
+import ChangeForm from "./EditForm";
 
 export default function EditProduct () {
   const [show, setShow] = useState(false);
