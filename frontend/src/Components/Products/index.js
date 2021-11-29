@@ -1,8 +1,23 @@
 import TestCard from '../Utils/TestCard';
-let pic = "https://mona.media/wp-content/uploads/2021/10/guest-post-377x247.png"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router';
+let pic = "https://mona.media/wp-content/uploads/2021/10/guest-post-377x247.png";
 
 export default function Products(){
   document.title = "Danh mục sản phẩm";
+  const {manu} = useParams();
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios.get("/Controller/ProductController.php/?rq=manu&name=" + manu)
+    .then(res => {
+      setProducts(res.data);
+    })
+    .catch(err => {
+      alert("occur when loading products");
+    })
+  }, [])
+  //console.log(products);
   return <>
 
     <div className="container" style={{marginTop: '0.5%'}}>
@@ -31,9 +46,9 @@ export default function Products(){
       </div>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 row-cols-md-5 g-5 mb-5" data-masonry="{&quot;percentPosition&quot;: true }">          
-        {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map((value, index) => (
+        {products.map((value, index) => (
           <div className="col" key={index}>
-            <TestCard/>
+            <TestCard product={value}/>
           </div>
         ))}
       </div>

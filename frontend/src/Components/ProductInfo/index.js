@@ -5,9 +5,56 @@ import pic3 from './pic3.jpg'
 import pic4 from './pic4.jpg'
 import avatar from './avatar.png'
 import avatar2 from './avatar2.png'
+import axios  from 'axios';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
+
+function numberWithCommas(x) {
+  if(x) return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  else return 0;
+}
+
+function newCost(oldCost, discount) {
+  return oldCost*(1-discount/100);
+}
 
 export default function ProductInfo() {
   document.title="Thông tin sản phẩm";
+  const {productId} = useParams();
+  const [productInfo, setProductInfo] = useState('');
+  useEffect(() => {
+    axios.get("/Controller/ProductController.php/?id=" + productId)
+    .then(res => {
+      setProductInfo(res.data);
+    })
+    .catch(err => {
+      alert("occur when loading products");
+    })
+  }, [])
+  console.log(productInfo);
+
+  // cart in local storage
+  let cart = [];
+  const addToCart = async () => {
+    let storage = localStorage.getItem('cart');
+    if(storage) {
+      cart = JSON.parse(storage);
+    }
+    let product = {
+      id: productInfo.productId,
+      name: productInfo.name,
+      img: productInfo.image1,
+      price: newCost(productInfo.oldCost, productInfo.discount)
+    }
+    let item = cart.find(c => c.product.id === product.id);
+    if(item) {
+      item.quantity += 1;
+    }
+    else {
+      cart.push({product, quantity: 1});
+    }
+    localStorage.setItem('cart', JSON.stringify(cart)); 
+  }
   return <>
     <div className="container">
     <div className="product-info">
@@ -17,76 +64,76 @@ export default function ProductInfo() {
             <div className="col-lg-6">
               <div className="row">
                 <div className="img">
-                  <img src={pic1} alt="" className="details"/>
+                  <img src={productInfo.image1} alt="" className="details"/>
                 </div>
               </div>
               <div className="row">
                 <div className="col-lg-12 image">
                   <div className="imageSub active">
-                    <img src={pic1} alt="" className="subDetails" />
+                    <img src={productInfo.image1} alt="" className="subDetails" />
                   </div>
                   <div className="imageSub ">
-                    <img src={pic2} alt="" className="subDetails" />
+                    <img src={productInfo.image2} alt="" className="subDetails" />
                   </div>
                   <div className="imageSub">
-                    <img src={pic3} alt="" className="subDetails" />
+                    <img src={productInfo.image3} alt="" className="subDetails" />
                   </div>
                   <div className="imageSub">
-                    <img src={pic4} alt="" className="subDetails" />
+                    <img src={productInfo.image4} alt="" className="subDetails" />
                   </div>
                 </div>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="info">
-                <h3>Laptop Asus TUF Gaming F15 FX506HCB HN139T</h3>
+                <h3>{productInfo.name}</h3>
                 <div className="specs">
                   <p>Thông số kỹ thuật</p>
                   <table className="table table-bordered">
                     <tbody>
                       <tr>
                         <th scope="row">CPU</th>
-                        <td>i5 11400H</td>
+                        <td>{productInfo.CPU}</td>
                       </tr>
                       <tr>
                         <th scope="row">RAM</th>
-                        <td>DDR4 8GB</td>
+                        <td>{productInfo.RAM}</td>
                       </tr>
                       <tr>
                         <th scope="row">Ổ cứng</th>
-                        <td>SSD 512GB<br /> 2x HDD 1TB</td>
+                        <td>{productInfo.drive}</td>
                       </tr>
                       <tr>
                         <th scope="row">Card đồ hoạ</th>
-                        <td>NVIDIA RTX-3050<br /> AMD RADEON-R5-M335</td>
+                        <td>{productInfo.GPU}</td>
                       </tr>
                       <tr>
                         <th scope="row">Màn hình</th>
-                        <td>LCD 15.6' FHD</td>
+                        <td>{productInfo.screen}</td>
                       </tr>
                       <tr>
                         <th scope="row">Pin</th>
-                        <td>Lithium 3000mAh</td>
+                        <td>{productInfo.battery}</td>
                       </tr>
                       <tr>
                         <th scope="row">Trọng lượng</th>
-                        <td>3kg</td>
+                        <td>{productInfo.weight}</td>
                       </tr>
                       <tr>
                         <th scope="row">Màu sắc</th>
-                        <td>Đỏ, vàng, đen</td>
+                        <td>{productInfo.color}</td>
                       </tr>
                       <tr>
                         <th scope="row">Kích thước</th>
-                        <td>Dài: 30cm<br /> Rộng: 20cm<br /> Dày: 2cm</td>
+                        <td>{productInfo.size}</td>
                       </tr>
                       <tr>
                         <th scope="row">Cổng giao tiếp</th>
-                        <td>1x USB 2.0<br /> 2x HDMI</td>
+                        <td>{productInfo.port}</td>
                       </tr>
                       <tr>
                         <th scope="row">Hệ điều hành</th>
-                        <td>Microsoft Windows 10 Home</td>
+                        <td>{productInfo.OS}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -97,11 +144,11 @@ export default function ProductInfo() {
                       <tbody className="priceDetail">
                         <tr>
                           <td>Giá cũ:</td>
-                          <td><strike>25,990,000đ</strike></td>
+                          <td><strike>{numberWithCommas(productInfo.oldCost) + 'đ'}</strike></td>
                         </tr>
                         <tr>
                           <td>Giá mới:</td>
-                          <td><span className="newPrice">24,990,000đ</span></td>
+                          <td><span className="newPrice">{numberWithCommas(newCost(productInfo.oldCost,productInfo.discount)) + 'đ'}</span></td>
                         </tr>
                         <tr>
                           <td>Đánh giá:</td>
@@ -110,7 +157,7 @@ export default function ProductInfo() {
                       </tbody>
                     </table>
                     <div className="buttonOrder">
-                      <button className="btn btn-danger">
+                      <button className="btn btn-danger" onClick={addToCart}>
                         ĐẶT HÀNG
                       </button>
                     </div>
