@@ -6,7 +6,6 @@ const infoForm = {
   img1: "",
   img2: "",
   img3: "",
-  id: "",
   name: "",
   company: "",
   cpu: "",
@@ -21,26 +20,34 @@ const infoForm = {
   gate: "",
   system: "",
   price: "",
-  disc: "",
-  discount: true
+  disc: ""
 };
 
 export default function ChangeFormInsert () {
   const item = infoForm;
   return <>
 
+    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
+      <div className="col-sm-6">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img} alt=""/>
+      </div>
+    </div>
+    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
+      <div className="col-sm">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img1} alt=""/>
+      </div>
+      <div className="col-sm">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img2} alt=""/>
+      </div>
+      <div className="col-sm">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img3} alt=""/>
+      </div>
+    </div> 
+
     <div className="row justify-content-md-center">
       <div  className="col-sm-10">
         <Form>
           <Form.Group className="mb-3" controlId="formId">
-            <Row>
-              <Form.Label column sm="4">
-                <h6>Mã sản phẩm</h6>
-              </Form.Label>
-              <Col sm="8">
-              <Form.Control type="text" defaultValue={item.id}/>
-              </Col>
-            </Row>
 
             <Row>
               <Form.Label column sm="4">
@@ -209,7 +216,7 @@ export default function ChangeFormInsert () {
                 <h6>Giảm giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.disc}/>
+              <Form.Control type="text" defaultValue={item.disc+'%'}/>
               </Col>
             </Row>
           </Form.Group>

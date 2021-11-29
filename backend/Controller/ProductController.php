@@ -1,5 +1,6 @@
 <?php
     include '../Model/ProductModel.php';
+    include '../Lib/Function.php';
     //header json
     header('Content-Type: application/json');
     $productModel = new ProductModel();
@@ -41,10 +42,59 @@
         }
     }
 
+    //request = post for add
+    else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isAdmin()){
+            if(isset($_POST['rq'])){//rq=add, data=json
+                if($_POST['rq'] == 'add' && isset($_POST['data'])){
+                    $arr=json_decode($_POST['data']);
+                    echo $productModel->addProduct($arr);
+                }
+                
+                else{
+                    http_response_code(404);
+                    echo '404 not found';
+                }
+            }
+            else{
+                http_response_code(404);
+                echo '404 not found';
+            }
+        }
+        else{
+            http_response_code(403);
+            echo '403 forbidden';
+        }
+        
+    }
+    //PUT request for update
+    else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
+        if(isAdmin()){
+            if(isset($_GET['rq'])){//rq=update, data=json
+                if($_GET['rq'] == 'update' && isset($_GET['data'])){
+                    $arr=json_decode($_GET['data']);
+                    echo $productModel->updateProduct($arr);
+                }
+                else{
+                    http_response_code(404);
+                    echo '404 not found';
+                }
+            }
+            else{
+                http_response_code(404);
+                echo '404 not found';
+            }
+        }
+        else{
+            http_response_code(403);
+            echo '403 forbidden';
+        }
+    }
+
 
     //request = delete:
     else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
-        if (isAdmin()){
+        if (isAdmin()){//id=1
             if(isset($_GET['id'])){
                 echo $productModel->deleteProduct($_GET['id']);
             }
