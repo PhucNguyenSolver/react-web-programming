@@ -12,6 +12,7 @@ import Footer from "./Components/Utils/Footer.js";
 import ChangeInfoAccount from "./Components/ChangeInfoAccount";
 import ChangeInfoProduct from "./Components/ChangeInfoProduct";
 import Order from "./Components/Order";
+import OrderCustomer from "./Components/OrderCustomer";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
 import Forgot from './Components/Forgot/index.js';
@@ -19,6 +20,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Redirect } from 'react-router'
 import $ from 'jquery';
 import Cookies from 'js-cookie';
+import Intro from "./Components/Intro";
 
 
 
@@ -147,9 +149,11 @@ export default function App() {
         <RenderRoute path="/manager-account" component={ChangeInfoAccount}/>
         <RenderRoute path="/manager-product" component={ChangeInfoProduct}/>
         <RenderRoute path="/manager-order" component={Order}/>
+        <RenderRoute path="/customer-order" component={OrderCustomer}/>
         <RenderRoute path="/sign-in" component={SignIn}/>
         <RenderRoute path="/sign-up" component={SignUp}/>
         <RenderRoute path="/forgot" component={Forgot}/>
+        <RenderRoute path="/intro" component={Intro}/>
 
         <RenderRoute path="/" component={Homepage}/>
       </Switch>

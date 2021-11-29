@@ -78,6 +78,8 @@ export default function EditAccount () {
         <Modal.Body>
           <GreenBtn/>
           <ChangeForm/>  
+          {/* <AdminBtn></AdminBtn> */}
+          <ChangeForm/>
         </Modal.Body>
         <Modal.Footer>      
         </Modal.Footer>
