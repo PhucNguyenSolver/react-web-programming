@@ -10,7 +10,7 @@
         if(isset($_GET['rq'])){
             if(count($_GET) == 1){
                 $rq = $_GET['rq'];
-                if($rq == 'info'){//?rq=info
+                if($rq == 'info'){//?rq=info chính người dùng xem thông tin mình
                     if(isLogin()){
                         echo $model->getInfoById($_SESSION['id']);
                     }
@@ -35,7 +35,7 @@
                 $rq = $_GET['rq'];
                 $id = $_GET['id'];
                 if($rq == 'info'){//?rq=info&id=1
-                    if(isAdmin()){
+                    if(isAdmin()){//này là ad xem thông tin từng người
                         echo $model->getInfoById($id);
                     }
                     else{
@@ -49,7 +49,6 @@
         }
     }
 
-    //rq = PUT
     else if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if(isset($_POST['rq'])){
 
@@ -70,10 +69,21 @@
                 }
             }
             
-            else if($_POST['rq']=="delete" && isset($_DELETE['id'])){
+            else if($_POST['rq']=="delete" && isset($_POST['id'])){
                 if(isAdmin()){
-                    $id = $_DELETE['id'];
-                    $model->deleteAccount($id);
+                    if ($_POST['id']==$_SESSION['id']) {
+                        echo "error";
+                    }
+                    else{
+                        $id = $_POST['id'];
+                        $result = $model->deleteAccount($id);
+                        if($result){
+                            echo "{success: 'Xóa thành công'}";
+                        }
+                        else{
+                            echo "{error: 'Xóa thất bại'}";
+                        }
+                    }
                 }
                 else{
                     echo "{error: '403 forbidden'}";

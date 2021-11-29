@@ -1,9 +1,49 @@
 import ViewOrder from "./viewOrder";
+import { useState, useEffect } from "react";
+import $ from "jquery";
+
+function OrderRow(props) {
+  const [order, setOrder] = useState();
+  
+  useEffect(() => {
+    setOrder(props);
+  },[]);
+  return <>
+    <tr>
+      <th scope="row" style={{textAlign: 'center'}}>{order.orderId}</th>
+      <th scope="row" style={{textAlign: 'center'}}>{order.accId}</th>
+      <td>{order.name}</td>
+      <td style={{textAlign: 'center'}}>{order.status}</td>
+      <td><ViewOrder/>id = {order.orderid}</td>
+    </tr>
+  </>
+}
+
 
 export default function Order(){
 
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // document.title = "Thông tin Tài khoản";
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    $.ajax({
+      url: 'Controller/OrderController.php',
+      type: 'GET',
+      data: {rq:'all'},
+      dataType: 'text',
+      success: function(data){
+        data = JSON.parse(data);     
+        let list = data.map((item, index) => {
+          if (item.status==="1")
+            item.status = "Đã đặt";
+          else if (item.isAdmin==="0")
+            item.isAdmin = "Khách hàng";
+          return <OrderRow id={item.accId} name={item.name} role={item.isAdmin}/>
+        })
+        setList(list);
+      }
+    })
+  } , []);
+  
   return (
     <>
     <div className="container" style={{marginTop: '0.5%'}}>
@@ -20,37 +60,7 @@ export default function Order(){
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>1</th>
-                <th scope="row" style={{textAlign: 'center'}}>1</th>
-                <td>Võ Thành Hiếu</td>
-                <td style={{textAlign: 'center'}}>Đã đặt</td>
-                <td><ViewOrder/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>2</th>
-                <th scope="row" style={{textAlign: 'center'}}>2</th>
-                <td>Nguyễn Hữu Bảo</td>
-                <td style={{textAlign: 'center'}}>Đang giao</td>
-                <td><ViewOrder/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>3</th>
-                <th scope="row" style={{textAlign: 'center'}}>3</th>
-                <td>Nguyễn Hữu Phúc</td>
-                <td style={{textAlign: 'center'}}>Đã giao</td>
-                <td><ViewOrder/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>4</th>
-                <th scope="row" style={{textAlign: 'center'}}>4</th>
-                <td>Nguyễn Quang Anh</td>
-                <td style={{textAlign: 'center'}}>Đã hủy</td>
-                <td><ViewOrder/></td>
-              </tr>
+              {list}
 
             </tbody>
           </table>
