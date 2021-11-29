@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
-import ChangeFormInsert from "./formInsert.js";
+import AddForm from "./AddForm.js";
 
 export default function EditProductInsert () {
   const [show, setShow] = useState(false);
@@ -18,7 +18,7 @@ export default function EditProductInsert () {
           <Modal.Title>Thông tin sản phẩm</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ChangeFormInsert/>
+          <AddForm/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
