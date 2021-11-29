@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import * as Cookies from 'js-cookie';
+import EditAccount from '../ChangeAccount/EditAccount';
 
 function LogBtn(){
   var emailCk=Cookies.get('email');
@@ -72,7 +73,7 @@ export default function Header() {
 
           <div className="text-end">
             <LogBtn></LogBtn>
-            <button type="button" className="btn btn-info" id="user"></button>
+            <EditAccount></EditAccount>
           </div>
         </div>
       </div>

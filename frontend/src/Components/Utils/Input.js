@@ -9,3 +9,11 @@ export function Input(props){
         </div>
     )
 }
+
+export const CustomTag = ({value, url}) => {
+  return (<>
+    <a class="badge bg-secondary text-decoration-none link-light" 
+      href={url}>{value}
+    </a>{' '}
+  </>);
+}
