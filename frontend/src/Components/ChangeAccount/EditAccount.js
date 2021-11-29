@@ -61,6 +61,9 @@ export default function EditAccount () {
     $('#ord').on('click', function(){
       window.location.href = "/manager-order";
     });
+    $('#track').on('click', function(){
+      window.location.href = "/customer-order";
+    });
 
 
   })
