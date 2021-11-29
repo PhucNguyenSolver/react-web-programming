@@ -58,9 +58,6 @@
             $sql = "SELECT * FROM product WHERE productId = '$productId'";
             $result = connect()->query($sql);
             $data = $result->fetch_assoc();
-            // while($row = $result->fetch_assoc()){
-            //     $data[] = $row;
-            // }
             return json_encode($data);
         }
 

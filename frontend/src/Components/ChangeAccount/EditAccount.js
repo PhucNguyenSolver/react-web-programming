@@ -67,10 +67,12 @@ export default function EditAccount () {
     $('#ord').on('click', function(){
       window.location.href = "/manager-news";
     });
+    $('#track').on('click', function(){
+      window.location.href = "/customer-order";
+    });
 
 
   })
-
   
 
   return (
@@ -89,5 +91,5 @@ export default function EditAccount () {
         </Modal.Footer>
       </Modal>
     </>
-  );
+  )
 }
