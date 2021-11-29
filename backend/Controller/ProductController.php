@@ -7,7 +7,10 @@
     
     //if request is get, have one parameter name rq=deal
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
-        if(isset($_GET['rq'])){
+        if(isset($_GET['id'])){
+            echo $productModel->getProductById($_GET['id']);
+        }
+        else if(isset($_GET['rq'])){
             if ($_GET['rq'] == 'deal'){//?rq=deal
                 echo $productModel->getDealHot();
             }
