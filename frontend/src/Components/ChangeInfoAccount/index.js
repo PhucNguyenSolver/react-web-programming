@@ -1,9 +1,46 @@
-import EditAccount from "./EditAccount";
+import AdminEditAccount from "./AdminEditAccount";
+import $ from 'jquery';
+import { useState } from "react";
+
+const item = {  
+  id: 1,
+  name: "Vo Thanh Hieu",
+  role: "Khách hàng"
+};
+
+function InfoRow(props){
+  return <>
+      <tr>
+      <th scope="row" style={{textAlign: 'center'}}>{props.id}</th>
+      <td>{props.name}</td>
+      <td style={{textAlign: 'center'}}>{props.role}</td>
+      <td><AdminEditAccount/></td>
+    </tr>
+  </>
+}
 
 export default function ChangeInfoAccount(){
 
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // document.title = "Thông tin Tài khoản";
+  const [info, setInfo] = useState(false);
+
+  $(function(){
+    $.ajax({
+      url: 'Controller/AccountController.php',
+      type: 'GET',
+      data: {rq:'allinfo'},
+      dataType: 'text',
+      success: function(data){
+        data = JSON.parse(data);     
+        let list = data.map((item, index) => {
+          setInfo(item);
+          return <InfoRow id={info.accId} name={info.name} role={info.role}/>
+        })
+        $('#list-info').html(list);
+      }
+    })
+  })
+    
+
   return (
     <>
     <div className="container" style={{marginTop: '0.5%'}}>
@@ -18,35 +55,9 @@ export default function ChangeInfoAccount(){
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>1</th>
-                <td>Võ Thành Hiếu</td>
-                <td style={{textAlign: 'center'}}>Khách hàng</td>
-                <td><EditAccount/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>2</th>
-                <td>Nguyễn Hữu Bảo</td>
-                <td style={{textAlign: 'center'}}>Quản lý</td>
-                <td><EditAccount/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>3</th>
-                <td>Nguyễn Hữu Phúc</td>
-                <td style={{textAlign: 'center'}}>Quản lý</td>
-                <td><EditAccount/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>4</th>
-                <td>Nguyễn Quang Anh</td>
-                <td style={{textAlign: 'center'}}>Khách hàng</td>
-                <td><EditAccount/></td>
-              </tr>
-
+            <tbody id = "list-info">
+            <InfoRow id={item.id} name={item.name} role = {item.role}/>
+                
             </tbody>
           </table>
         </div>
