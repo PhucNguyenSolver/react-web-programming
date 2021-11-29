@@ -50,6 +50,34 @@
         }
     }
 
+    //rq = PUT
+    else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
+        if(isset($_GET['rq'])){
+            if(count($_GET) == 2){
+                $rq = $_GET['rq'];
+                if($rq == 'update'){//rq=update
+                    if(isLogin()){
+                        $arr = json_decode($_PUT['data']);
+                        $result = $model->updateInfo($arr);
+                        if($result){
+                            echo "{success: 'Cập nhật thành công'}";
+                        }
+                        else{
+                            echo "{error: 'Cập nhật thất bại'}";
+                        }
+                    }
+                    else{
+                        echo "{error: 'Chưa đăng nhập'}";
+                    }
+                }
+                else{
+                    echo "{error: '404 not found'}";
+                }
+            }
+
+        }
+    }
+
     else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
         if (isAdmin()){
             if(isset($_GET['id'])){

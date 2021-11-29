@@ -40,7 +40,7 @@ function GreenBtn(){
 
 export default function EditAccount () {
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+
   const handleShow = () => {
     var isLogin = Cookies.get('id');
     if(isLogin){
@@ -61,6 +61,8 @@ export default function EditAccount () {
     $('#ord').on('click', function(){
       window.location.href = "/manager-order";
     });
+
+
   })
 
   
@@ -75,13 +77,9 @@ export default function EditAccount () {
         </Modal.Header>
         <Modal.Body>
           <GreenBtn/>
-          
           <ChangeForm/>  
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Lưu
-          </Button>
+        <Modal.Footer>      
         </Modal.Footer>
       </Modal>
     </>
