@@ -86,4 +86,20 @@ export const NewsService = {
         console.log(body);
       });
     },
+
+    delete: async (newsId) => {
+      const url = `http://localhost/api/news/delete.php`;
+      
+      const formData = new FormData();
+      formData.append('newsId', newsId);
+      // formData.append('timeStamp', timestamp);
+      console.log('delete ' + newsId);
+      fetch(url, { method: 'POST', body: formData })
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (body) {
+        console.log(body);
+      });
+    },
 }

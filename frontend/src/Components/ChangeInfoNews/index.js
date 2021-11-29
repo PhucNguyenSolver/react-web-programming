@@ -11,14 +11,17 @@ import { PlusLg } from "react-bootstrap-icons";
   ];
 
 export default function ChangeInfoNews() {
+  console.log('refreshed');
+  const [toggle, setToggle] = useState(true);
+  const reload = () => { setToggle(!toggle); }
   const [newsList, setNewsList] = useState([]);
 
   useEffect(() => {
-    console.log('Hello all');
+    // console.log('Hello all');
     NewsService.getAll().then(res => {
       setNewsList(res);
     });
-  }, []);
+  }, [toggle]);
 
   const AddNews = () => {
     const [isEditorVisible, setIsEditorVisible] = useState(false)  
@@ -29,7 +32,12 @@ export default function ChangeInfoNews() {
           <PlusLg size={25} fontWeight={800} className='ms-1' />
         </Button>
         {isEditorVisible && 
-        <NewsEditor show={isEditorVisible} onHide={() => setIsEditorVisible(false)} mode='add'/>}
+        <NewsEditor show={isEditorVisible} mode='add'
+          onHide={() => {
+            setIsEditorVisible(false);
+            reload();
+          }}
+        />}
     </div>
   }
 
@@ -40,7 +48,10 @@ export default function ChangeInfoNews() {
       <>
       {editorVisible && 
       <NewsEditor mode={'edit'} id={news.id}
-        show={editorVisible} onHide={() => setEditorVisible(false)} 
+        show={editorVisible} onHide={() => {
+          setEditorVisible(false);
+          reload();
+        }}
       />}
         <tr>
           <td onClick={showEditor} style={{ cursor: "pointer" }}>

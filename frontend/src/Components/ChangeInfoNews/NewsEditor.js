@@ -84,10 +84,10 @@ export function NewsEditor({ show, onHide, mode, id }) {
     }
 
     const deleteNews = () => {
-        let deleteConfirm = window.confirm("Are you sure about that ?")
-        // if(deleteConfirm) NewsService.deleteNews(id).then(response => {
-        //     alert(response.data.msg)
-        // })
+        const deleteConfirm = window.confirm("Bạn có chắc muốn xoá bài viết này ?")
+        if (deleteConfirm) {
+          NewsService.delete(id);
+        }
         onHide();
     }
 
