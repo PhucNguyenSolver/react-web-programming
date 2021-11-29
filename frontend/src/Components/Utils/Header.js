@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import * as Cookies from 'js-cookie';
 import EditAccount from '../ChangeAccount/EditAccount';
+import * as Icon from 'react-bootstrap-icons';
+import {Button} from 'react-bootstrap';
 
 function LogBtn(){
   var emailCk=Cookies.get('email');
@@ -36,6 +38,10 @@ export default function Header() {
           window.location.href = "/sign-in";    
         }
       })
+    });
+
+    $('#cartBtn').on('click', function(){
+      window.location.href = "/cart";
     });
 
     var emailCk=Cookies.get('email');
@@ -74,6 +80,7 @@ export default function Header() {
           <div className="text-end">
             <LogBtn></LogBtn>
             <EditAccount></EditAccount>
+            <Button variant="secondary" className="btn-sign-in" id="cartBtn"><Icon.Cart></Icon.Cart></Button> 
           </div>
         </div>
       </div>

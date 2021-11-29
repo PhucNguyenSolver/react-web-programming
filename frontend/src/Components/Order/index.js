@@ -1,9 +1,32 @@
 import ViewOrder from "./viewOrder";
+import { useState, useEffect } from "react";
+
+function OrderRow(props) {
+  const [order, setOrder] = useState(false);
+  
+  useEffect(() => {
+    setOrder(props);
+  },[]);
+  return <>
+      {/* <tr>
+      <th scope="row" style={{textAlign: 'center'}}>{info.accId}</th>
+      <td>{info.name}</td>
+      <td style={{textAlign: 'center'}}>{info.role}</td>
+      <td><ViewOrder/> id = {info.id}/></td>
+    </tr>
+    <tr>
+      <th scope="row" style={{textAlign: 'center'}}>{order.orderId}</th>
+      <th scope="row" style={{textAlign: 'center'}}>{order.accId}</th>
+      <td>Võ Thành Hiếu</td>
+      <td style={{textAlign: 'center'}}>{order.status}</td>
+      <td><ViewOrder/></td>
+    </tr> */}
+  </>
+}
+
 
 export default function Order(){
 
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // document.title = "Thông tin Tài khoản";
   return (
     <>
     <div className="container" style={{marginTop: '0.5%'}}>

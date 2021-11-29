@@ -2,7 +2,7 @@ import {React,useState,useEffect} from 'react';
 import { Form, Col, Row } from "react-bootstrap";
 import $ from 'jquery';
 
-export default function ChangeForm (props) {
+export default function AdminChangeForm (props) {
   
   const [acc, setAcc] = useState({});
 

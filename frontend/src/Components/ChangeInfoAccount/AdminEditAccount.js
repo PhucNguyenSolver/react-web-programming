@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
-import ChangeForm from "./form.js";
+import AdminChangeForm from "./form.js";
 import $ from 'jquery';
 
 export default function AdminEditAccount (props) {
@@ -36,7 +36,7 @@ export default function AdminEditAccount (props) {
           <Modal.Title>Thông tin người dùng</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ChangeForm id={props.id}/>
+          <AdminChangeForm id={props.id}/>
         </Modal.Body>
         <Modal.Footer>
           <Button id={props.id} variant="danger" onClick={handleDel}>

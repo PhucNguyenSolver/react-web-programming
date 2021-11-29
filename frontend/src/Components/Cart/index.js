@@ -1,10 +1,6 @@
 import React, {useState} from 'react';
-import Header from '../Utils/Header';
-import Footer from '../Utils/Footer';
-import CartItem from './CartItem';
-import data from './data.json';
-import { remove } from 'js-cookie';
-
+import * as Icon from 'react-bootstrap-icons';
+import {Button} from 'react-bootstrap';
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -51,7 +47,6 @@ export default function Cart() {
 
   let storage = localStorage.getItem('cart');
   const [cart, setCart] = useState(JSON.parse(storage));
-  //console.log(cart);
 
   const removeItem = (id) => {
     const newCart = cart.filter(item => item.product.id != id);
@@ -79,8 +74,15 @@ export default function Cart() {
 
   const totalPrice = cart.reduce((a,c) => a + c.product.price*c.quantity, 0);
 
+
+  
+
+  const handleOrder = () => {
+    alert(cart[0].product.id);
+  }
+
   return (
-    <div class="container">
+    <div class="container" style={{"minHeight":"700px"}}>
       <h3 class="text-center">Giỏ hàng</h3>
       <div class="row border-bottom border-3 justify-content-center">
         <div class="col-md-2 col-sm-2 col-2">
@@ -129,12 +131,7 @@ export default function Cart() {
                             <p class="text-center">{numberWithCommas(product.price * item.quantity)}</p>
                         </div>
                         <div class="col-md-1 align-self-center col-1 col-sm-1 border">
-                        <button onClick={()=> removeItem(product.id)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                        </svg>
-                        </button>
+                        <Button variant="danger" onClick={()=> removeItem(product.id)}><Icon.Trash></Icon.Trash></Button> 
                         </div>
                     </div>
                 );
@@ -142,6 +139,10 @@ export default function Cart() {
             
         </div>
       <h5 class="text-center">Tổng tiền {numberWithCommas(totalPrice)} VNĐ</h5>
+      <div class="row justify-content-end">
+        <Button variant="warning" style={{"width":"10%"}} onClick={handleOrder}>Đặt hàng</Button>
+      </div>
+      
     </div>
   )
 }

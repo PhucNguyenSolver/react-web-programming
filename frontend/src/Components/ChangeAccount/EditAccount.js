@@ -72,7 +72,7 @@ export default function EditAccount () {
 
   return (
     <>
-      <Button variant="info" id="user" onClick={handleShow}></Button>
+      <Button variant="info" className="me-2" id="user" onClick={handleShow}></Button>
 
       <Modal size="lg" show={show} onHide={() => setShow(false)} aria-labelledby="example-modal-sizes-title-lg">
         <Modal.Header closeButton>
@@ -81,8 +81,6 @@ export default function EditAccount () {
         <Modal.Body>
           <GreenBtn/>
           <ChangeForm/>  
-          {/* <AdminBtn></AdminBtn> */}
-          <ChangeForm/>
         </Modal.Body>
         <Modal.Footer>      
         </Modal.Footer>
