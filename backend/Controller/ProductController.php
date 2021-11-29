@@ -2,10 +2,10 @@
     include '../Model/ProductModel.php';
     include '../Lib/Function.php';
     //header json
-    header('Access-Control-Allow-Origin: *');
-    header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: POST');
-    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
+    // header('Access-Control-Allow-Origin: *');
+    // header('Content-Type: application/json');
+    // header('Access-Control-Allow-Methods: POST');
+    // header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
     $productModel = new ProductModel();
     
     //if request is get, have one parameter name rq=deal
@@ -53,11 +53,13 @@
         if(isAdmin()){
             if(isset($_POST['rq'])){//rq=add, data=json
                 if($_POST['rq'] == 'add' && isset($_POST['data'])){
-                    $arr=json_decode($_POST['data']);
+                    
+                    $arr=json_decode($_POST['data'],true);
+                    
                     echo $productModel->addProduct($arr);
                 }
                 else if($_POST['rq'] == 'update' && isset($_POST['data'])){
-                    $arr=json_decode($_POST['data']);
+                    $arr=json_decode($_POST['data'],true);
                     echo $productModel->updateProduct($arr);
                 }
 

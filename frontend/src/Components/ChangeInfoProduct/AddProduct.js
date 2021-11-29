@@ -55,34 +55,34 @@ export default function EditProductInsert () {
     image4: ''
   });
 
-  const newProduct2 = {
-    name: 'ABC',
-    manu: 'Abcd',
-    numInStock: 20,
-    oldCost: 20000,
-    discount: 20,
-    RAM: 'ABCDE',
-    CPU: 'ABCDE',
-    screen: '1920',
-    battery: 'ABC',
-    weight: 2,
-    size: 'ABCD',
-    OS: 'ABCD',
-    port: 'Aaaa',
-    drive: 'aaaa',
-    GPU: 'aaaa',
-    color: 'aaaaa',
-    image1: 'aaaa',
-    image2: 'aaa',
-    image3: 'a',
-    image4: 'a'
+  var newProduct2 = {
+    "name": 'ABC',
+    "manu": 'Abcd',
+    "numInStock": 20,
+    "oldCost": 20000,
+    "discount": 20,
+    "RAM": 'ABCDE',
+    "CPU": 'ABCDE',
+    "screen": '1920',
+    "battery": 'ABC',
+    "weight": 2,
+    "size": 'ABCD',
+    "OS": 'ABCD',
+    "port": 'Aaaa',
+    "drive": 'aaaa',
+    "GPU": 'aaaa',
+    'color': 'aaaaa',
+    "image1": 'aaaa',
+    "image2": 'aaa',
+    "image3": 'a',
+    "image4": 'a',
   };
 
   const item = infoForm;
 
   console.log(newProduct2);
   const HandleAddProduct = () => {
-      const jsonProduct = JSON.stringify(newProduct2);
+      var jsonProduct = JSON.stringify(newProduct2);
       // axios.post('http://localhost/Controller/ProductController.php', {rq: "add", data: jsonProduct})
       // .then(res => {
       //   console.log('Add completed!');
