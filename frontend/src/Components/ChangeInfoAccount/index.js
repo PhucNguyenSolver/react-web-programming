@@ -41,7 +41,7 @@ export default function ChangeInfoAccount(){
         setList(list);
       }
     })
-  } , [list.length]);    
+  } , []);    
 
   return (
     <>

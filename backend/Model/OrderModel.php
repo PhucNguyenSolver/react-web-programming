@@ -10,7 +10,7 @@
         //get all order
         public function getAllOrder(){//admin làm, trang quản lý đơn
             $conn = connect();
-            $query = "SELECT * FROM `orders`";
+            $query = "SELECT orders.*,acc.name FROM `orders`,acc where orders.userId=acc.accId";
             $result = $conn->query($query);
             $order = array();
             while($row = $result->fetch_assoc()){
