@@ -1,7 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Col, Container, Row, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { TrashFill, PencilSquare } from 'react-bootstrap-icons';
 import { timeSince } from '../Utils/utils';
+import { AppContext } from '../../context/AppProvider';
+import { CommentService } from '../../services/CommentService';
+import { useParams } from 'react-router-dom';
+
+
+export default function Comment() {
+  
+  const {id: newsId} = useParams();
+  const {user} = useContext(AppContext);
+  user.avaUrl = user.imgUrl;
+  const currentUser = user;
+  
+  // TODO: load data from database
+  console.log('Hello all Comment: ' + newsId); 
+  
+  useEffect(() => {
+    CommentService.getCommentById(newsId)
+      .then(res => { console.log(res); })
+    
+  }, []);
+
+  // Done load data from database
+
 
 const commentItems = [ // TODO: load data from API
   { id: 1, userId: 113, content: 'hello', timestamp: "Fri Nov 05 2021 15:00:33 GMT+0700 (Indochina Time)", 
@@ -12,23 +35,24 @@ const commentItems = [ // TODO: load data from API
   name: 'Nguyễn Hữu Phúc', avaUrl : 'https://picsum.photos/300' },
 ];
 
+  // TODO: handle in Controller
+  const handleInsertComment = (content) => {
+    console.log(currentUser.name);
+    console.log('[DB] Submit comment #' + content);
+  };
+  const handleUpdateComment = (victimId, newContent) => { 
+    console.log('[DB] update comment #' + victimId + ' by ' + newContent);
+  }
+  const handleDeleteComment = (victimId) => {
+    console.log('DB: Delete comment #' + victimId);
+  };
+
+
 // TODO: set currentUserId
-const currentUser = { id: 911, name: 'Nguyễn Hữu Phúc', avaUrl : 'https://picsum.photos/300' };
-
-// TODO: handle in Controller
-const handleInsertComment = (content) => {
-  console.log(currentUser.name);
-  console.log('[DB] Submit comment #' + content);
-};
-const handleUpdateComment = (victimId, newContent) => { 
-  console.log('[DB] update comment #' + victimId + ' by ' + newContent);
-}
-const handleDeleteComment = (victimId) => {
-  console.log('DB: Delete comment #' + victimId);
-};
+// const currentUser = { id: 911, name: 'Nguyễn Hữu Phúc', avaUrl : 'https://picsum.photos/300' };
 
 
-export default function Comment() {
+const ShyComment = () => {
   const [collapse, setCollapse] = useState(true);
   const editable = (acomment) => (currentUser.id === acomment.userId);
   return (<>
@@ -48,7 +72,7 @@ export default function Comment() {
   </>);
 }
 
-function Editor({ onSubmit }) {
+const Editor = ({ onSubmit }) => {
   const [content, setContent] = useState('');
   const handleChange = (evt) => { setContent(evt.target.value); }
   const handleSubmitClick = () => {
@@ -75,7 +99,7 @@ function Editor({ onSubmit }) {
   </>);
 }
 
-function MiniEditor({ initContent, onSubmit, onCancel }) {
+const MiniEditor = ({ initContent, onSubmit, onCancel }) => {
   const [content, setContent] = useState(initContent);
   const handleChange = (evt) => { setContent(evt.target.value); }
   const handleSubmitClick = () => {
@@ -101,7 +125,7 @@ function MiniEditor({ initContent, onSubmit, onCancel }) {
   </>);
 }
 
-function CommentItem({ index, item, editable }) {
+const CommentItem = ({ index, item, editable })  => {
   const [editMode, setEditMode] = useState(false);
   const handleDeleteClick = () => { handleDeleteComment(item.id)}
   const handleEditClick = () => { setEditMode(true); }
@@ -147,4 +171,7 @@ function CommentItem({ index, item, editable }) {
       </div>
     </Container>
   </>);
+}
+
+  return <ShyComment/>;
 }
