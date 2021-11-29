@@ -35,9 +35,13 @@ export default function Order(){
         let list = data.map((item, index) => {
           if (item.status==="1")
             item.status = "Đã đặt";
-          else if (item.isAdmin==="0")
-            item.isAdmin = "Khách hàng";
-          return <OrderRow id={item.accId} name={item.name} role={item.isAdmin}/>
+          else if (item.isAdmin==="2")
+            item.status = "Đang giao";
+          else if (item.isAdmin==="3")
+            item.status = "Đã giao";
+          else if (item.isAdmin==="4")
+            item.status = "Đã hủy";
+          return <OrderRow orderId={item.orderId} accId={item.accId} name={item.name} status={item.status}/>
         })
         setList(list);
       }
