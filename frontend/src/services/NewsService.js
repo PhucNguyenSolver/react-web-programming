@@ -1,7 +1,4 @@
-export const NewsService = {
-    DeleteNews: async () => { console.log(''); },
-    gettags: async () => { console.log(''); },
-    
+export const NewsService = {    
     getNewsById: async (id) => {
       let res = await fetch(`http://localhost/api/news/read_single.php/?id=${id}`);
       res = await res.json();
@@ -18,7 +15,7 @@ export const NewsService = {
       // console.log(result);
       return result;
     },
-
+    
     getAll: async () => { // TODO: later
       let res = await fetch(`http://localhost/api/news/read.php`);
       res = await res.json();
@@ -38,15 +35,13 @@ export const NewsService = {
       // console.log(res);
       return res;
     },
-
-    UpdateNews: async () => {},
     
     updateContent: async (id, newHtml) => {
       const url = `http://localhost/api/news/update.php`;
       
       const formData = new FormData();
       formData.append('content', newHtml);
-      formData.append('id', id);
+      formData.append('newsId', id);
       
       fetch(url, { method: 'POST', body: formData })
       .then(function (response) {
@@ -61,7 +56,7 @@ export const NewsService = {
       const url = `http://localhost/api/news/update_basic_info.php`;
       
       const formData = new FormData();
-      formData.append('id', id);
+      formData.append('newsId', id);
       formData.append('title', title);
       formData.append('imgUrl', imgUrl);
       
@@ -74,11 +69,10 @@ export const NewsService = {
       });
     },
 
-    createNews: async (id, title, imgUrl, uid) => {
-      const url = `http://localhost/api/news/update_basic_info.php`;
+    createNews: async (title, imgUrl, uid) => {
+      const url = `http://localhost/api/news/create.php`;
       
       const formData = new FormData();
-      formData.append('id', id);
       formData.append('title', title);
       formData.append('imgUrl', imgUrl);
       formData.append('admId', uid);

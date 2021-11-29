@@ -89,26 +89,22 @@
     public function create()
     {
       // Create query
-      $query = 'INSERT INTO ' . $this->table . ' SET title = ?, body = ?, author = ?, category_id = ?';
-
+      $query = 'INSERT INTO ' . $this->table . ' (title, admId, imgUrl)
+      VALUES (?, ?, ?)';
+      echo json_encode($this->admId);
       // Prepare statement
-      $stmt = $this->conn->prepare($query);
+      $stmt = $this->conn->prepare($query) or die('96 in model');
 
       // Clean data
-      $this->newsId = htmlspecialchars(strip_tags($this->newsId));
       $this->admId = htmlspecialchars(strip_tags($this->admId));
       $this->title = htmlspecialchars(strip_tags($this->title));
-      $this->timeStamp = htmlspecialchars(strip_tags($this->timeStamp));
+      // $this->imgUrl = htmlspecialchars(strip_tags($this->imgUrl));
       // $this->content = htmlspecialchars(strip_tags($this->content)); // TODO: can html passed this way
-      $this->imgUrl = htmlspecialchars(strip_tags($this->imgUrl));
 
       // Bind data // TODO
-      $stmt->bind_params('iissss,',
-        $this->newsId,
-        $this->admId,
+      $stmt->bind_param('sis',
         $this->title,
-        $this->timeStamp,
-        $this->content,
+        $this->admId,
         $this->imgUrl,
       );
       

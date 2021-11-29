@@ -24,7 +24,7 @@
   echo $news->imgUrl;
   
   // Set ID to update
-  $news->newsId = $_POST['id'];
+  $news->newsId = $_POST['newsId'];
   echo $news->newsId;
   
   // Update news

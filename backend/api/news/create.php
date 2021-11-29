@@ -15,15 +15,9 @@
   // Instantiate blog news object
   $news = new News($db);
 
-  // Get raw newsed data
-  $data = json_decode(file_get_contents("php://input"));
-
-  $news->newsId = $data->newsId;
-  $news->admId = $data->admId;
-  $news->title = $data->title;
-  $news->timeStamp = $data->timeStamp;
-  $news->content = $data->content;
-  $news->imgUrl = $data->imgUrl;
+  $news->admId = $_POST['admId'] + 1 - 1;
+  $news->title = $_POST['title'];
+  $news->imgUrl = $_POST['imgUrl'];
 
   // Create news
   if($news->create()) {

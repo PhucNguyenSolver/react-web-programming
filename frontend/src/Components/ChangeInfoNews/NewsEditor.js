@@ -72,16 +72,13 @@ export function NewsEditor({ show, onHide, mode, id }) {
 
     const addNews = () => {
         console.log('TODO: add news');
-        NewsService.createNews(basicInfo.id. basicInfo.title, basicInfo.imgUrl, user.id);
-        resetState()
-        onHide()
+        NewsService.createNews(basicInfo.title, basicInfo.imgUrl, user.id);
+        resetState();
+        onHide();
     }
     const editNews = () => {
       console.log('TODO: edit news');
       NewsService.updateBasicInfo(id, basicInfo.title, basicInfo.imgUrl)
-        // .then(response => {
-        //     alert(JSON.stringify(response.data.msg))
-        // });
       resetState();
       onHide();
     }

@@ -10,6 +10,7 @@ import React from 'react';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import { NewsService } from "../../services/NewsService";
 
 import rawJSON from './html3.json';
 const defaultArticle = {
@@ -50,20 +51,8 @@ export default function Article() {
 
   useEffect(() => {
     try {
-      fetch(`http://localhost/api/news/read_single.php/?id=${id}`)
-        .then(res => res.json())
-        // .then(data => console.log(data))
-        .then(({newsId, author, title, timeStamp: timestamp, imgUrl, content}) => {
-          console.log({newsId, admId: author, title, timeStamp: timestamp, imgUrl, content});
-          setArticle({
-            id: newsId,
-            title: title,
-            imgUrl: imgUrl,
-            timestamp: timestamp?.slice(0, 10),
-            author: author,
-            tags: [],
-            content: JSON.stringify(content),
-          });
+        NewsService.getNewsById(id).then(res => {
+          setArticle(res);
           setDraft(getInitState());
         })
     }
@@ -99,24 +88,12 @@ export default function Article() {
       alert('This should never happen. Draft is null');
       return;
     }
-    console.log('TODO: save draft to database');
+    console.log('Save draft to database');
     const newHtml = stateToHtml(draft);
-    console.log({newHtml});
+    // console.log({newHtml});
     
     // Make post request
-    // const url = `http://localhost/api/news/update.php/?id=${id}`;
-    const url = `http://localhost/api/news/update.php`;
-    const formData = new FormData();
-    formData.append('content', newHtml);
-    formData.append('id', id);
-
-    fetch(url, { method: 'POST', body: formData })
-    .then(function (response) {
-      return response.text();
-    })
-    .then(function (body) {
-      console.log(body);
-    });
+    NewsService.updateContent(id, newHtml);
   }
 
   return <>
