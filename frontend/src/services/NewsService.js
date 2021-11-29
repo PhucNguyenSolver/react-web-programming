@@ -1,5 +1,4 @@
 export const NewsService = {
-    createNews: async () => { console.log(''); },
     DeleteNews: async () => { console.log(''); },
     gettags: async () => { console.log(''); },
     
@@ -41,12 +40,49 @@ export const NewsService = {
     },
 
     UpdateNews: async () => {},
+    
     updateContent: async (id, newHtml) => {
       const url = `http://localhost/api/news/update.php`;
       
       const formData = new FormData();
       formData.append('content', newHtml);
       formData.append('id', id);
+      
+      fetch(url, { method: 'POST', body: formData })
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (body) {
+        console.log(body);
+      });
+    },
+
+    updateBasicInfo: async (id, title, imgUrl) => {
+      const url = `http://localhost/api/news/update_basic_info.php`;
+      
+      const formData = new FormData();
+      formData.append('id', id);
+      formData.append('title', title);
+      formData.append('imgUrl', imgUrl);
+      
+      fetch(url, { method: 'POST', body: formData })
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (body) {
+        console.log(body);
+      });
+    },
+
+    createNews: async (id, title, imgUrl, uid) => {
+      const url = `http://localhost/api/news/update_basic_info.php`;
+      
+      const formData = new FormData();
+      formData.append('id', id);
+      formData.append('title', title);
+      formData.append('imgUrl', imgUrl);
+      formData.append('admId', uid);
+      // formData.append('timeStamp', timestamp);
       
       fetch(url, { method: 'POST', body: formData })
       .then(function (response) {

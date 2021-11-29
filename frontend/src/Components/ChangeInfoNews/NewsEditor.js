@@ -70,32 +70,18 @@ export function NewsEditor({ show, onHide, mode, id }) {
       setBasicInfo(getInitInfo());
     }
 
-    const prepareData = () => {
-      const data = {
-        ...basicInfo,
-        uid: user.id,
-      }
-      return data;
-    }
     const addNews = () => {
-      const data = prepareData();
-        // NewsService.createNews(data).then(response => { // TODO
-        //     alert(response.data.msg)
-        // })
         console.log('TODO: add news');
-        console.log({data});
-
+        NewsService.createNews(basicInfo.id. basicInfo.title, basicInfo.imgUrl, user.id);
         resetState()
         onHide()
     }
     const editNews = () => {
-      const data = prepareData();
-      // NewsService.createNews(data).then(response => { // TODO
-      //     alert(response.data.msg)
-      // })
       console.log('TODO: edit news');
-      console.log({data});
-
+      NewsService.updateBasicInfo(id, basicInfo.title, basicInfo.imgUrl)
+        // .then(response => {
+        //     alert(JSON.stringify(response.data.msg))
+        // });
       resetState();
       onHide();
     }

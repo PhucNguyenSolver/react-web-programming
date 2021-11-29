@@ -151,6 +151,34 @@
       return false;
     }
 
+    // Update News
+    public function updateBasicInfo()
+    {
+      // Create query
+      $query = 'UPDATE ' . $this->table . '
+        SET title = ?, imgUrl = ?
+        WHERE newsId = ?';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Clean data
+      // $this->content = htmlspecialchars(strip  _tags($this->content)); // TODO:
+
+      // Bind data
+      $stmt->bind_param('ssi', $this->title, $this->imgUrl, $this->newsId);
+
+      // Execute query
+      if ($stmt->execute()) {
+        return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+    }
+
     // Delete News
     public function delete()
     {
