@@ -23,6 +23,21 @@ function removeSign ($str){//bỏ dấu
     }
 
     $str = str_replace(' ','_',$str);   
-    return $str;  
+    return $str; 
+    
+    
+}
+function isLogin() {
+    if (isset($_SESSION['id'])) {
+        return true;
+    return false;
+    }
+}
+
+function isAdmin() {
+    if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == '1') {
+        return true;
+    return false;
+    }
 }
 ?>

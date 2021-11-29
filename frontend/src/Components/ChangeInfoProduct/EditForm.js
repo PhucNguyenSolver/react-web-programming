@@ -21,13 +21,29 @@ const infoForm = {
   gate: "1x USB 2.0; 2x HDMI",
   system: "Microsoft Windows 10 Home",
   price: "25,990,000đ",
-  disc: "24,990,000đ",
+  disc: "10",
   discount: true
 };
 
 export default function ChangeForm () {
   const item = infoForm;
   return <>
+    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
+      <div className="col-sm-6">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img} alt=""/>
+      </div>
+    </div>
+    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
+      <div className="col-sm">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img1} alt=""/>
+      </div>
+      <div className="col-sm">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img2} alt=""/>
+      </div>
+      <div className="col-sm">
+        <img className="img-fluid" style={{width: '100%'}} src={item.img3} alt=""/>
+      </div>
+    </div> 
 
     <div className="row justify-content-md-center">
       <div  className="col-sm-10">
@@ -209,7 +225,7 @@ export default function ChangeForm () {
                 <h6>Giảm giá</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.disc}/>
+              <Form.Control type="text" defaultValue={item.disc+'%'}/>
               </Col>
             </Row>
           </Form.Group>

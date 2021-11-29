@@ -1,6 +1,11 @@
 <?php
     include_once '../Lib/Connection.php';
     class ProductModel{
+        
+        //constructor
+        public function __construct(){
+            session_start();
+        }
 
         //trang chủ
         //deal hot trong tháng, lấy tên, giá cũ, giá mới, ảnh đầu tiên của 5 sản phẩm có discount nhiều nhất
@@ -58,10 +63,22 @@
             // }
             return json_encode($data);
         }
+
+        //search product by name
+        public function searchByName($name){
+            $sql = "SELECT * FROM product WHERE name LIKE '%$name%'";
+            $result = connect()->query($sql);
+            $data = array();
+            while($row = $result->fetch_assoc()){
+                $data[] = $row;
+            }
+            return json_encode($data);
+        }
+
         //insert product to database
         public function addProduct($arr){
-            $sql = "INSERT INTO product(productId,name,manu,CPU,RAM,drive,GPU,screen,battery,weight,color,size,port,OS,oldCost,discount,image1,image2,image3,image4)
-            VALUES('$arr[productId]','$arr[name]','$arr[manu]','$arr[CPU]','$arr[RAM]','$arr[drive]','$arr[GPU]','$arr[screen]','$arr[battery]','$arr[weight]','$arr[color]','$arr[size]','$arr[port]','$arr[OS]','$arr[oldCost]','$arr[discount]','$arr[image1]','$arr[image2]','$arr[image3]','$arr[image4]')";
+            $sql = "INSERT INTO product(name,manu,CPU,RAM,drive,GPU,screen,battery,weight,color,size,port,OS,oldCost,discount,image1,image2,image3,image4)
+            VALUES('$arr[name]','$arr[manu]','$arr[CPU]','$arr[RAM]','$arr[drive]','$arr[GPU]','$arr[screen]','$arr[battery]','$arr[weight]','$arr[color]','$arr[size]','$arr[port]','$arr[OS]','$arr[oldCost]','$arr[discount]','$arr[image1]','$arr[image2]','$arr[image3]','$arr[image4]')";
             connect()->query($sql);
         }
 

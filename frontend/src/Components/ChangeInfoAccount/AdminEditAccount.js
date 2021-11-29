@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
 import ChangeForm from "./form.js";
 
-export default function EditAccount () {
+export default function AdminEditAccount () {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -22,7 +22,7 @@ export default function EditAccount () {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
-            Xóa khách hàng
+            Xóa tài khoản
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,5 +1,5 @@
 import EditProduct from "./EditProduct";
-import EditProductInsert from "./EditProductInsert";
+import AddProduct from "./AddProduct";
 
 export default function ChangeInfoProduct(){
   // document.title = "Thông tin sản phẩm";
@@ -9,7 +9,7 @@ export default function ChangeInfoProduct(){
     <div className="row justify-content-md-center">
       <div className="col-sm-8">
         <div style={{marginTop: '1%', marginBottom: '1%'}}>
-          <EditProductInsert/>
+          <AddProduct/>
         </div>
         <table className="table table-bordered">
           <thead>

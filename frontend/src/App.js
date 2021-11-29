@@ -22,13 +22,32 @@ import Cookies from 'js-cookie';
 
 
 
-var emailCk = Cookies.get('email');
-var isAdminCk = Cookies.get('isAdmin');
+var isLogin = Cookies.get('id');
+var isAdmin = Cookies.get('isAdmin');
 
-$(function(){
-  emailCk = Cookies.get('email');
-  isAdminCk = Cookies.get('isAdmin');
-})
+if(isLogin){
+  isLogin = true;
+}
+else{
+  isLogin = false;
+}
+
+if(isAdmin==="0"){
+  isAdmin = false;
+}
+if(isAdmin==="1"){
+  isAdmin = true;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -57,27 +76,60 @@ function DefaultRouter() {
   );
 }
 
-
+//return <Redirect path="/"/>
+//return <Route path={props.path} component={props.component}></Route>
 
 function RenderRoute(props){
-  if(emailCk){
-    if (props.path==="/sign-in"){
-      return <Redirect path="/"/>//đưa về home hết nếu đã login
+  if(isAdmin){//ad vào dc mọi trag trừ trang login và signup và forgot
+    if(props.path==="/sign-up"){
+      return <Redirect to="/"/>
     }
-    if (props.path==="/sign-up"){
-      return <Redirect path="/"/>
+    if(props.path==="/sign-in"){
+      return <Redirect to="/"/>
     }
-    if (props.path==="/forgot"){
-      return <Redirect path="/"/>
+    if(props.path==="/forgot"){
+      return <Redirect to="/"/>
     }
-    //
     else{
       return <Route path={props.path} component={props.component}></Route>
     }
   }
-
-  else{
-    return <Route path={props.path} component={props.component}></Route>
+  else if(isLogin){//người dùng bth vào được mọi trang trừ trang login và signup và forgot và manager-account
+    if(props.path==="/sign-up"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/sign-in"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/forgot"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-account"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-product"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-order"){
+      return <Redirect to="/"/>
+    }
+    else{
+      return <Route path={props.path} component={props.component}></Route>
+    }
+  }
+  else{//chưa đăng nhập thì vào được mọi trang trừ trang manager-account
+    if(props.path==="/manager-account"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-product"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-order"){
+      return <Redirect to="/"/>
+    }
+    else{
+      return <Route path={props.path} component={props.component}></Route>
+    }
   }
 }
 
@@ -92,9 +144,9 @@ export default function App() {
         <RenderRoute path="/cart" component={Cart}/>
         <RenderRoute path="/news" component={News}/>
         <RenderRoute path="/article" component={Article}/>
-        <RenderRoute path="/admin0" component={ChangeInfoAccount}/>
-        <RenderRoute path="/admin1" component={ChangeInfoProduct}/>
-        <RenderRoute path="/admin2" component={Order}/>
+        <RenderRoute path="/manager-account" component={ChangeInfoAccount}/>
+        <RenderRoute path="/manager-product" component={ChangeInfoProduct}/>
+        <RenderRoute path="/manager-order" component={Order}/>
         <RenderRoute path="/sign-in" component={SignIn}/>
         <RenderRoute path="/sign-up" component={SignUp}/>
         <RenderRoute path="/forgot" component={Forgot}/>
