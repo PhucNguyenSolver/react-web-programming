@@ -19,6 +19,7 @@ import { Redirect } from 'react-router'
 import $ from 'jquery';
 import Cookies from 'js-cookie';
 import AppProvider from "./context/AppProvider.js";
+import ChangeInfoNews from "./Components/ChangeInfoNews/index.js";
 
 
 
@@ -68,6 +69,7 @@ export default function App() {
         <RenderRoute path="/admin0" component={ChangeInfoAccount}/>
         <RenderRoute path="/admin1" component={ChangeInfoProduct}/>
         <RenderRoute path="/admin2" component={Order}/>
+        <RenderRoute path="/admin" component={ChangeInfoNews}/>
         <RenderRoute path="/sign-in" component={SignIn}/>
         <RenderRoute path="/sign-up" component={SignUp}/>
         <RenderRoute path="/forgot" component={Forgot}/>
