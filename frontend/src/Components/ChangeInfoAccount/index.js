@@ -1,5 +1,6 @@
 import AdminEditAccount from "./AdminEditAccount";
 import $ from 'jquery';
+import { useState } from "react";
 
 const item = {  
   id: 1,
@@ -20,6 +21,8 @@ function InfoRow(props){
 
 export default function ChangeInfoAccount(){
 
+  const [info, setInfo] = useState(false);
+
   $(function(){
     $.ajax({
       url: 'Controller/AccountController.php',
@@ -29,9 +32,10 @@ export default function ChangeInfoAccount(){
       success: function(data){
         data = JSON.parse(data);     
         let list = data.map((item, index) => {
-          return <InfoRow id={item.accId} name={item.name} role={item.role}/>
+          setInfo(item);
+          return <InfoRow id={info.accId} name={info.name} role={info.role}/>
         })
-        // $('#list-info').html(list);
+        $('#list-info').html(list);
       }
     })
   })
@@ -51,12 +55,9 @@ export default function ChangeInfoAccount(){
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id = "list-info">
             <InfoRow id={item.id} name={item.name} role = {item.role}/>
-              <div id="list-info">
-                {/* {list} */}
                 
-              </div>
             </tbody>
           </table>
         </div>

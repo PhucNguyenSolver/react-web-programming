@@ -1,26 +1,31 @@
 import React from 'react';
 import { Form, Col, Row } from "react-bootstrap";
+import $ from 'jquery';
+import { useState } from "react";
 
-const infoForm = {
-  img: "https://product.hstatic.net/1000026716/product/028vn_710aac8009614321ba3103b049a0a3c4_large.png",
-  id: 1,
-  fullname: "Vo Thanh Hieu",
-  name: "HieuVo",
-  pass: "123456789",
-  email: "hiev.vo@gmail.com",
-  phone: "0123452341",
-  address: "Tien Giang",
-  rule: "Khach hang",
-  discount: true
-};
+
 
 export default function ChangeForm () {
-  const item = infoForm;
+  const [acc, setAcc] = useState(false);
+
+  $(function(){
+    fetch('/Controller/AccountController.php?rq=info').then(res => 
+      res.json()
+    ).then(data => {
+      if(data.isAdmin === "0"){
+        data.isAdmin ="Khách hàng";
+      }
+      else if (data.isAdmin === "1"){
+        data.isAdmin ="Quản lý";
+      }   
+      setAcc(data); 
+    })
+  })
+
   return <>
-      
     <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
       <div className="col-sm-6">
-        <img className="img-fluid" style={{width: '100%'}} src={item.img} alt=""/>
+        <img className="img-fluid" style={{width: '100%'}} src={acc.avatar} alt=""/>
       </div>
     </div>
     <div className="row justify-content-md-center">
@@ -32,7 +37,7 @@ export default function ChangeForm () {
                 <h6>Id</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.id} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.accId} readOnly/>
               </Col>
             </Row>
 
@@ -41,7 +46,7 @@ export default function ChangeForm () {
                 <h6>Tên người dùng</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.fullname}/>
+              <Form.Control type="text" defaultValue={acc.name}/>
               </Col>
             </Row>
 
@@ -50,7 +55,7 @@ export default function ChangeForm () {
                 <h6>Tên tài khoản</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.name} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.userName} readOnly/>
               </Col>
             </Row>
 
@@ -59,7 +64,7 @@ export default function ChangeForm () {
                 <h6>Mật khẩu</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="password" defaultValue={item.phone}/>
+              <Form.Control type="password" defaultValue="password"/>
               </Col>
             </Row>
 
@@ -68,7 +73,7 @@ export default function ChangeForm () {
                 <h6>Email</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.email}/>
+              <Form.Control type="text" defaultValue={acc.email}/>
               </Col>
             </Row>
 
@@ -77,7 +82,7 @@ export default function ChangeForm () {
                 <h6>Số điện thoại</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.phone}/>
+              <Form.Control type="text" defaultValue={acc.phoneNumber}/>
               </Col>
             </Row>
 
@@ -86,7 +91,7 @@ export default function ChangeForm () {
                 <h6>Địa chỉ</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.address}/>
+              <Form.Control type="text" defaultValue={acc.address}/>
               </Col>
             </Row>
 
@@ -95,7 +100,16 @@ export default function ChangeForm () {
                 <h6>Vai trò</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.rule} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.isAdmin} readOnly/>
+              </Col>
+            </Row>
+
+            <Row>
+              <Form.Label column sm="4">
+                <h6>Ảnh</h6>
+              </Form.Label>
+              <Col sm="8">
+              <Form.Control type="text" defaultValue={acc.avatar}/>
               </Col>
             </Row>
           </Form.Group>
