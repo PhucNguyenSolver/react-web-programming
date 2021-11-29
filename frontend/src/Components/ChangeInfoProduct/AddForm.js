@@ -27,22 +27,6 @@ export default function ChangeFormInsert () {
   const item = infoForm;
   return <>
 
-    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
-      <div className="col-sm-6">
-        <img className="img-fluid" style={{width: '100%'}} src={item.img} alt=""/>
-      </div>
-    </div>
-    <div className="row justify-content-md-center" style={{marginBottom: '2%'}}>
-      <div className="col-sm">
-        <img className="img-fluid" style={{width: '100%'}} src={item.img1} alt=""/>
-      </div>
-      <div className="col-sm">
-        <img className="img-fluid" style={{width: '100%'}} src={item.img2} alt=""/>
-      </div>
-      <div className="col-sm">
-        <img className="img-fluid" style={{width: '100%'}} src={item.img3} alt=""/>
-      </div>
-    </div> 
 
     <div className="row justify-content-md-center">
       <div  className="col-sm-10">
@@ -63,7 +47,7 @@ export default function ChangeFormInsert () {
                 <h6>Ảnh 1</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.img}/>
+              <Form.Control type="text" defaultValue={"https://i.imgur.com/GCV59zF.jpg"}/>
               </Col>
             </Row>
 
@@ -72,7 +56,7 @@ export default function ChangeFormInsert () {
                 <h6>Ảnh 2</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.img1}/>
+              <Form.Control type="text" defaultValue={"https://i.imgur.com/GCV59zF.jpg"}/>
               </Col>
             </Row>
 
@@ -81,7 +65,7 @@ export default function ChangeFormInsert () {
                 <h6>Ảnh 3</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.img2}/>
+              <Form.Control type="text" defaultValue={"https://i.imgur.com/GCV59zF.jpg"}/>
               </Col>
             </Row>
 
@@ -90,7 +74,7 @@ export default function ChangeFormInsert () {
                 <h6>Ảnh 4</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={item.img3}/>
+              <Form.Control type="text" defaultValue={"https://i.imgur.com/GCV59zF.jpg"}/>
               </Col>
             </Row>
 
