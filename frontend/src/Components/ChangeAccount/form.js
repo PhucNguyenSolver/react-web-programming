@@ -10,15 +10,19 @@ export default function ChangeForm () {
   const [acc, setAcc] = useState({});
 
   useEffect(() => {  
-    fetch("Controller/AccountController.php?rq=info")
-        .then(resp => resp.json())
-        .then(data => {
-          if(data.isAdmin==="1")
+    $.ajax({
+      url: "/Controller/AccountController.php?rq=info",
+      type: "GET",
+      dataType: "text",
+      success: function (data) {
+        data= JSON.parse(data);
+        if(data.isAdmin==="1")
             data.isAdmin = "Quản lý";
-          else if(data.isAdmin==="0")
-            data.isAdmin = "Khách hàng";
-          setAcc(data);
-        })
+        else if(data.isAdmin==="0")
+          data.isAdmin = "Khách hàng";
+        setAcc(data);
+      }
+    })
   }, []);
 
   function saveBtn(){
@@ -41,8 +45,7 @@ export default function ChangeForm () {
     $.ajax({
       url: "/Controller/AccountController.php",
       type: "PUT",
-      data: {"rq": "update", "data": json},
-      contentType: "application/json",
+      data: {rq: "update", data: json},
       success: function (data) {
         alert("Đã lưu thay đổi");
       }

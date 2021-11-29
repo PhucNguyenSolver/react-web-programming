@@ -40,4 +40,7 @@ function isAdmin() {
     return false;
     }
 }
+function alert($msg) {
+    echo "<script>alert('$msg');</script>";
+}
 ?>

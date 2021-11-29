@@ -30,6 +30,7 @@
 
         //update account
         public function updateInfo($arr){
+
             $id = $_SESSION['id'];
             if($arr['changePass']){
                 $sql = "UPDATE account SET password = '$arr[password]', avatar = '$arr[avatar]', email = '$arr[email]' WHERE accId = '$id'"; 
@@ -45,7 +46,10 @@
                 $result = connect()->query($sql);
                 $sql = "UPDATE admin SET name = '$arr[name]', phoneNumber = '$arr[phone]', address = '$arr[address]' WHERE admId = '$id'";
                 $result = connect()->query($sql);
-            }     
+            }  
+            else {
+                return false;
+            }   
         }
 
         //delete account

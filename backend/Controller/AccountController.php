@@ -1,13 +1,12 @@
 <?php
     include_once '../Model/AccountModel.php';
     include '../Lib/Function.php';
-
-    //header json
-    header('Content-Type: application/json');
-
+    // header("Content-Type: application/json; charset=UTF-8");
+    
     $model = new AccountModel();
-
+    
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        
         if(isset($_GET['rq'])){
             if(count($_GET) == 1){
                 $rq = $_GET['rq'];
@@ -52,11 +51,14 @@
 
     //rq = PUT
     else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
-        if(isset($_GET['rq'])){
-            if(count($_GET) == 2){
-                $rq = $_GET['rq'];
+        echo $_PUT['data'];
+        if(isset($_PUT['rq'])){
+            
+            if(count($_PUT) == 2){
+                $rq = $_PUT['rq'];
                 if($rq == 'update'){//rq=update
                     if(isLogin()){
+                        
                         $arr = json_decode($_PUT['data']);
                         $result = $model->updateInfo($arr);
                         if($result){
@@ -80,8 +82,8 @@
 
     else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
         if (isAdmin()){
-            if(isset($_GET['id'])){
-                $id = $_GET['id'];
+            if(isset($_DELETE['id'])){
+                $id = $_DELETE['id'];
                 $model->deleteAccount($id);
             }
             else{
