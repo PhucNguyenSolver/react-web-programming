@@ -19,65 +19,89 @@ import { Redirect } from 'react-router'
 import $ from 'jquery';
 import Cookies from 'js-cookie';
 import AppProvider from "./context/AppProvider.js";
+import ChangeInfoNews from "./Components/ChangeInfoNews/index.js";
 
 
 
-var emailCk = Cookies.get('email');
-var isAdminCk = Cookies.get('isAdmin');
+var isLogin = Cookies.get('id');
+var isAdmin = Cookies.get('isAdmin');
 
-$(function(){
-  emailCk = Cookies.get('email');
-  isAdminCk = Cookies.get('isAdmin');
-})
+if(isLogin){
+  isLogin = true;
+}
+else{
+  isLogin = false;
+}
 
-
-
-function DefaultRouter() {
-  return (
-    <nav>
-      <ul>
-        <li><Link to="/homepage">Homepage</Link>
-        </li>
-        <li><Link to="/products">Products</Link>
-        </li>
-        <li><Link to="/product-info/">Product Info</Link>
-        </li>
-        <li><Link to="/cart/">Cart</Link>
-        </li>
-        <li><Link to="/news/">News</Link>
-        </li>
-        <li><Link to="/article/">Article</Link>
-        </li>
-        <li><Link to="/sign-up/">Sign Up</Link>
-        </li>
-        <li><Link to="/sign-in/">Sign In</Link>
-        </li>
-      </ul>
-    </nav>
-  );
+if(isAdmin==="0"){
+  isAdmin = false;
+}
+if(isAdmin==="1"){
+  isAdmin = true;
 }
 
 
 
+
+
+
+
+
+
+
+
+
 function RenderRoute(props){
-  if(emailCk){
-    if (props.path==="/sign-in"){
-      return <Redirect path="/"/>//đưa về home hết nếu đã login
+  if(isAdmin){//ad vào dc mọi trag trừ trang login và signup và forgot
+    if(props.path==="/sign-up"){
+      return <Redirect to="/"/>
     }
-    if (props.path==="/sign-up"){
-      return <Redirect path="/"/>
+    if(props.path==="/sign-in"){
+      return <Redirect to="/"/>
     }
-    if (props.path==="/forgot"){
-      return <Redirect path="/"/>
+    if(props.path==="/forgot"){
+      return <Redirect to="/"/>
     }
-    //
     else{
       return <Route path={props.path} component={props.component}></Route>
     }
   }
-
-  else{
-    return <Route path={props.path} component={props.component}></Route>
+  else if(isLogin){//người dùng bth vào được mọi trang trừ trang login và signup và forgot và manager-account
+    if(props.path==="/sign-up"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/sign-in"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/forgot"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-account"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-product"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-order"){
+      return <Redirect to="/"/>
+    }
+    else{
+      return <Route path={props.path} component={props.component}></Route>
+    }
+  }
+  else{//chưa đăng nhập thì vào được mọi trang trừ trang manager-account
+    if(props.path==="/manager-account"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-product"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/manager-order"){
+      return <Redirect to="/"/>
+    }
+    else{
+      return <Route path={props.path} component={props.component}></Route>
+    }
   }
 }
 
@@ -88,14 +112,15 @@ export default function App() {
     <Header />
     <Router>
       <Switch>
-        <RenderRoute path="/products" component={Products}/>
-        <RenderRoute path="/product-info" component={ProductInfo}/>
+        <RenderRoute path="/products/:manu" component={Products}/>
+        <RenderRoute path="/product-info/:productId" component={ProductInfo}/>
         <RenderRoute path="/cart" component={Cart}/>
         <RenderRoute path="/news" component={News}/>
-        <RenderRoute path="/article" component={Article}/>
-        <RenderRoute path="/admin0" component={ChangeInfoAccount}/>
-        <RenderRoute path="/admin1" component={ChangeInfoProduct}/>
-        <RenderRoute path="/admin2" component={Order}/>
+        <RenderRoute path="/article/:id" component={Article}/>
+        <RenderRoute path="/manager-account" component={ChangeInfoAccount}/>
+        <RenderRoute path="/manager-product" component={ChangeInfoProduct}/>
+        <RenderRoute path="/manager-news" component={ChangeInfoNews}/>
+        <RenderRoute path="/manager-order" component={Order}/>
         <RenderRoute path="/sign-in" component={SignIn}/>
         <RenderRoute path="/sign-up" component={SignUp}/>
         <RenderRoute path="/forgot" component={Forgot}/>

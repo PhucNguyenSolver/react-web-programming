@@ -2,6 +2,8 @@ import TestCard from '../Utils/TestCard';
 import pc1 from './pc1.png';
 import pc2 from './pc2.png';
 import EditSlide from './EditSlide'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const brands = [
   { name: 'Laptop Acer', url: '#'},
@@ -13,6 +15,28 @@ const brands = [
 ];
 export default function Homepage(){
   document.title = "Trang chủ";
+  const [topDeal, setTopDeal] = useState([]);
+  const [topRating, setTopRating] = useState([]);
+  
+  useEffect(() => {
+    axios.get("/Controller/ProductController.php/?rq=deal")
+    .then(res => {
+      setTopDeal(res.data);
+    })
+    .catch(err => {
+      alert("Occur when loading top deal");
+    })
+  }, []);
+  useEffect(() => {
+    axios.get("/Controller/ProductController.php/?rq=rate")
+    .then(res => {
+      setTopRating(res.data);
+    })
+    .catch(err => {
+      alert("Occur when loading top rating");
+    })
+  }, [])
+
   return <>
 
   <div className="container" style={{marginTop: '0.5%'}}>
@@ -46,9 +70,9 @@ export default function Homepage(){
     </div>
   </nav>
   <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5" data-masonry="{&quot;percentPosition&quot;: true }" style={{marginBottom: '2%'}}>
-    {[1,2,3,4,5].map(() => (
+    {topDeal.map((val) => (
       <div className="col">
-        <TestCard/>
+        <TestCard product={val}/>
       </div>
     ))}
   </div>
@@ -59,9 +83,9 @@ export default function Homepage(){
     </div>
   </nav>
   <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5" data-masonry="{&quot;percentPosition&quot;: true }" style={{marginBottom: '2%'}}>
-    {[1,2,3,4,5].map(() => (
+    {topRating.map((val) => (
       <div className="col">
-        <TestCard/>
+        <TestCard product={val}/>
       </div>
     ))}
   </div>

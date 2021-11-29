@@ -1,0 +1,16 @@
+.tlist {
+  border: 1px solid #ced4da;
+    margin-top: 5px;
+    border-radius: 0.25rem;
+    div {
+        padding: .5rem .75rem;
+        color: blue;
+        text-decoration: underline;
+        border-bottom: 1px solid #ced4da;
+    }
+    div:last-child {
+        border-bottom: none;
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+    }
+}

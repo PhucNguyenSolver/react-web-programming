@@ -10,7 +10,7 @@ const randInt = (_range) => {
 
 export const items = [
   {
-    id: randInt(999999),
+    id: 1,
     imgUrl: "https://gstatic.gvn360.com/2021/11/Fortnite-Trung-Quoc-1-218x150.jpg",
     title: "Fortnite đóng server do chính sách game online khắc nghiệt của Trung Quốc",
     author: "Axium Fox",
@@ -19,7 +19,7 @@ export const items = [
     lastModified: "29/10/2021"
   },
   {
-    id: randInt(999999),
+    id: 2,
     imgUrl: "https://gstatic.gvn360.com/2021/11/21ADL_Chip_Angle_7_Color_BKG_3000-Pixels-218x150.jpg",
     title: "Hiệu năng CPU đầu bảng Intel Core i9-12900K được cải thiện đến 36% nhờ tính năng Maximum Turbo",
     author: "Axium Fox",
@@ -28,7 +28,7 @@ export const items = [
     lastModified: "21/11/2021"
   },
   {
-    id: randInt(999999),
+    id: 3,
     imgUrl: "https://gstatic.gvn360.com/2021/11/DSC8603-1-1-218x150.jpg",
     title: "Từng chê bàn phím laptop phèn, sau vài tháng dùng mình thấy nó cũng được",
     author: "Axium Fox",
@@ -37,7 +37,7 @@ export const items = [
     lastModified: "01/11/2021"
   },
   {
-    id: randInt(999999),
+    id: 4,
     imgUrl: "https://gstatic.gvn360.com/2021/10/google-chrome-generic-hero-pinwheeldfb21354c07a64185610f9149b48e2d3-218x150.jpg",
     title: "Google Chrome khẩn cấp tung bản vá 2 lỗi Zero day đang hoành hành, các bạn hãy nhanh chóng cập nhật",
     author: "Axium Fox",

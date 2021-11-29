@@ -1,5 +1,6 @@
-import './Article.scss';
-import { useState, useContext } from 'react';
+import './article.scss';
+import {useParams} from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
 import {AppContext} from '../../context/AppProvider';
 import { CustomTag } from '../Utils/Input';
 import ControlledEditor from './ControlledEditor';
@@ -9,18 +10,27 @@ import React from 'react';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import { NewsService } from "../../services/NewsService";
 
 import rawJSON from './html3.json';
 const defaultArticle = {
-  title: 'How Crypto Is Shaping The Digital Revolution',
+  // title: 'How Crypto Is Shaping The Digital Revolution',
+  // title: 'Loading...',
+  // imgUrl: "https://dummyimage.com/900x400/ced4da/6c757d.jpg",
+  // timestamp: '20 Nov 2021',
+//   author: 'Mario Laul',
+//   tags: [
+//     { value: 'World', url: '#!'},
+//     { value: 'VR', url: '#!'},
+//     { value: 'Meta', url: '#!'},
+//   ],
+//   content: rawJSON, // TODO: get `html` from database instead;
+// }
+  title: 'Loading...',
   imgUrl: "https://dummyimage.com/900x400/ced4da/6c757d.jpg",
-  timestamp: '20 Nov 2021',
-  author: 'Mario Laul',
-  tags: [
-    { value: 'World', url: '#!'},
-    { value: 'VR', url: '#!'},
-    { value: 'Meta', url: '#!'},
-  ],
+  timestamp: '...',
+  author: '...',
+  tags: [],
   content: rawJSON, // TODO: get `html` from database instead;
 }
 const otherArticles = [1, 2, 3, 4].map((id) => (
@@ -34,8 +44,23 @@ const otherArticles = [1, 2, 3, 4].map((id) => (
 
 export default function Article() {
   const { isAdmin } = useContext(AppContext);
-  // TODO: Load article from DB
   const [article, setArticle] = useState(defaultArticle);
+
+  // TODO: Load article from DB
+  const {id} = useParams();
+
+  useEffect(() => {
+    try {
+        NewsService.getNewsById(id).then(res => {
+          setArticle(res);
+          setDraft(getInitState());
+        })
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   const [relatedArticles, setRelatedArticles] = useState(otherArticles);
   // Done load article from DB
   
@@ -55,15 +80,20 @@ export default function Article() {
     }
   } 
   const [draft, setDraft] = useState(getInitState());
-
+  useEffect(() => {
+    setDraft(getInitState);
+  }, [article.content]);  
   const handleSaveDraft = () => {
     if (draft === null) {
       alert('This should never happen. Draft is null');
       return;
     }
-    console.log('TODO: save draft to database');
-    const newHtml = JSON.stringify(stateToHtml(draft));
-    console.log({newHtml});
+    console.log('Save draft to database');
+    const newHtml = stateToHtml(draft);
+    // console.log({newHtml});
+    
+    // Make post request
+    NewsService.updateContent(id, newHtml);
   }
 
   return <>
