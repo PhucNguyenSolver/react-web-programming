@@ -9,7 +9,7 @@ function LogBtn(){
   
   if(emailCk){
     return <>
-      <button type="button" className="btn btn-danger me-2" id="logout">Đăng xuất</button>
+      <button type="button" className="btn btn-secondary me-2" id="logout">Đăng xuất</button>
     </>
   }
   return <>

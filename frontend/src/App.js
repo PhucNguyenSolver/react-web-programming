@@ -16,10 +16,11 @@ import OrderCustomer from "./Components/OrderCustomer";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
 import Forgot from './Components/Forgot/index.js';
-import 'bootstrap/dist/css/bootstrap.css';
 import { Redirect } from 'react-router'
 import $ from 'jquery';
 import Cookies from 'js-cookie';
+import AppProvider from "./context/AppProvider.js";
+import ChangeInfoNews from "./Components/ChangeInfoNews/index.js";
 import Intro from "./Components/Intro";
 
 
@@ -51,35 +52,6 @@ if(isAdmin==="1"){
 
 
 
-
-
-function DefaultRouter() {
-  return (
-    <nav>
-      <ul>
-        <li><Link to="/homepage">Homepage</Link>
-        </li>
-        <li><Link to="/products">Products</Link>
-        </li>
-        <li><Link to="/product-info/">Product Info</Link>
-        </li>
-        <li><Link to="/cart/">Cart</Link>
-        </li>
-        <li><Link to="/news/">News</Link>
-        </li>
-        <li><Link to="/article/">Article</Link>
-        </li>
-        <li><Link to="/sign-up/">Sign Up</Link>
-        </li>
-        <li><Link to="/sign-in/">Sign In</Link>
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
-//return <Redirect path="/"/>
-//return <Route path={props.path} component={props.component}></Route>
 
 function RenderRoute(props){
   if(isAdmin){//ad vào dc mọi trag trừ trang login và signup và forgot
@@ -138,6 +110,7 @@ function RenderRoute(props){
 export default function App() {
   
   return (<>
+  <AppProvider>
     <Header />
     <Router>
       <Switch>
@@ -145,9 +118,10 @@ export default function App() {
         <RenderRoute path="/product-info/:productId" component={ProductInfo}/>
         <RenderRoute path="/cart" component={Cart}/>
         <RenderRoute path="/news" component={News}/>
-        <RenderRoute path="/article" component={Article}/>
+        <RenderRoute path="/article/:id" component={Article}/>
         <RenderRoute path="/manager-account" component={ChangeInfoAccount}/>
         <RenderRoute path="/manager-product" component={ChangeInfoProduct}/>
+        <RenderRoute path="/manager-news" component={ChangeInfoNews}/>
         <RenderRoute path="/manager-order" component={Order}/>
         <RenderRoute path="/customer-order" component={OrderCustomer}/>
         <RenderRoute path="/sign-in" component={SignIn}/>
@@ -159,5 +133,6 @@ export default function App() {
       </Switch>
     </Router>
     <Footer/>
+  </AppProvider>
   </>);
 }

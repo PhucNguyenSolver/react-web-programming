@@ -21,9 +21,12 @@ function GreenBtn(){
   
   if(isAdmin){
     return <>
-      <button type="button" className="btn btn-success me-2" id="acc">Quản lý tài khoản</button>
-      <button type="button" className="btn btn-success me-2" id="pro">Quản lý sản phẩm</button>
-      <button type="button" className="btn btn-success me-2" id="ord">Quản lý đơn hàng</button>
+    <div className="d-flex justify-content-center align-items-center">
+      <button type="button" className="btn btn-primary me-2" id="acc">Quản lý tài khoản</button>
+      <button type="button" className="btn btn-primary me-2" id="pro">Quản lý sản phẩm</button>
+      <button type="button" className="btn btn-primary me-2" id="ord">Quản lý đơn hàng</button>
+      <button type="button" className="btn btn-primary me-2" id="ord">Quản lý tin tức</button>
+    </div>
     </>
   }
   else if(isLogin){
@@ -61,18 +64,20 @@ export default function EditAccount () {
     $('#ord').on('click', function(){
       window.location.href = "/manager-order";
     });
+    $('#ord').on('click', function(){
+      window.location.href = "/manager-news";
+    });
     $('#track').on('click', function(){
       window.location.href = "/customer-order";
     });
 
 
   })
-
   
 
   return (
     <>
-      <Button variant="info" className="me-2" id="user" onClick={handleShow}></Button>
+      <Button variant="light" id="user" onClick={handleShow}></Button>
 
       <Modal size="lg" show={show} onHide={() => setShow(false)} aria-labelledby="example-modal-sizes-title-lg">
         <Modal.Header closeButton>
@@ -86,5 +91,5 @@ export default function EditAccount () {
         </Modal.Footer>
       </Modal>
     </>
-  );
+  )
 }
