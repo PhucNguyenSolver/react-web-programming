@@ -50,6 +50,14 @@
                     $arr=json_decode($_POST['data']);
                     echo $productModel->addProduct($arr);
                 }
+                else if($_POST['rq'] == 'update' && isset($_POST['data'])){
+                    $arr=json_decode($_POST['data']);
+                    echo $productModel->updateProduct($arr);
+                }
+
+                else if($_POST['rq'] == 'delete' && isset($_POST['id'])){
+                    echo $productModel->deleteProduct($_POST['id']);
+                }
                 
                 else{
                     http_response_code(404);
@@ -67,49 +75,5 @@
         }
         
     }
-    //PUT request for update
-    else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
-        if(isAdmin()){
-            if(isset($_PUT['rq'])){//rq=update, data=json
-                if($_PUT['rq'] == 'update' && isset($_PUT['data'])){
-                    $arr=json_decode($_PUT['data']);
-                    echo $productModel->updateProduct($arr);
-                }
-                else{
-                    http_response_code(404);
-                    echo '404 not found';
-                }
-            }
-            else{
-                http_response_code(404);
-                echo '404 not found';
-            }
-        }
-        else{
-            http_response_code(403);
-            echo '403 forbidden';
-        }
-    }
-
-
-    //request = delete:
-    else if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
-        if (isAdmin()){//id=1
-            if(isset($_DELETE['id'])){
-                echo $productModel->deleteProduct($_DELETE['id']);
-            }
-            else{
-                http_response_code(404);
-                echo '404 not found';
-            }
-        }
-        else{
-            http_response_code(403);
-            echo '403 Forbidden';
-        }
-    }
-
-
-    
 
 ?>
