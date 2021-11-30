@@ -7,7 +7,8 @@ let pic = "https://mona.media/wp-content/uploads/2021/10/guest-post-377x247.png"
 
 export default function Search(){
   document.title = "Danh mục sản phẩm";
-  const {name} = useParams();
+  const storage = localStorage.getItem('searchItem');
+  const name = JSON.parse(storage);
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get("/Controller/ProductController.php/?find=" + name)
@@ -20,7 +21,6 @@ export default function Search(){
   }, []);
 
   //console.log(products);
-
 
   return <>
 

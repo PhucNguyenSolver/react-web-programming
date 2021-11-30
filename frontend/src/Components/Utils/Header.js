@@ -4,6 +4,7 @@ import EditAccount from '../ChangeAccount/EditAccount';
 import * as Icon from 'react-bootstrap-icons';
 import {Button} from 'react-bootstrap';
 import { useState } from 'react';
+import Search from './Search';
 
 var isAdmin = Cookies.get('isAdmin');
 var isLogin = Cookies.get('id');
@@ -79,9 +80,11 @@ export default function Header() {
   }
 
   })
-
-  const [searchItem, setSearchItem] = useState('');
-
+  
+  function handleSearch(searchKey) {
+    localStorage.setItem('searchItem', JSON.stringify(searchKey));
+    window.location.href = "/search";
+  }
   return (<>
 
 
@@ -102,7 +105,7 @@ export default function Header() {
           </ul>
 
           <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-            <input type="search" className="form-control form-control-dark" placeholder="Tìm kiếm..." aria-label="Search"  onChange={(event) => {setSearchItem(event.target.value)}} />
+            <input type="search" className="form-control form-control-dark" placeholder="Tìm kiếm..." aria-label="Search"  onKeyPress={event=> {if(event.key == "Enter"){handleSearch(event.target.value);event.preventDefault()}}} />
           </form>
 
           <div className="text-end">
