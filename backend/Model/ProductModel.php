@@ -18,6 +18,18 @@
             return $this->getTopBy('aveRating',0,5, 'DESC');
         }
 
+        //get all products for admin
+        public function getAll() {
+            $conn = connect();
+            $sql = "SELECT * FROM product ORDER BY productId";
+            $result = $conn->query($sql);
+            $products = array();
+            while($row = $result->fetch_assoc()){
+                $products[] = $row;
+            }
+            return json_encode($products);
+        }
+
         //get all product where manu and $manu not sensitive and order by name
         public function getAllByManu($manu){
 
@@ -74,8 +86,8 @@
 
         //insert product to database
         public function addProduct($arr){
-            $sql = "INSERT INTO product(name,manu,CPU,RAM,drive,GPU,screen,battery,weight,color,size,port,OS,oldCost,discount,image1,image2,image3,image4)
-            VALUES('$arr[name]','$arr[manu]','$arr[CPU]','$arr[RAM]','$arr[drive]','$arr[GPU]','$arr[screen]','$arr[battery]','$arr[weight]','$arr[color]','$arr[size]','$arr[port]','$arr[OS]','$arr[oldCost]','$arr[discount]','$arr[image1]','$arr[image2]','$arr[image3]','$arr[image4]')";
+            $sql = "INSERT INTO product(name,manu,CPU,RAM,drive,GPU,screen,battery,weight,color,size,port,OS,oldCost,numInStock,discount,image1,image2,image3,image4)
+            VALUES('$arr[name]','$arr[manu]','$arr[CPU]','$arr[RAM]','$arr[drive]','$arr[GPU]','$arr[screen]','$arr[battery]','$arr[weight]','$arr[color]','$arr[size]','$arr[port]','$arr[OS]','$arr[oldCost]','$arr[numInStock]','$arr[discount]','$arr[image1]','$arr[image2]','$arr[image3]','$arr[image4]')";
             connect()->query($sql);
         }
 
