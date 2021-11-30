@@ -6,12 +6,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const brands = [
-  { name: 'Laptop Acer', url: '#'},
-  { name: 'Laptop Asus', url: '#'},
-  { name: 'Laptop MSI', url: '#'},
-  { name: 'Laptop Lenovo', url: '#'},
-  { name: 'Laptop Dell', url: '#'},
-  { name: 'Laptop HP', url: '#'},
+  { name: 'Laptop Acer', url: '/products/acer'},
+  { name: 'Laptop Asus', url: '/products/asus'},
+  { name: 'Laptop MSI', url: '/products/msi'},
+  { name: 'Laptop Lenovo', url: '/products/lenovo'},
+  { name: 'Laptop Dell', url: '/products/dell'},
+  { name: 'Laptop HP', url: '/products/hp'},
 ];
 export default function Homepage(){
   document.title = "Trang chủ";
@@ -78,8 +78,7 @@ export default function Homepage(){
   </div>
   <nav className="bg-primary rounded mb-3 navbar navbar-expand navbar-dark" aria-label="Second navbar example" style={{marginTop: '0.5%', width: '100%'}}>
     <div className="container-fluid">
-      <a className="navbar-brand fw-bold">LAPTOP GAMING</a>
-      <a className="navbar-brand" style={{ fontSize: 'medium', float: 'right'}} href="#">Xem tất cả &gt;&gt;</a>
+      <a className="navbar-brand fw-bold">CÁC SẢN PHẨM CÓ LƯỢT ĐÁNH GIÁ CAO</a>
     </div>
   </nav>
   <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5" data-masonry="{&quot;percentPosition&quot;: true }" style={{marginBottom: '2%'}}>

@@ -91,7 +91,7 @@ export default function Cart() {
     localStorage.setItem('cart', JSON.stringify(newCart));
   }
 
-  const totalPrice = cart.reduce((a,c) => a + c.product.price*c.quantity, 0);
+  const totalPrice = cart ? cart.reduce((a,c) => a + c.product.price*c.quantity, 0) : 0;
   
   const handleOrder = () => {
     if (isLogin) {
@@ -192,7 +192,7 @@ export default function Cart() {
       <FormControl as="textarea" style={{width:"30%"}} placeholder="Ghi chú" id="note" />
       </div>
       <div class="row justify-content-end">
-        <Button variant="warning" style={{"width":"10%"}} onClick={handleOrder}>Đặt hàng</Button>
+        <Button variant="primary" style={{"width":"10%"}} onClick={() => handleOrder}>Đặt hàng</Button>
       </div>
       
     </div>

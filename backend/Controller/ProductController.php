@@ -2,13 +2,16 @@
     include '../Model/ProductModel.php';
     include '../Lib/Function.php';
     //header json
-    header('Content-Type: application/json');
+    // header('Access-Control-Allow-Origin: *');
+    // header('Content-Type: application/json');
+    // header('Access-Control-Allow-Methods: POST');
+    // header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
     $productModel = new ProductModel();
     
     //if request is get, have one parameter name rq=deal
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(isset($_GET['id'])){
-            echo $productModel->getProductById($_GET['id']);
+            echo $productModel->getProductById($_GET['id']);    
         }
         else if(isset($_GET['rq'])){
             if ($_GET['rq'] == 'deal'){//?rq=deal
@@ -19,6 +22,9 @@
             }
             else if($_GET['rq'] == 'manu' && isset($_GET['name'])){//?rq=manu&name=dell
                 echo $productModel->getAllByManu($_GET['name']);
+            }
+            else if($_GET['rq'] == 'all') {
+                echo $productModel->getAll();
             }
             //else echo 404 not found
             else{
@@ -50,6 +56,7 @@
         if(isAdmin()){
             if(isset($_POST['rq'])){//rq=add, data=json
                 if($_POST['rq'] == 'add' && isset($_POST['data'])){
+                    
                     $arr=json_decode($_POST['data'],true);
                     echo $productModel->addProduct($arr);
                 }
@@ -64,12 +71,12 @@
                 
                 else{
                     http_response_code(404);
-                    echo '404 not found';
+                    echo '1';
                 }
             }
             else{
                 http_response_code(404);
-                echo '404 not found';
+                echo '2';
             }
         }
         else{
