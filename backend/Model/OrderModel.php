@@ -140,22 +140,7 @@
             return "OK";
         }
 
-        //update ratingPoint by orderId and productId
-        public function updateRatingPointByOrderIdAndProductId($orderId, $productId, $ratingPoint, $ratingContent){//khách làm
-            $conn = connect();
-            $query = "UPDATE `orderhasproduct`
-            SET `ratingPoint` = '$ratingPoint',
-                `ratingContent` = '$ratingContent'
-            WHERE `orderId` = '$orderId' AND `productId` = '$productId'";
-            $result = $conn->query($query);
-            //return errorname if error
-            if(!$result){
-                return $conn->error;
-            }
-            else {
-                return "OK";
-            }
-        }
+        
 
     }
 ?>
