@@ -37,6 +37,23 @@ export function MiniForm (props) {
         </Form.Group>
       </Col>
     </Row>
+
+    <Row className="mb-3">
+      <Col xs={6}>
+        <Form.Group controlId="formProName">
+          <Form.Label>Nội dung đánh giá</Form.Label>
+          <Form.Control type="text" defaultValue={mini.ratingContent} readOnly style={{backgroundColor: 'white'}}/>
+        </Form.Group>
+      </Col>
+
+      <Col xs={6}>
+        <Form.Group controlId="formProName">
+          <Form.Label>Đánh giá</Form.Label>
+          <Form.Control type="text" defaultValue={mini.ratingPoint} readOnly style={{backgroundColor: 'white'}}/>
+        </Form.Group>
+      </Col>
+    </Row>
+
     </td>
   </tr>
   </>
@@ -63,7 +80,7 @@ export default function ConfirmForm (props) {
             item.status = "Đã hủy";
         setAcc(item);
         let lst = item['list'].map((item, index) => {
-          return <MiniForm name={item.name} quantity={item.quantity} productCost={item.productCost}/>
+          return <MiniForm name={item.name} quantity={item.quantity} productCost={item.productCost} ratingContent={item.ratingContent} ratingPoint={item.ratingPoint}/>
         })
         setMinilist(lst);
       }
@@ -100,7 +117,7 @@ export default function ConfirmForm (props) {
                 <h6>Tên khách hàng</h6>
               </Form.Label>
               <Col sm="8">
-              <Form.Control type="text" defaultValue={acc.userName} readOnly style={{backgroundColor: 'white'}}/>
+              <Form.Control type="text" defaultValue={acc.name} readOnly style={{backgroundColor: 'white'}}/>
               </Col>
             </Row>
 

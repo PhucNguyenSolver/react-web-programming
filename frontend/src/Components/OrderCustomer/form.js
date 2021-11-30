@@ -4,17 +4,6 @@ import {MiniForm} from "../Order/form.js";
 import $ from 'jquery';
 import { useState,useEffect } from 'react';
 
-const infoForm = {
-  orderId: 1,
-  userId: 1,
-  userName: "Võ Thành Hiếu",
-  status: "Đã giao",
-  timeStamp: "15/07/2021",
-  note: "Hàng dễ vỡ",
-  totalCost: "250000",
-  discount: true
-};
-
 export default function ConfirmForm (props) {
 
   const [item, setItem] = useState({});
@@ -36,7 +25,7 @@ export default function ConfirmForm (props) {
             item.status = "Đã hủy";
         setItem(item);
         let lst = item['list'].map((item, index) => {
-          return <MiniForm name={item.name} quantity={item.quantity} productCost={item.productCost}/>
+          return <MiniForm name={item.name} quantity={item.quantity} productCost={item.productCost} ratingContent={item.ratingContent} ratingPoint={item.ratingPoint}/>
         })
         setMinilist(lst);
       }

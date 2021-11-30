@@ -16,6 +16,7 @@
                     }
                     else{
                         echo "{error: 'Chưa đăng nhập'}";
+                        session_destroy();//giả cookie
                     }
                     
                 }
@@ -25,6 +26,7 @@
                     }
                     else{
                         echo "{error: '403 forbidden'}";
+                        session_destroy();//giả cookie
                     }
                 }
                 else{
@@ -40,6 +42,7 @@
                     }
                     else{
                         echo "{error: '403 forbidden'}";
+                        session_destroy();//giả cookie
                     }
                 }
                 else{
@@ -66,6 +69,7 @@
                 }
                 else{
                     echo "{error: 'Chưa đăng nhập'}";
+                    session_destroy();//giả cookie
                 }
             }
             
@@ -87,6 +91,7 @@
                 }
                 else{
                     echo "{error: '403 forbidden'}";
+                    session_destroy();//giả cookie
                 }          
             }
             
