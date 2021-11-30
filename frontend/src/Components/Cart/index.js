@@ -74,11 +74,8 @@ export default function Cart() {
 
   const totalPrice = cart.reduce((a,c) => a + c.product.price*c.quantity, 0);
 
-
-  
-
   const handleOrder = () => {
-    alert(cart[0].product.id);
+    if(cart) alert(cart[0].product.id);
   }
 
   return (
@@ -140,7 +137,7 @@ export default function Cart() {
         </div>
       <h5 class="text-center">Tổng tiền {numberWithCommas(totalPrice)} VNĐ</h5>
       <div class="row justify-content-end">
-        <Button variant="warning" style={{"width":"10%"}} onClick={handleOrder}>Đặt hàng</Button>
+        <Button variant="primary" style={{"width":"10%"}} onClick={() => handleOrder}>Đặt hàng</Button>
       </div>
       
     </div>
