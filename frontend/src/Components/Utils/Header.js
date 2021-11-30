@@ -4,10 +4,27 @@ import EditAccount from '../ChangeAccount/EditAccount';
 import * as Icon from 'react-bootstrap-icons';
 import {Button} from 'react-bootstrap';
 
+var isAdmin = Cookies.get('isAdmin');
+var isLogin = Cookies.get('id');
+
+if(isLogin){
+  isLogin = true;
+}
+else{
+  isLogin = false;
+}
+
+if(isAdmin==="0"){
+  isAdmin = false;
+}
+if(isAdmin==="1"){
+  isAdmin = true;
+}
+
 function LogBtn(){
-  var emailCk=Cookies.get('email');
   
-  if(emailCk){
+  
+  if(isLogin){
     return <>
       <button type="button" className="btn btn-secondary me-2" id="logout">Đăng xuất</button>
     </>
@@ -15,6 +32,14 @@ function LogBtn(){
   return <>
       <button type="button" className="btn btn-primary me-2" id="login">Đăng nhập</button>
       <button type="button" className="btn btn-warning me-2" id="sign-up">Đăng ký</button>
+  </>
+}
+
+function CartBtn(){
+  if(!isAdmin){
+    return <Button variant="secondary" className="btn-sign-in" id="cartBtn"><Icon.Cart></Icon.Cart></Button>
+  }
+  else return <>
   </>
 }
 
@@ -80,7 +105,7 @@ export default function Header() {
           <div className="text-end">
             <LogBtn></LogBtn>
             <EditAccount></EditAccount>
-            <Button variant="secondary" className="btn-sign-in" id="cartBtn"><Icon.Cart></Icon.Cart></Button> 
+            <CartBtn/> 
           </div>
         </div>
       </div>

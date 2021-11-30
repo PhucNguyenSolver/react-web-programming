@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
 import ConfirmForm from './form.js';
 
-export default function ViewOrder () {
+export default function ViewOrder (props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,7 +18,9 @@ export default function ViewOrder () {
           <Modal.Title>Thông tin đơn hàng</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ConfirmForm/>
+          
+          <ConfirmForm orderId={props.orderId}/>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>

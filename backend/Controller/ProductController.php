@@ -50,11 +50,11 @@
         if(isAdmin()){
             if(isset($_POST['rq'])){//rq=add, data=json
                 if($_POST['rq'] == 'add' && isset($_POST['data'])){
-                    $arr=json_decode($_POST['data']);
+                    $arr=json_decode($_POST['data'],true);
                     echo $productModel->addProduct($arr);
                 }
                 else if($_POST['rq'] == 'update' && isset($_POST['data'])){
-                    $arr=json_decode($_POST['data']);
+                    $arr=json_decode($_POST['data'],true);
                     echo $productModel->updateProduct($arr);
                 }
 
