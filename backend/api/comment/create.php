@@ -27,7 +27,8 @@
     die('Invalid comment type');
   }
 
-  $comment->accId = isset($_POST['accId']) ? $_POST['accId'] : die('Invalid id');
+  $comment->accId = isset($_POST['accId']) ? $_POST['accId'] : die('Invalid account');
+  $comment->content = isset($_POST['content']) ? $_POST['content'] : die('Invalid content');
   // $comment->accId = $_POST['accId'] + 1 - 1;
   // $comment->productId = $_POST['productId'];
   // $comment->newsId = $_POST['newsId'];

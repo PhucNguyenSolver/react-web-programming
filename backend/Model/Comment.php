@@ -79,9 +79,15 @@
     public function create()
     {
       // Create query
-      $query = 'INSERT INTO ' . $this->table . ' (accId, productId, newsId, content)
-      VALUES (?, ?, ?)';
-      echo json_encode($this->accId);
+      $query = "";
+      if ($this->type == "news") {
+        $query = 'INSERT INTO ' . $this->table . ' (accId, newsId, content)
+        VALUES (?, ?, ?)';
+      } elseif ($this->type == "product") {
+        $query = 'INSERT INTO ' . $this->table . ' (accId, productId, content)
+        VALUES (?, ?, ?)';
+      } else die('Invalid type');
+
       // Prepare statement
       $stmt = $this->conn->prepare($query) or die('96 in model');
 
@@ -92,12 +98,19 @@
       $this->content = htmlspecialchars(strip_tags($this->content));
 
       // Bind data // TODO
-      $stmt->bind_param('iiis',
-        $this->accId,
-        $this->productId,
-        $this->newsId,
-        $this->content,
-      );
+      if ($this->type == "news") {
+        $stmt->bind_param('iis',
+          $this->accId,
+          $this->newsId,
+          $this->content,
+        );
+      } elseif ($this->type == "product") {
+        $stmt->bind_param('iis',
+          $this->accId,
+          $this->productId,
+          $this->content,
+        );
+      }
       
       // Execute query
       if ($stmt->execute()) {

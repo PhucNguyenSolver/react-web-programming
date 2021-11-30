@@ -8,7 +8,7 @@ import { CommentService } from '../../services/CommentService';
 
 export default function Comment({newsId, productId}) {
   
-  const {user} = useContext(AppContext);
+  const {user, isAdmin} = useContext(AppContext);
   user.avaUrl = user.imgUrl;
   const currentUser = user;
   
@@ -36,8 +36,13 @@ export default function Comment({newsId, productId}) {
 
   // TODO: handle in Controller
   const handleInsertComment = (content) => {
-    console.log(currentUser.name);
-    console.log('[DB] Submit comment #' + content);
+    if (user?.id) {
+      CommentService.createComment(user.id, content, newsId || null, productId || null);
+    } else {
+      alert('Quí khách hàng vui lòng đăng nhập');
+    }
+    // console.log(currentUser.name);
+    // console.log('[DB] Submit comment #' + content);
   };
   const handleUpdateComment = (victimId, newContent) => { 
     console.log('[DB] update comment #' + victimId + ' by ' + newContent);

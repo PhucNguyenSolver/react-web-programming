@@ -38,14 +38,17 @@ export const CommentService = {
     return res;
   },
     
-  createComment: async (title, imgUrl, uid) => {
+  createComment: async (accId, content, newsId, productId) => {
     const url = `http://localhost/api/comment/create.php`;
     
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('imgUrl', imgUrl);
-    formData.append('admId', uid);
-    // formData.append('timeStamp', timestamp);
+    formData.append('accId', accId);
+    formData.append('content', content);
+    if (newsId) {
+      formData.append('newsId', newsId);
+    } else if (productId) {
+      formData.append('productId', productId);
+    } else alert('no id given');
     
     fetch(url, { method: 'POST', body: formData })
     .then(function (response) {
