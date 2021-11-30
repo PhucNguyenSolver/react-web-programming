@@ -16,6 +16,7 @@ import OrderCustomer from "./Components/OrderCustomer";
 import SignUp from './Components/SignUp/index.js';
 import SignIn from './Components/SignIn/index.js';
 import Forgot from './Components/Forgot/index.js';
+import Search from './Components/Utils/Search';
 import { Redirect } from 'react-router'
 import $ from 'jquery';
 import Cookies from 'js-cookie';
@@ -131,8 +132,8 @@ export default function App() {
         <RenderRoute path="/sign-up" component={SignUp}/>
         <RenderRoute path="/forgot" component={Forgot}/>
         <RenderRoute path="/intro" component={Intro}/>
-
         <RenderRoute path="/" component={Homepage}/>
+        <RenderRoute path="/search/:name" component={Search} />
       </Switch>
     </Router>
     <Footer/>

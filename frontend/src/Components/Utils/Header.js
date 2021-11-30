@@ -3,6 +3,7 @@ import * as Cookies from 'js-cookie';
 import EditAccount from '../ChangeAccount/EditAccount';
 import * as Icon from 'react-bootstrap-icons';
 import {Button} from 'react-bootstrap';
+import { useState } from 'react';
 
 var isAdmin = Cookies.get('isAdmin');
 var isLogin = Cookies.get('id');
@@ -79,6 +80,8 @@ export default function Header() {
 
   })
 
+  const [searchItem, setSearchItem] = useState('');
+
   return (<>
 
 
@@ -99,7 +102,7 @@ export default function Header() {
           </ul>
 
           <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-            <input type="search" className="form-control form-control-dark" placeholder="Tìm kiếm..." aria-label="Search" />
+            <input type="search" className="form-control form-control-dark" placeholder="Tìm kiếm..." aria-label="Search"  onChange={(event) => {setSearchItem(event.target.value)}} />
           </form>
 
           <div className="text-end">
