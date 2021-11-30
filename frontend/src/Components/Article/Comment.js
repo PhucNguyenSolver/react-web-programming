@@ -7,20 +7,27 @@ import { CommentService } from '../../services/CommentService';
 
 
 export default function Comment({newsId, productId}) {
-  
   const {user, isAdmin} = useContext(AppContext);
   user.avaUrl = user.imgUrl;
   const currentUser = user;
+
+  const [toggle, setToggle] = useState(true);
+  const reload = () => { setToggle(!toggle); }
+
+  const [collapse, setCollapse] = useState(true);
+  const editable = (acomment) => (currentUser.id === acomment.userId || isAdmin);
+
   
   const [commentItems, setCommentItems] = useState([]);
   // TODO: load data from database
   console.log('Hello all Comment: ' + newsId); 
   
   useEffect(() => {
+    console.log("load comment ... ");
     CommentService.getCommentById(newsId, productId)
       .then(res => { setCommentItems(res) })
       // .then(res => { console.log(res); })
-  }, []);
+  }, [toggle]);
 
   // Done load data from database
 
@@ -37,7 +44,10 @@ export default function Comment({newsId, productId}) {
   // TODO: handle in Controller
   const handleInsertComment = (content) => {
     if (user?.id) {
-      CommentService.createComment(user.id, content, newsId || null, productId || null);
+      CommentService.createComment(user.id, content, newsId || null, productId || null)
+        .then (res => {
+          reload();
+        });
     } else {
       alert('Quí khách hàng vui lòng đăng nhập');
     }
@@ -46,9 +56,17 @@ export default function Comment({newsId, productId}) {
   };
   const handleUpdateComment = (victimId, newContent) => { 
     console.log('[DB] update comment #' + victimId + ' by ' + newContent);
+    CommentService.update(victimId, newContent)
+      .then (res => {
+        reload();
+      });
   }
   const handleDeleteComment = (victimId) => {
     console.log('DB: Delete comment #' + victimId);
+    CommentService.delete(victimId)
+      .then (res => {
+        reload();
+      });
   };
 
 
@@ -57,8 +75,6 @@ export default function Comment({newsId, productId}) {
 
 
 const ShyComment = () => {
-  const [collapse, setCollapse] = useState(true);
-  const editable = (acomment) => (currentUser.id === acomment.userId);
   return (<>
     <div className="comment mb-4">
       <Button className={(commentItems.length == 0) ? 'd-none' : null}

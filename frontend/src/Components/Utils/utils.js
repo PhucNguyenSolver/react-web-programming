@@ -23,6 +23,6 @@ export const timeSince = (date) => {
   if (interval > 1) {
     return Math.floor(interval) + " phút trước";
   }
-  return Math.floor(seconds) + " giây trước";
-  // return "Vài giây trước";
+  return "Vài giây trước";
+  // return Math.floor(seconds) + " giây trước";
 }

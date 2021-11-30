@@ -75,19 +75,34 @@ export const CommentService = {
   //   });
   // },
 
-  // delete: async (commentId) => {
-  //   const url = `http://localhost/api/comment/delete.php`;
+  delete: async (cmtId) => {
+    const url = `http://localhost/api/comment/delete.php`;
     
-  //   const formData = new FormData();
-  //   formData.append('commentId', commentId);
-  //   // formData.append('timeStamp', timestamp);
-  //   console.log('delete ' + commentId);
-  //   fetch(url, { method: 'POST', body: formData })
-  //   .then(function (response) {
-  //     return response.text();
-  //   })
-  //   .then(function (body) {
-  //     console.log(body);
-  //   });
-  // },
+    const formData = new FormData();
+    formData.append('cmtId', cmtId);
+    
+    fetch(url, { method: 'POST', body: formData })
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (body) {
+      console.log(body);
+    });
+  },
+
+  update: async (cmtId, content) => {
+    const url = `http://localhost/api/comment/update.php`;
+    
+    const formData = new FormData();
+    formData.append('cmtId', cmtId);
+    formData.append('content', content);
+    
+    fetch(url, { method: 'POST', body: formData })
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (body) {
+      console.log(body);
+    });
+  },
 }
