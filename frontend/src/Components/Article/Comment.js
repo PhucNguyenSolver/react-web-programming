@@ -6,13 +6,13 @@ import { AppContext } from '../../context/AppProvider';
 import { CommentService } from '../../services/CommentService';
 
 
-export default function Comment({newsId, productId}) {
+export default function Comment({newsId, productId, onReload}) {
   const {user, isAdmin} = useContext(AppContext);
   user.avaUrl = user.imgUrl;
   const currentUser = user;
 
   const [toggle, setToggle] = useState(true);
-  const reload = () => { setToggle(!toggle); }
+  const reload = () => { setToggle(!toggle); onReload(); }
 
   const [collapse, setCollapse] = useState(true);
   const editable = (acomment) => (currentUser.id === acomment.userId || isAdmin);
@@ -20,7 +20,7 @@ export default function Comment({newsId, productId}) {
   
   const [commentItems, setCommentItems] = useState([]);
   // TODO: load data from database
-  console.log('Hello all Comment: ' + newsId); 
+  console.log('Hello all Comment: ' + (newsId || productId) ); 
   
   useEffect(() => {
     console.log("load comment ... ");

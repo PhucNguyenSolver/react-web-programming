@@ -23,6 +23,8 @@ export default function ProductInfo() {
   const [images, setImages] = useState([]);
   const [curImgId, setCurImgId] = useState();
 
+  const [toggle, setToggle] = useState(true);
+  const reload = () => { setToggle(!toggle); };
   useEffect(() => {
     axios.get("/Controller/ProductController.php/?id=" + productId)
     .then(res => {
@@ -231,7 +233,7 @@ export default function ProductInfo() {
 
     <div class="container">
       <div class="col-lg-8">
-          <Comment productId={productId}/> 
+          <Comment productId={productId} onReload={reload}/> 
       </div>
     </div>
   </>
