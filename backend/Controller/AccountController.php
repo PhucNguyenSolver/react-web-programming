@@ -1,5 +1,8 @@
 <?php
-    include_once '../Model/AccountModel.php';
+
+use GuzzleHttp\Cookie\SetCookie;
+
+include_once '../Model/AccountModel.php';
     include '../Lib/Function.php';
     // header("Content-Type: application/json; charset=UTF-8");
     
@@ -16,7 +19,13 @@
                     }
                     else{
                         echo "{error: 'Chưa đăng nhập'}";
-                        session_destroy();//giả cookie
+                        setcookie('PHPSESSID', '', time() - 3600, '/');
+                        setcookie('id', '', time() - 3600, '/');
+                        setcookie('email', '', time() - 3600, '/');
+                        setcookie('isAdmin', '', time() - 3600, '/');
+                        alert($_SESSION['email']." đã đăng xuất!");
+                        session_unset();
+                        session_destroy();
                     }
                     
                 }
@@ -26,7 +35,13 @@
                     }
                     else{
                         echo "{error: '403 forbidden'}";
-                        session_destroy();//giả cookie
+                        setcookie('PHPSESSID', '', time() - 3600, '/');
+                        setcookie('id', '', time() - 3600, '/');
+                        setcookie('email', '', time() - 3600, '/');
+                        setcookie('isAdmin', '', time() - 3600, '/');
+                        alert($_SESSION['email']." đã đăng xuất!");
+                        session_unset();
+                        session_destroy();
                     }
                 }
                 else{
@@ -42,7 +57,13 @@
                     }
                     else{
                         echo "{error: '403 forbidden'}";
-                        session_destroy();//giả cookie
+                        setcookie('PHPSESSID', '', time() - 3600, '/');
+                        setcookie('id', '', time() - 3600, '/');
+                        setcookie('email', '', time() - 3600, '/');
+                        setcookie('isAdmin', '', time() - 3600, '/');
+                        alert($_SESSION['email']." đã đăng xuất!");
+                        session_unset();
+                        session_destroy();
                     }
                 }
                 else{
@@ -69,7 +90,13 @@
                 }
                 else{
                     echo "{error: 'Chưa đăng nhập'}";
-                    session_destroy();//giả cookie
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
             
@@ -91,7 +118,13 @@
                 }
                 else{
                     echo "{error: '403 forbidden'}";
-                    session_destroy();//giả cookie
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }          
             }
             
