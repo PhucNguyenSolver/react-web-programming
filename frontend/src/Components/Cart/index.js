@@ -1,8 +1,27 @@
 import React, {useState} from 'react';
 import * as Icon from 'react-bootstrap-icons';
-import {Button} from 'react-bootstrap';
+import {Button,FormControl} from 'react-bootstrap';
+import $ from 'jquery';
+import Cookies from 'js-cookie';
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+var isLogin = Cookies.get('id');
+var isAdmin = Cookies.get('isAdmin');
+
+if(isLogin){
+  isLogin = true;
+}
+else{
+  isLogin = false;
+}
+
+if(isAdmin==="0"){
+  isAdmin = false;
+}
+if(isAdmin==="1"){
+  isAdmin = true;
 }
 
 export default function Cart() {
@@ -73,12 +92,42 @@ export default function Cart() {
   }
 
   const totalPrice = cart.reduce((a,c) => a + c.product.price*c.quantity, 0);
-
-
   
-
   const handleOrder = () => {
-    alert(cart[0].product.id);
+    if (isLogin) {
+      var array={
+        "note":document.getElementById('note').value,
+        "list":[]
+      }
+      cart.forEach(item => {
+        array.list.push({
+          productId: item.product.id,
+          quantity: item.quantity
+        })
+      })
+      var json = JSON.stringify(array);
+      //ajax post
+      $.ajax({
+        url: "/Controller/OrderController.php",
+        type: "POST",
+        data: {rq: "make", data: json},
+        success: function (data) {
+          if(data==="OK"){
+            alert("Đặt hàng thành công");
+            localStorage.removeItem("cart");
+            window.location.reload();
+          }
+            
+          else
+            alert("Sản phẩm " + data + " không đủ số lượng");
+        }
+      }).fail(function (data) {
+        alert("Đặt hàng thất bại!");
+      });
+    }
+
+    else
+      window.location.href = "/sign-in";
   }
 
   return (
@@ -139,6 +188,9 @@ export default function Cart() {
             
         </div>
       <h5 class="text-center">Tổng tiền {numberWithCommas(totalPrice)} VNĐ</h5>
+      <div class="row justify-content">
+      <FormControl as="textarea" style={{width:"30%"}} placeholder="Ghi chú" id="note" />
+      </div>
       <div class="row justify-content-end">
         <Button variant="warning" style={{"width":"10%"}} onClick={handleOrder}>Đặt hàng</Button>
       </div>
