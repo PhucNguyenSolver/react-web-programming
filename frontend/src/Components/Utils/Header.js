@@ -103,8 +103,8 @@ export default function Header() {
           </form>
 
           <div className="text-end">
-            <LogBtn></LogBtn>
-            <EditAccount></EditAccount>
+            <LogBtn></LogBtn>{' '}
+            <EditAccount></EditAccount>{' '}
             <CartBtn/> 
           </div>
         </div>

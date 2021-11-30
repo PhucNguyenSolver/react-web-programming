@@ -1,8 +1,5 @@
 import {useState} from 'react';
-
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+import { numberWithCommas } from './utils';
 
 function newCost(oldCost, discount) {
   return oldCost*(1-discount/100);

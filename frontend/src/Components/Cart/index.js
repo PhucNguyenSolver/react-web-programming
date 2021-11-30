@@ -3,9 +3,7 @@ import * as Icon from 'react-bootstrap-icons';
 import {Button,FormControl} from 'react-bootstrap';
 import $ from 'jquery';
 import Cookies from 'js-cookie';
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+import { numberWithCommas } from '../Utils/utils';
 
 var isLogin = Cookies.get('id');
 var isAdmin = Cookies.get('isAdmin');
@@ -131,11 +129,12 @@ export default function Cart() {
   }
 
   return (
-    <div class="container" style={{"minHeight":"700px"}}>
-      <h3 class="text-center">Giỏ hàng</h3>
-      <div class="row border-bottom border-3 justify-content-center">
+    // <div class="container" style={{"minHeight":"700px"}}>
+    <div class="container my-4"> 
+      <h3 class="text-center text-primary mb-4">Giỏ hàng</h3>
+      <div class="row border-bottom border-3 justify-content-center text-primary fw-bold">
         <div class="col-md-2 col-sm-2 col-2">
-          <p class="text-center">Sản phẩm</p>
+          <p class="text-center">Hình ảnh</p>
         </div>
         <div class="col-md-3 col-sm-3 col-3">
           <p class="text-center">Tên sản phẩm</p>
@@ -150,12 +149,12 @@ export default function Cart() {
           <p class="text-center">Thành tiền</p>
         </div>
         <div class="col-md-1 col-sm-1 col-1">
-          <p class="text-center">Xóa</p>
+          <p class="text-center"></p>
         </div>
       </div>
 
       {/* Cart Item */}
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mb-4 d-flex align-items-center">
             {cart.map((item) => {
                 let product = item.product;
                 return (
@@ -164,35 +163,50 @@ export default function Cart() {
                             <img src={product.img} alt={product.name} class="img-fluid"/>
                         </div>
                         <div class="col-md-3 align-self-center col-3 col-sm-3">
-                            <p class="text-center"> {product.name}</p>
+                          <a href={`/product-info/${product.id}`} style={{textDecoration: 'none'}}>
+                            <p class="text-center text-primary"> {product.name}</p>
+                          </a>
                         </div>
                         <div class="col-md-2 align-self-center col-2 col-sm-2">
-                            <p class="text-center">{numberWithCommas(product.price)}</p>
+                            <p class="text-center fw-bold my-0">{numberWithCommas(product.price) + ' VNĐ'}</p>
                         </div>
                         <div class="col-md-2 align-self-center col-2 col-sm-2">
-                            <div class="input-group col">
-                                <button class="btn btn-primary" onClick={() => handleDecrement(product.id)}>-</button>
-                                <div class="form-control text-center">{item.quantity}</div>
-                                <button class="btn btn-primary" onClick={() => handleIncrement(product.id)}>+</button>
+                            <div class="input-group col d-flex justify-content-center">
+                                <button class="btn btn-primary rounded fw-bold my-0 me-1" onClick={() => handleDecrement(product.id)}>-</button>
+                                <div class="form-control text-center rounded me-1">{item.quantity}</div>
+                                <button class="btn btn-primary rounded fw-bold" onClick={() => handleIncrement(product.id)}>+</button>
                             </div>
                         </div>
                         <div class="col-md-2 align-self-center col-2 col-sm-2">
-                            <p class="text-center">{numberWithCommas(product.price * item.quantity)}</p>
+                            <p class="text-center fw-bold my-0">{numberWithCommas(product.price * item.quantity)}</p>
                         </div>
-                        <div class="col-md-1 align-self-center col-1 col-sm-1 border">
-                        <Button variant="danger" onClick={()=> removeItem(product.id)}><Icon.Trash></Icon.Trash></Button> 
+                        <div class="col-md-1 align-self-center col-1 col-sm-1">
+                        <Button variant="dark" onClick={()=> removeItem(product.id)}>
+                          <Icon.Trash></Icon.Trash>
+                        </Button> 
                         </div>
                     </div>
                 );
             })}
             
         </div>
-      <h5 class="text-center">Tổng tiền {numberWithCommas(totalPrice)} VNĐ</h5>
-      <div class="row justify-content">
-      <FormControl as="textarea" style={{width:"30%"}} placeholder="Ghi chú" id="note" />
-      </div>
-      <div class="row justify-content-end">
-        <Button variant="warning" style={{"width":"10%",marginBottom:"50px"}} onClick={handleOrder}>Đặt hàng</Button>
+      <div className="row">
+        <div className="col-12 col-md-6">
+          <div>
+            <div class="col justify-content mb-1">
+              <FormControl as="textarea" placeholder="Ghi chú" id="note" />
+            </div>
+            <div class="col justify-content-end">
+              <Button variant="primary" onClick={handleOrder}>Đặt hàng</Button>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6">
+          <div className="col d-flex justify-content-evenly">
+            <h5>Tổng tiền: </h5>
+            <h5 class="text-center text-primary">{numberWithCommas(totalPrice)} VNĐ</h5>
+          </div>
+        </div>
       </div>
       
     </div>
