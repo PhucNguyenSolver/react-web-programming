@@ -54,7 +54,7 @@ if(isAdmin==="1"){
 
 
 function RenderRoute(props){
-  if(isAdmin){//ad vào dc mọi trag trừ trang login và signup và forgot
+  if(isAdmin){//ad vào dc mọi trag trừ trang login và signup và forgot và cart
     if(props.path==="/sign-up"){
       return <Redirect to="/"/>
     }
@@ -62,6 +62,9 @@ function RenderRoute(props){
       return <Redirect to="/"/>
     }
     if(props.path==="/forgot"){
+      return <Redirect to="/"/>
+    }
+    if(props.path==="/cart"){
       return <Redirect to="/"/>
     }
     else{

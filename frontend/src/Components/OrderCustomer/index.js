@@ -1,9 +1,53 @@
 import ViewOrder from "./viewOrder";
+import { useState, useEffect } from "react";
+import $ from "jquery";
+
+function GuestOrderRow(props){
+  const [order, setOrder] = useState(false);
+  
+  useEffect(() => {
+    setOrder(props);
+  },[props]);
+
+  return <>
+    <tr>
+      <th scope="row" style={{textAlign: 'center'}}>{order.orderId}</th>
+      <th scope="row" style={{textAlign: 'center'}}>{order.timeStamp}</th>
+      <td style={{textAlign: 'center'}}>{order.status}</td>
+      <td><ViewOrder orderId = {order.orderId}/></td>
+    </tr>
+  </>;
+}
 
 export default function OrderCustomer(){
+  
+  const [list, setList] = useState([]);
 
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // document.title = "Thông tin Tài khoản";
+  useEffect(() => {
+    $.ajax({
+      url: 'Controller/OrderController.php',
+      type: 'GET',
+      data: {rq:'userall'},
+      dataType: 'text',
+      success: function(data){
+        data = JSON.parse(data);     
+        let lst = data.map((item, index) => {
+          if (item.status==="1")
+            item.status = "Đã đặt";
+          else if (item.status==="2")
+            item.status = "Đang giao";
+          else if (item.status==="3")
+            item.status = "Đã giao";
+          else if (item.status==="4")
+            item.status = "Đã hủy";
+          return <GuestOrderRow orderId={item.orderId} timeStamp={item.timeStamp} status={item.status}/>
+        })
+        setList(lst);
+      }
+    })
+  } , []);
+
+
   return (
     <>
     <div className="container" style={{marginTop: '0.5%'}}>
@@ -19,33 +63,7 @@ export default function OrderCustomer(){
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>1</th>
-                <th scope="row" style={{textAlign: 'center'}}>15/07/2021</th>
-                <td style={{textAlign: 'center'}}>Đã đặt</td>
-                <td><ViewOrder/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>2</th>
-                <th scope="row" style={{textAlign: 'center'}}>20/08/2021</th>
-                <td style={{textAlign: 'center'}}>Đang giao</td>
-                <td><ViewOrder/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>3</th>
-                <th scope="row" style={{textAlign: 'center'}}>01/11/2021</th>
-                <td style={{textAlign: 'center'}}>Đã giao</td>
-                <td><ViewOrder/></td>
-              </tr>
-
-              <tr>
-                <th scope="row" style={{textAlign: 'center'}}>4</th>
-                <th scope="row" style={{textAlign: 'center'}}>15/11/2021</th>
-                <td style={{textAlign: 'center'}}>Đã hủy</td>
-                <td><ViewOrder/></td>
-              </tr>
+              {list}
 
             </tbody>
           </table>

@@ -3,18 +3,19 @@ import { useState, useEffect } from "react";
 import $ from "jquery";
 
 function OrderRow(props) {
-  const [order, setOrder] = useState();
+  const [order, setOrder] = useState(false);
   
   useEffect(() => {
     setOrder(props);
-  },[]);
+  },[props]);
+
   return <>
     <tr>
       <th scope="row" style={{textAlign: 'center'}}>{order.orderId}</th>
-      <th scope="row" style={{textAlign: 'center'}}>{order.accId}</th>
+      <th scope="row" style={{textAlign: 'center'}}>{order.userId}</th>
       <td>{order.name}</td>
       <td style={{textAlign: 'center'}}>{order.status}</td>
-      <td><ViewOrder/>id = {order.orderid}</td>
+      <td><ViewOrder orderId = {order.orderId}/></td>
     </tr>
   </>
 }
@@ -32,14 +33,18 @@ export default function Order(){
       dataType: 'text',
       success: function(data){
         data = JSON.parse(data);     
-        let list = data.map((item, index) => {
+        let lst = data.map((item, index) => {
           if (item.status==="1")
             item.status = "Đã đặt";
-          else if (item.isAdmin==="0")
-            item.isAdmin = "Khách hàng";
-          return <OrderRow id={item.accId} name={item.name} role={item.isAdmin}/>
+          else if (item.status==="2")
+            item.status = "Đang giao";
+          else if (item.status==="3")
+            item.status = "Đã giao";
+          else if (item.status==="4")
+            item.status = "Đã hủy";
+          return <OrderRow orderId={item.orderId} userId={item.userId} name={item.name} status={item.status}/>
         })
-        setList(list);
+        setList(lst);
       }
     })
   } , []);
