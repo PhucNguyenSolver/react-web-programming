@@ -63,6 +63,24 @@
 
         }
 
+        public function getTopByManu($orderBy,$a,$b,$ascOrDesc="ASC",$manu){
+            //ascOrDesc = ASC or DESC
+            //orderBy điền tên theo cột muốn sắp xếp
+            $sql = 
+            "SELECT * 
+            FROM product
+            WHERE manu = '$manu'
+            ORDER BY $orderBy $ascOrDesc LIMIT $a,$b";
+            //return json
+            $result = connect()->query($sql);
+            $data = array();
+            while($row = $result->fetch_assoc()){
+                $data[] = $row;
+            }
+            return json_encode($data);
+
+        }
+
         //trang thông tin sản phẩm
         //dành cho trang product-info
         //lấy thông tin sản phẩm theo id

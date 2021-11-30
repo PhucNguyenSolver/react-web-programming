@@ -15,7 +15,7 @@ export default function Footer() { // TODO: add footer
 							</ul>
 						</p>
 					</div>
-					<div class="col-12 col-md-6     hya4`">
+					<div class="col-12 col-md-6">
 						<div class="row d-flex justify-content-between">
 							{/* <div class="col-md-6"> */}
 							<div class="col-6 col-md-auto">

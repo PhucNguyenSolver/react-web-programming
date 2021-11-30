@@ -33,7 +33,10 @@
             } 
         }
         else if(isset($_GET['orderby'])){//?orderby=newCost&a=0$b=15&asc=desc
-            if(isset($_GET['a']) && isset($_GET['b']) && isset($_GET['asc'])){
+            if(isset($_GET['a']) && isset($_GET['b']) && isset($_GET['asc']) && isset($_GET['manu'])){ //?orderby=newCost&a=0$b=15&asc=desc&groupby=manu //Sắp xếp theo hãng
+                echo $productModel->getTopByManu($_GET['orderby'], $_GET['a'], $_GET['b'], $_GET['asc'], $_GET['manu']);
+            }
+            else if(isset($_GET['a']) && isset($_GET['b']) && isset($_GET['asc'])){
                 echo $productModel->getTopBy($_GET['orderby'], $_GET['a'], $_GET['b'], $_GET['asc']);
             }
             else{
