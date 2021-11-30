@@ -12,7 +12,7 @@ export default function Comment({newsId, productId, onReload}) {
   const currentUser = user;
 
   const [toggle, setToggle] = useState(true);
-  const reload = () => { setToggle(!toggle); onReload(); }
+  const reload = () => { setToggle(!toggle); (onReload != undefined) && onReload(); }
 
   const [collapse, setCollapse] = useState(true);
   const editable = (acomment) => (currentUser.id === acomment.userId || isAdmin);
