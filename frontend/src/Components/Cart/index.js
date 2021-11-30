@@ -192,7 +192,7 @@ export default function Cart() {
       <FormControl as="textarea" style={{width:"30%"}} placeholder="Ghi chú" id="note" />
       </div>
       <div class="row justify-content-end">
-        <Button variant="warning" style={{"width":"10%"}} onClick={handleOrder}>Đặt hàng</Button>
+        <Button variant="warning" style={{"width":"10%",marginBottom:"50px"}} onClick={handleOrder}>Đặt hàng</Button>
       </div>
       
     </div>

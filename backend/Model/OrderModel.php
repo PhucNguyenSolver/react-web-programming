@@ -22,7 +22,7 @@
         //get order by id
         public function getOrderById($id){//admin làm, bấm nút xem đơn hàng, khách cũng dc
             $conn = connect();
-            $query = "SELECT * FROM `orders` WHERE orderId = '$id'";
+            $query = "SELECT orders.*,user.name FROM `orders`,user WHERE orderId = '$id' AND orders.userId=user.userId";
             $result = $conn->query($query);
             $order = $result->fetch_assoc();
 
@@ -76,7 +76,7 @@
         //get order by userId and orderId
         public function getOrderByUserIdAndOrderId($userId, $orderId){//khách xem hàng mình
             $conn = connect();
-            $query = "SELECT * FROM `orders` where userId='$userId' and orderId='$orderId'";
+            $query = "SELECT orders.*,user.name FROM `orders`,user where orders.userId='$userId' and orderId='$orderId' and orders.userId=user.userId";
             $result = $conn->query($query);
             $order = $result->fetch_assoc();
 
@@ -122,6 +122,25 @@
             return "OK";
             
         }
+
+        //can order by userId and orderId
+        public function canOrderByUserIdAndOrderId($userId, $orderId){//khách làm
+            $conn = connect();
+            //take status of order
+            $query = "SELECT status FROM `orders` WHERE orderId = '$orderId'";
+            $result = $conn->query($query);
+            $status = $result->fetch_assoc();
+            //if status = 2 or 3 or 4, can't delete
+            if($status['status'] == 2 || $status['status'] == 3 || $status['status'] == 4){
+                return "cantcancel";
+            }
+            //update status to 4
+            $query = "UPDATE `orders` SET `status` = '4' WHERE `orderId` = '$orderId' AND `userId` = '$userId'";
+            $result = $conn->query($query);
+            return "OK";
+        }
+
+        
 
     }
 ?>

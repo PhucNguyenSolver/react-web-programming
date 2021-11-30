@@ -73,8 +73,8 @@
             }
         }
         else{
-            http_response_code(403);
             echo '403 forbidden';
+            session_destroy();//giả cookie
         }
         
     }
