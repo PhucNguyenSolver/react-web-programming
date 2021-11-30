@@ -4,36 +4,35 @@ import { TrashFill, PencilSquare } from 'react-bootstrap-icons';
 import { timeSince } from '../Utils/utils';
 import { AppContext } from '../../context/AppProvider';
 import { CommentService } from '../../services/CommentService';
-import { useParams } from 'react-router-dom';
 
 
-export default function Comment() {
+export default function Comment({newsId, productId}) {
   
-  const {id: newsId} = useParams();
   const {user} = useContext(AppContext);
   user.avaUrl = user.imgUrl;
   const currentUser = user;
   
+  const [commentItems, setCommentItems] = useState([]);
   // TODO: load data from database
   console.log('Hello all Comment: ' + newsId); 
   
   useEffect(() => {
-    CommentService.getCommentById(newsId)
-      .then(res => { console.log(res); })
-    
+    CommentService.getCommentById(newsId, productId)
+      .then(res => { setCommentItems(res) })
+      // .then(res => { console.log(res); })
   }, []);
 
   // Done load data from database
 
 
-const commentItems = [ // TODO: load data from API
-  { id: 1, userId: 113, content: 'hello', timestamp: "Fri Nov 05 2021 15:00:33 GMT+0700 (Indochina Time)", 
-  name: 'Sa', avaUrl : 'https://picsum.photos/200' },
-  { id: 2, userId: 113, content: 'another hello', timestamp: "Fri Nov 05 2021 15:00:33 GMT+0700 (Indochina Time)", 
-  name: 'Sa', avaUrl : 'https://picsum.photos/200' },
-  { id: 3, userId: 911, content: 'Who are you ?', timestamp: "Fri Nov 12 2021 15:00:33 GMT+0700 (Indochina Time)", 
-  name: 'Nguyễn Hữu Phúc', avaUrl : 'https://picsum.photos/300' },
-];
+// const commentItems = [ // TODO: load data from API
+//   { id: 1, userId: 113, content: 'hello', timestamp: "Fri Nov 05 2021 15:00:33 GMT+0700 (Indochina Time)", 
+//   name: 'Sa', avaUrl : 'https://picsum.photos/200' },
+//   { id: 2, userId: 113, content: 'another hello', timestamp: "Fri Nov 05 2021 15:00:33 GMT+0700 (Indochina Time)", 
+//   name: 'Sa', avaUrl : 'https://picsum.photos/200' },
+//   { id: 3, userId: 911, content: 'Who are you ?', timestamp: "Fri Nov 12 2021 15:00:33 GMT+0700 (Indochina Time)", 
+//   name: 'Nguyễn Hữu Phúc', avaUrl : 'https://picsum.photos/300' },
+// ];
 
   // TODO: handle in Controller
   const handleInsertComment = (content) => {

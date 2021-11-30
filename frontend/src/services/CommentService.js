@@ -18,19 +18,24 @@ export const CommentService = {
     }
     let res = await fetch(url);
     res = await res.json();
-    console.log(res);
-    // const {author, title, timeStamp: timestamp, imgUrl, content} = res;
-    const result = {};
-    //   id: id,
-    //   title: title,
-    //   imgUrl: imgUrl,
-    //   timestamp: timestamp?.slice(0, 10),
-    //   author: author,
-    //   tags: [],
-    //   content: JSON.stringify(content),
-    // };
-    // console.log(result);
-    return result;
+    // console.log(res);
+
+    if (!res.length) return [];
+
+    res = res.map((row) => {
+      const {cmtId, accId, userName, avatar, content, timeStamp} = row;
+      const result = {
+        id: cmtId,
+        userId: accId,
+        content: content,
+        timestamp: timeStamp,
+        name: userName,
+        avaUrl: avatar,
+      };
+      return result;
+    }) || [];
+    // console.log(res);
+    return res;
   },
     
   createComment: async (title, imgUrl, uid) => {

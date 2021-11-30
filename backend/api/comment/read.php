@@ -42,6 +42,8 @@
         'timeStamp' => $comment->timeStamp,
         'content' => $comment->content,
         'productId' => $comment->productId,
+        'userName' => $comment->userName,
+        'avatar' => $comment->avatar,
       );
 
       // Push to "data"

@@ -108,7 +108,7 @@ export default function Article() {
     </div>}
     <Editor draft={draft} setDraft={setDraft} isVisible={inEditorMode}/>
     <Viewer draft={draft} isVisible={!inEditorMode}
-      article={article} relatedArticles={relatedArticles}/>
+      article={article} relatedArticles={relatedArticles} newsId={id}/>
   </>;
 }
 
@@ -138,7 +138,7 @@ const Editor = ({isVisible, draft, setDraft}) => {
   </>);
 }
 
-const Viewer = ({isVisible, draft, article, relatedArticles}) => {
+const Viewer = ({isVisible, draft, article, relatedArticles, newsId}) => {
   if (!isVisible) return null;
 
   const html = stateToHtml(draft);
@@ -160,7 +160,7 @@ const Viewer = ({isVisible, draft, article, relatedArticles}) => {
           </section>
         </article>
         {/* Comments section */}
-        <Comment/>
+        <Comment newsId={newsId}/>
       </div>
       {/* Side widgets */}
       <div class="col-lg-4">

@@ -15,7 +15,9 @@
     public $type; // Either "news" or "product"
     // Joined Properties
     // public $author; // TODO
-
+    public $userName;
+    public $avatar;
+    
     // Constructor with DB
     public function __construct($db)
     {
@@ -29,15 +31,19 @@
       // Create query
       $query = "";
       if ($this->type == "news") {
-        $query = 'SELECT cmtId, accId, newsId, `timeStamp`, content, productId
+        $query = 'SELECT cmtId, a.accId, productId, `timeStamp`, content, newsId, a.userName, a.avatar
           FROM ' . $this->table . '
+          LEFT JOIN `account` a
+          ON ' . $this->table . '.accId = a.accId
           WHERE newsId = ?
           ORDER BY
             `timeStamp` ASC';
       }
       elseif ($this->type == "product") {
-        $query = 'SELECT cmtId, accId, productId, `timeStamp`, content, productId
+        $query = 'SELECT cmtId, a.accId, productId, `timeStamp`, content, newsId, a.userName, a.avatar
           FROM ' . $this->table . '
+          LEFT JOIN `account` a
+          ON ' . $this->table . '.accId = a.accId
           WHERE productId = ?
           ORDER BY
             `timeStamp` ASC';
@@ -45,7 +51,7 @@
       else die("invalid type");
       
       // Prepare statement
-      $stmt = $this->conn->prepare($query);
+      $stmt = $this->conn->prepare($query) or die('54 in model');
       
       if ($this->type == 'news') {
         $stmt->bind_param('i', $this->newsId);
@@ -55,14 +61,16 @@
 
       // Execute query
       $stmt->execute();
-      
+
       $stmt->bind_result(
         $this->cmtId,
         $this->accId,
-        $this->newsId,
+        $this->productId,
         $this->timeStamp,
         $this->content,
-        $this->productId,
+        $this->newsId,
+        $this->userName,
+        $this->avatar,
       );
       return $stmt;
     }

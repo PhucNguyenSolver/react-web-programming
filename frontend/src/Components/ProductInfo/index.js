@@ -5,6 +5,7 @@ import axios  from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Cart } from 'react-bootstrap-icons';
+import Comment from '../Article/Comment';
 
 function numberWithCommas(x) {
   if(x) return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -175,6 +176,7 @@ export default function ProductInfo() {
           </div>
         </div>
       </div>
+      {true ? null :
       <div className="commentPart">
         <div className="container">
           <div className="row">
@@ -223,9 +225,15 @@ export default function ProductInfo() {
           </div>
         </div>
       </div>
+      }
     </div>
     </div>
 
+    <div class="container">
+      <div class="col-lg-8">
+          <Comment productId={productId}/> 
+      </div>
+    </div>
   </>
   
 }
