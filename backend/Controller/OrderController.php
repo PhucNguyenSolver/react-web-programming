@@ -13,6 +13,7 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
+                    session_destroy();//giả cookie admin
                 }
             }
             else if($_GET['rq'] == 'each' && isset($_GET['orderId'])){
@@ -21,6 +22,7 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
+                    session_destroy();//giả cookie admin
                 }
             }
 
@@ -31,6 +33,7 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
+                    session_destroy();//giả cookie admin
                 }
             }
 
@@ -41,6 +44,7 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
+                    session_destroy();//giả cookie admin
                 }
             }
 
@@ -66,6 +70,7 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
+                    session_destroy();//giả cookie
                 }
             }
 
@@ -76,6 +81,7 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
+                    session_destroy();//giả cookie
                 }
             }
 
@@ -88,10 +94,22 @@ include '../Lib/Function.php';
                 }
                 else{
                     echo '403 Forbidden';
+                    session_destroy();//giả cookie
                 }
             }
 
-
+            //cancel order by user
+            else if($_POST['rq'] == 'cancel' && isset($_POST['orderId'])){
+                if(isLogin()){
+                    $id = $_SESSION['id'];
+                    $res = $model->canOrderByUserIdAndOrderId($id, $_POST['orderId']);
+                    echo $res;
+                }
+                else{
+                    echo '403 Forbidden';
+                    session_destroy();//giả cookie
+                }
+            }
             
         }
     }
