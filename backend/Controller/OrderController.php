@@ -13,7 +13,13 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
-                    session_destroy();//giả cookie admin
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
             else if($_GET['rq'] == 'each' && isset($_GET['orderId'])){
@@ -22,7 +28,13 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
-                    session_destroy();//giả cookie admin
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
 
@@ -33,7 +45,13 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
-                    session_destroy();//giả cookie admin
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
 
@@ -44,7 +62,13 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
-                    session_destroy();//giả cookie admin
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
 
@@ -70,7 +94,13 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
-                    session_destroy();//giả cookie
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
 
@@ -81,7 +111,13 @@ include '../Lib/Function.php';
                 }
                 else{//403 forbidden
                     echo '403 Forbidden';
-                    session_destroy();//giả cookie
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
 
@@ -94,7 +130,13 @@ include '../Lib/Function.php';
                 }
                 else{
                     echo '403 Forbidden';
-                    session_destroy();//giả cookie
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
 
@@ -107,7 +149,39 @@ include '../Lib/Function.php';
                 }
                 else{
                     echo '403 Forbidden';
-                    session_destroy();//giả cookie
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
+                }
+            }
+
+            //rating
+            else if($_POST['rq'] == 'rating' && isset($_POST['orderId']) && isset($_POST['productId'])
+            && isset($_POST['ratingContent'])  && isset($_POST['ratingPoint'])){
+                if(isAdmin()){
+                    //admin cannot rate
+                    echo '401 Unauthorized';
+                }
+                else if(isLogin()){
+                    if ($_POST['ratingPoint'] == null){
+                        echo 'mustenterval';
+                        return;
+                    }
+                    echo $model->updateRatingPointByOrderIdAndProductId($_POST['orderId'], $_POST['productId'], $_POST['ratingPoint'], $_POST['ratingContent']);            
+                }
+                else{
+                    echo '403 Forbidden';
+                    setcookie('PHPSESSID', '', time() - 3600, '/');
+                    setcookie('id', '', time() - 3600, '/');
+                    setcookie('email', '', time() - 3600, '/');
+                    setcookie('isAdmin', '', time() - 3600, '/');
+                    alert($_SESSION['email']." đã đăng xuất!");
+                    session_unset();
+                    session_destroy();
                 }
             }
             

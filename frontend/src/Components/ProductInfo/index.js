@@ -6,11 +6,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Cart } from 'react-bootstrap-icons';
 import Comment from '../Article/Comment';
-
-function numberWithCommas(x) {
-  if(x) return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  else return 0;
-}
+import { numberWithCommas } from '../Utils/utils';
 
 function newCost(oldCost, discount) {
   return Math.round(oldCost*(1-discount/100));

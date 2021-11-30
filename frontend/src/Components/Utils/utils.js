@@ -26,3 +26,10 @@ export const timeSince = (date) => {
   return "Vài giây trước";
   // return Math.floor(seconds) + " giây trước";
 }
+
+export function numberWithCommas(floatNumb) {
+  if (floatNumb) {
+    return Math.round(floatNumb).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  };
+  return 0;
+}

@@ -106,7 +106,7 @@ export default function Article() {
         Save
       </button>
     </div>}
-    <Editor draft={draft} setDraft={setDraft} isVisible={inEditorMode}/>
+    <Editor draft={draft} article={article} setDraft={setDraft} isVisible={inEditorMode}/>
     <Viewer draft={draft} isVisible={!inEditorMode}
       article={article} relatedArticles={relatedArticles} newsId={id}/>
   </>;
@@ -116,16 +116,23 @@ const stateToHtml = (_editorState) => {
   return draftToHtml(convertToRaw(_editorState.getCurrentContent()));
 }
 
-const Editor = ({isVisible, draft, setDraft}) => {
+const Editor = ({isVisible, draft, setDraft, article}) => {
   const onStateChange = setDraft;
 
   if (!isVisible) return null;
   return (<>
     <div className="container-fluid container-md p-5 my-5">
-    <div class="container mt-5">
+    <div class="container mt-2">
     <div class="row d-flex justify-content-evenly flex-nowrap">
       <div class="col-lg-8 overflow-hidden">
         {/* Primary column */}
+        <article>
+          <PostHeader {...article}/>
+          {/* Preview image */}
+          <figure class="mb-4">
+            <img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..."/>
+          </figure>
+        </article>
         {/* <Article/> */}
         <section class="mb-5">
           <ControlledEditor draft={draft} onStateChange={onStateChange}/>
