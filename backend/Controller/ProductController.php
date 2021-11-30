@@ -74,7 +74,13 @@
         }
         else{
             echo '403 forbidden';
-            session_destroy();//giả cookie
+            setcookie('PHPSESSID', '', time() - 3600, '/');
+            setcookie('id', '', time() - 3600, '/');
+            setcookie('email', '', time() - 3600, '/');
+            setcookie('isAdmin', '', time() - 3600, '/');
+            alert($_SESSION['email']." đã đăng xuất!");
+            session_unset();
+            session_destroy();
         }
         
     }
