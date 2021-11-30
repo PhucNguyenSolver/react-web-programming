@@ -23,7 +23,7 @@ export default function Products(){
     <div className="container" style={{marginTop: '0.5%'}}>
       <nav className="navbar navbar-expand navbar-dark" aria-label="Second navbar example" style={{marginTop: '0.5%'}}>
         <div className="container-fluid">
-          <a style={{fontSize: '150%', fontWeight: 'bold'}}>Laptop Gaming Asus</a>
+          <a style={{fontSize: '150%', fontWeight: 'bold'}}>Laptop {manu}</a>
         </div>
       </nav>
 

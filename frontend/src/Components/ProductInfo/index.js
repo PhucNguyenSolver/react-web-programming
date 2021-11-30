@@ -10,8 +10,8 @@ function numberWithCommas(x) {
   else return 0;
 }
 
-function newCost(oldCost, discount) {
-  return oldCost*(1-discount/100);
+function exportRating(x) {
+  return x ? (<td>{x}/10</td>) : (<td>Chưa có đánh giá</td>)
 }
 
 export default function ProductInfo() {
@@ -40,7 +40,7 @@ export default function ProductInfo() {
       id: productInfo.productId,
       name: productInfo.name,
       img: productInfo.image1,
-      price: newCost(productInfo.oldCost, productInfo.discount)
+      price: productInfo.newCost
     }
     let item = cart.find(c => c.product.id === product.id);
     if(item) {
@@ -144,16 +144,16 @@ export default function ProductInfo() {
                         </tr>
                         <tr>
                           <td>Giá mới:</td>
-                          <td><span className="newPrice">{numberWithCommas(newCost(productInfo.oldCost,productInfo.discount)) + 'đ'}</span></td>
+                          <td><span className="newPrice">{numberWithCommas(productInfo.newCost) + 'đ'}</span></td>
                         </tr>
                         <tr>
                           <td>Đánh giá:</td>
-                          <td>9.5/10</td>
+                          {exportRating(productInfo.aveRating)}
                         </tr>
                       </tbody>
                     </table>
                     <div className="buttonOrder">
-                      <button className="btn btn-danger" onClick={addToCart}>
+                      <button className="btn btn-primary" onClick={addToCart}>
                         ĐẶT HÀNG
                       </button>
                     </div>

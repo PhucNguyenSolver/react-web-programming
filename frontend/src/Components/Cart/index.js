@@ -91,7 +91,7 @@ export default function Cart() {
     localStorage.setItem('cart', JSON.stringify(newCart));
   }
 
-  const totalPrice = cart.reduce((a,c) => a + c.product.price*c.quantity, 0);
+  const totalPrice = cart ? cart.reduce((a,c) => a + c.product.price*c.quantity, 0) : 0;
   
   const handleOrder = () => {
     if (isLogin) {
