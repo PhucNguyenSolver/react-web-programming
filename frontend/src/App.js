@@ -23,6 +23,7 @@ import Cookies from 'js-cookie';
 import AppProvider from "./context/AppProvider.js";
 import ChangeInfoNews from "./Components/ChangeInfoNews/index.js";
 import Intro from "./Components/Intro";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
