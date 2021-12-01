@@ -113,7 +113,7 @@ export default function Cart() {
           if(data==="OK"){
             alert("Đặt hàng thành công");
             localStorage.removeItem("cart");
-            window.location.reload();
+            window.location.href = "/customer-order";
           }
             
           else
