@@ -17,7 +17,7 @@ git clone https://github.com/PhucNguyenSolver/react-web-programming.git
 # **Bước 2: Thiết lập lại XAMPP**
 Thiết lập lại XAMPP để trỏ documentRoot tới thư mục backend. Sau đó cấu hình mail function trong php.ini.
 
-# **Bước 3: Thiết lập lại XAMPP**
+# **Bước 3: Tạo Schema mylaptop**
 Sử dụng công cụ phpMyAdmin để tạo schema mylaptop và import file mylaptop.sql
 (đính kèm trong thư mục backend)
 
