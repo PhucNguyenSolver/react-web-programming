@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 01, 2021 lúc 02:04 PM
+-- Thời gian đã tạo: Th12 01, 2021 lúc 02:52 PM
 -- Phiên bản máy phục vụ: 10.6.3-MariaDB
 -- Phiên bản PHP: 8.0.8
 
@@ -55,26 +55,6 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Cấu trúc đóng vai cho view `acc`
--- (See below for the actual view)
---
-CREATE TABLE `acc` (
-`accId` int(10) unsigned
-,`userName` varchar(128)
-,`email` varchar(320)
-,`password` varchar(256)
-,`isAdmin` varchar(20)
-,`avatar` varchar(255)
-,`code` varchar(20)
-,`admId` int(10) unsigned
-,`name` varchar(255)
-,`phoneNumber` varchar(255)
-,`address` varchar(255)
-);
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `account`
 --
 
@@ -94,12 +74,12 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`accId`, `userName`, `email`, `password`, `isAdmin`, `avatar`, `code`) VALUES
 (4, 'anlam00', 'admin@gmail.com', 'acc505a1a9d9d3cfd7a9f2cc7237dc77a25aafc74502bcef541a79b3192e9fb3', '1', 'https://i.imgur.com/h8nIsKZ.png', NULL),
-(25, 'Viost1637985471', 'vios.tee97@gmail.com', '238b65dd20e09a48067858a0c303c49b62bc1dd7e8d63ce66909be58c899d812', '0', 'https://lh3.googleusercontent.com/a-/AOh14Gi-zo5p41WDS_VRMpim7R-nia5JfiFA7KkocdhVGw=s96-c', NULL),
 (26, 'Bao_Nguyen_Huu1637985561', 'bao.nguyen.huu@hcmut.edu.vn', '0fe99c91511dfbd377a3aadbc1074c92ded25169d8cfe19e9ef7acb6c080c261', '0', 'https://lh3.googleusercontent.com/a-/AOh14GjrIxUJ5v6m4VF6u_v-ASis7Nfd-yRQw_2rC7YLAw=s96-c', NULL),
 (27, 'Viost1637985922', 'vios.tee979@gmail.com', '82b94b3d127e9e471b1824f6953991831d2bebd7b93367bd952e19b2197c2f0f', '0', 'https://lh3.googleusercontent.com/a-/AOh14GhtEweZ2PGMw6VsfShyiqkUKX0GngnLFy-epUio=s96-c', NULL),
 (33, 'Viost1638259561', 'vios.tee973@gmail.com', 'd21327c32c19459cabfa8d6ce01f9f580203b0d9d8d8b655c81d8796cc3d68eb', '0', 'https://lh3.googleusercontent.com/a-/AOh14Gh2D32D8KjY4-WcGswXd8j1Pdn1UWF8ep7_DIjn=s96-c', NULL),
 (34, 'vios.tee974', 'vios.tee974@gmail.com', '8bb0cf6eb9b17d0f7d22b456f121257dc1254e1f01665370476383ea776df414', '0', 'https://i.imgur.com/AxnVk1a.png', NULL),
-(35, 'Viost1638271017', 'vios.tee975@gmail.com', 'c789743f0bc1d20b3ac5a362952ea44cf2da26422f9a0329849147dbd506170b', '0', 'https://lh3.googleusercontent.com/a-/AOh14GinFbKP2nPoIXyBAnY7s7aeT06lK8H1tmnS--NC=s96-c', NULL);
+(35, 'Viost1638271017', 'vios.tee975@gmail.com', 'c789743f0bc1d20b3ac5a362952ea44cf2da26422f9a0329849147dbd506170b', '0', 'https://lh3.googleusercontent.com/a-/AOh14GinFbKP2nPoIXyBAnY7s7aeT06lK8H1tmnS--NC=s96-c', NULL),
+(36, 'vios.tee97', 'vios.tee97@gmail.com', 'c789743f0bc1d20b3ac5a362952ea44cf2da26422f9a0329849147dbd506170b', '0', 'https://i.imgur.com/AxnVk1a.png', NULL);
 
 --
 -- Bẫy `account`
@@ -473,12 +453,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `name`, `phoneNumber`, `address`) VALUES
-(25, 'Nguyễn Hữu Bảo', '0905560751', 'ktx khu b'),
 (26, 'hiếu', NULL, NULL),
 (27, 'bình', NULL, NULL),
 (33, NULL, NULL, NULL),
 (34, 'bao', '', ''),
-(35, NULL, NULL, NULL);
+(35, NULL, NULL, NULL),
+(36, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -503,15 +483,6 @@ CREATE TABLE `usertable` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc cho view `acc`
---
-DROP TABLE IF EXISTS `acc`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `acc`  AS SELECT `adtable`.`accId` AS `accId`, `adtable`.`userName` AS `userName`, `adtable`.`email` AS `email`, `adtable`.`password` AS `password`, `adtable`.`isAdmin` AS `isAdmin`, `adtable`.`avatar` AS `avatar`, `adtable`.`code` AS `code`, `adtable`.`admId` AS `admId`, `adtable`.`name` AS `name`, `adtable`.`phoneNumber` AS `phoneNumber`, `adtable`.`address` AS `address` FROM `adtable` ;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc cho view `adtable`
 --
 DROP TABLE IF EXISTS `adtable`;
@@ -526,6 +497,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `usertable`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usertable`  AS SELECT `account`.`accId` AS `accId`, `account`.`userName` AS `userName`, `account`.`email` AS `email`, `account`.`password` AS `password`, `account`.`isAdmin` AS `isAdmin`, `account`.`avatar` AS `avatar`, `account`.`code` AS `code`, `user`.`userId` AS `userId`, `user`.`name` AS `name`, `user`.`phoneNumber` AS `phoneNumber`, `user`.`address` AS `address` FROM (`account` join `user`) WHERE `account`.`accId` = `user`.`userId` ;
+
+
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -596,7 +569,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `accId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `accId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `comment`
@@ -626,7 +599,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `userId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -670,6 +643,11 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `account` (`accId`) ON DELETE CASCADE ON UPDATE CASCADE;
+	
+
+DROP TABLE IF EXISTS `acc`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `acc`  AS SELECT * FROM adtable UNION SELECT * FROM usertable;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
