@@ -112,7 +112,7 @@ export default function Cart() {
         success: function (data) {
           if(data==="OK"){
             alert("Đặt hàng thành công");
-            localStorage.removeItem("cart");
+            localStorage.setItem('cart','');
             window.location.href = "/customer-order";
           }
             
@@ -180,7 +180,7 @@ export default function Cart() {
                         <div class="col-md-2 align-self-center col-2 col-sm-2">
                             <p class="text-center fw-bold my-0">{numberWithCommas(product.price * item.quantity)}</p>
                         </div>
-                        <div class="col-md-1 align-self-center col-1 col-sm-1">
+                        <div class="col-md-1 align-self-c     enter col-1 col-sm-1">
                         <Button variant="dark" onClick={()=> removeItem(product.id)}>
                           <Icon.Trash></Icon.Trash>
                         </Button> 
