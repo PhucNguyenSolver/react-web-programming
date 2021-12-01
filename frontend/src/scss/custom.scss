@@ -13,8 +13,8 @@ $theme-colors: (
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
-.container {
-  .justify-content-md-center {
+#root{
+  #mainbody {
     min-height: 700px;
   }
 }

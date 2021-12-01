@@ -116,6 +116,7 @@ export default function App() {
   return (<>
   <AppProvider>
     <Header />
+    <div id="mainbody">
     <Router>
       <Switch>
         <RenderRoute path="/products/:manu" component={Products}/>
@@ -136,6 +137,7 @@ export default function App() {
         <RenderRoute path="/" component={Homepage}/>
       </Switch>
     </Router>
+    </div>
     <Footer/>
   </AppProvider>
   </>);
