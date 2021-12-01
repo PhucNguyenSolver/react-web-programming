@@ -31,6 +31,8 @@
                     echo "Tài khoản chưa được kích hoạt";
                     return;
                 }
+                //set time for PHPSESSID
+                setcookie('PHPSESSID', session_id(), time() + (86400 * 30),"/");
                 $_SESSION['id'] = $account->id;
                 setcookie('id', $account->id, time() + (86400 * 30), "/");
                 $_SESSION['email'] = $account->email;

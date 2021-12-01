@@ -43,6 +43,7 @@
         if($result->num_rows>0) // Nếu user tồn tại thì show thông tin hiện có
         {          
             $row = $result->fetch_assoc();
+            setcookie('PHPSESSID', session_id(), time() + (86400 * 30),"/");
             $_SESSION['id'] = $row['accId'];
             setcookie('id', $row['accId'], time() + (86400 * 30), "/");
             $_SESSION['email'] = $row['email'];
