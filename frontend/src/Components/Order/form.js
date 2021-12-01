@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { useState,useEffect } from 'react';
 
 
-export function MiniForm (props) {
+function MiniForm (props) {
   
   const [mini, setMini] = useState(false);
 
@@ -46,12 +46,13 @@ export function MiniForm (props) {
         </Form.Group>
       </Col>
 
-      <Col xs={6}>
+      <Col xs={2}>
         <Form.Group controlId="formProName">
           <Form.Label>Đánh giá</Form.Label>
           <Form.Control type="text" defaultValue={mini.ratingPoint} readOnly style={{backgroundColor: 'white'}}/>
         </Form.Group>
       </Col>
+      
     </Row>
 
     </td>

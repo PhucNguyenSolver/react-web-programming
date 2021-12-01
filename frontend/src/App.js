@@ -23,6 +23,7 @@ import Cookies from 'js-cookie';
 import AppProvider from "./context/AppProvider.js";
 import ChangeInfoNews from "./Components/ChangeInfoNews/index.js";
 import Intro from "./Components/Intro";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -116,6 +117,7 @@ export default function App() {
   return (<>
   <AppProvider>
     <Header />
+    <div id="mainbody">
     <Router>
       <Switch>
         <RenderRoute path="/products/:manu" component={Products}/>
@@ -136,6 +138,7 @@ export default function App() {
         <RenderRoute path="/" component={Homepage}/>
       </Switch>
     </Router>
+    </div>
     <Footer/>
   </AppProvider>
   </>);

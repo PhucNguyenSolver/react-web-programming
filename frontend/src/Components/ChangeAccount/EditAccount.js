@@ -77,7 +77,7 @@ export default function EditAccount () {
 
   return (
     <>
-      <Button variant="light" id="user" onClick={handleShow}></Button>
+      <Button variant="info" id="user" onClick={handleShow}></Button>
 
       <Modal size="lg" show={show} onHide={() => setShow(false)} aria-labelledby="example-modal-sizes-title-lg">
         <Modal.Header closeButton>
