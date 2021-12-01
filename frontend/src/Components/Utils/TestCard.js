@@ -21,8 +21,6 @@ export default function TestCard(props) {
   const handleClick = () => {
     document.location.href = '/product-info/' + product.productId;
   }
-  console.log(product.productId);
-
   return (<>
     <div class="card shadow border-0" style={{cursor: 'pointer'}} onClick={handleClick}>
       <img class="card-img-top" src={product.image1} alt="" />
